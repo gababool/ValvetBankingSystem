@@ -1,6 +1,6 @@
 package src;
 
-public class User {
+public class Employee {
 
 
 
