@@ -18,11 +18,11 @@ public class Customer {
 
    }
 
-   public String veiwAllAccounts(){
+   public String viewAllAccounts(){
 
    }
 
-   public String veiwAccount(){
+   public String viewAccount(){
 
    }
 
