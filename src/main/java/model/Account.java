@@ -4,7 +4,6 @@ import java.util.HashMap;
 
 public class Account {
 
-<<<<<<< HEAD
     private HashMap<Transaction, Integer> transactions;
     private double balance;
     private final int accountID;
