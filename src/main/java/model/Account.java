@@ -33,9 +33,6 @@ public class Account {
         if (balance < amount) {
             message = "Not enough currency available for this transaction";
         } else {
-
-            Transaction newTransaction = new Transaction(amount, Account, toAccount);
-
             double toAccountOldBalance = toAccount.getAccountBalance();
             toAccount.setBalance(toAccountOldBalance + amount);
 
@@ -52,7 +49,16 @@ public class Account {
         return new Transaction();
     }
 
-    public Transaction withdraw( Account fromAccount, double amount){
+    public String withdraw( Account fromAccount, double amount){
+
+        String message ="";
+        if (amount > this.getAccountBalance()){
+            message = "Not enough currency";
+        } else {
+            setBalance(this.getAccountBalance() - amount);
+        }
+        message = "Withdrawal successfull";
+        return message;
 
     }
 
