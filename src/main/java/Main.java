@@ -1,27 +1,35 @@
 package src.main.java;
-
+import src.main.java.model.Valvet;
 import src.main.java.model.ValvetFileManager;
+
+import java.sql.SQLOutput;
 
 public class Main {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         // 1. Load Valvet, customers, accounts and transactions from data.json
         // Create a bank with customers, accounts, and transactions
         Valvet valv = new Valvet();
         // Populate your bank with data...
-
+        valv.createCustomer();
+        valv.createCustomer();
+        valv.viewAllCustomers();
         // Save the bank data to a JSON file
-        ValvetFileManager.saveBank(bank);
+        ValvetFileManager.saveBank(valv);
 
         // Load the bank data from the JSON file
-        Bank loadedBank = BankManager.loadBank();
+        Valvet loadedBank = ValvetFileManager.loadBank();
+
+        loadedBank.viewAllCustomers();
 
         // Display the loaded bank data
         if (loadedBank != null) {
             System.out.println(loadedBank);
 
-    }
+        }
 
+
+    }
 
 }
 

@@ -1,17 +1,18 @@
 package src.main.java.model;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Locale;
 
-public class Account {
+public class Account implements Serializable {
 
-    private HashMap<Transaction, Integer> transactions;
+    private HashMap<Integer, Transaction> transactions;
     private double balance;
     private final int accountID;
 
 
     public Account(int accountID){
-        this.transactions = new HashMap<Transaction, Integer>();
+        this.transactions = new HashMap<Integer, Transaction>();
         this.balance = 0;
         this.accountID = accountID;
     }

@@ -1,8 +1,9 @@
 package src.main.java.model;
 
+import java.io.Serializable;
 import java.util.HashMap;
 
-public class Customer {
+public class Customer implements Serializable {
 
        private HashMap<Integer, Account> accounts;
        private String firstName;
@@ -16,6 +17,7 @@ public class Customer {
            this.surname = surname;
            this.accounts = new HashMap<>();
        }
+       public Customer(){this.PERSONAL_NUMBER = 0000000;}
     @Override
     public String toString(){
          return "Name: " + firstName + ", Surname: "  + surname + ", PNO: " + PERSONAL_NUMBER;

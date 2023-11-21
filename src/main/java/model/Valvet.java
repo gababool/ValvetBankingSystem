@@ -1,14 +1,15 @@
 package src.main.java.model;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.concurrent.ExecutionException;
 
-public class Valvet {
-    private static HashMap<Integer, Customer> customers = new HashMap<Integer, Customer>();
+public class Valvet implements Serializable {
+    private HashMap<Integer, Customer> customers = new HashMap<Integer, Customer>();
 
     public Valvet(){}
 
-    public static String createCustomer() throws Exception{
+    public String createCustomer() throws Exception{
         String firstName = IOScanner.nextLine("Enter customer first name: ");
         String lastName = IOScanner.nextLine("Enter customer last name: ");
         int personalNumber = IOScanner.nextInt("Enter customer personal number: ");
@@ -42,14 +43,14 @@ public class Valvet {
         return "Account " + accountID + "was successfully created.";
     }
 
-    public static void viewAllCustomers(){
+    public void viewAllCustomers(){
         System.out.println("List of customers: ");
         for (Customer customer : customers.values()){
             System.out.println(customer);
         }
     }
 
-    public static Customer viewCustomer(){
+    public Customer viewCustomer(){
         int customerPNO = IOScanner.nextInt("Enter personal number of customer: ");
         return customers.get(customerPNO);
     }
