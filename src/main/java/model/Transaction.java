@@ -1,6 +1,5 @@
 package src.main.java.model;
 import java.time.LocalDateTime;
-import java.util.Locale;
 
 public class Transaction {
     private final String transactionID;
