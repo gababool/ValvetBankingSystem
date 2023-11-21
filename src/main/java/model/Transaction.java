@@ -17,7 +17,7 @@ public class Transaction {
     }
 
     public String toString(){
-        return this.transactionAmount + " kr was transfered from " + this.sendingAccount + " to " + this.receivingAccount;
+        return this.transactionDate + ": " + this.transactionAmount + " kr was transferred from " + this.sendingAccount + " to " + this.receivingAccount;
     }
 
     public LocalDateTime getDate(){
@@ -36,7 +36,5 @@ public class Transaction {
     public Account getReceivingAccount(){
         return this.receivingAccount;
     }
-
-
 
 }
