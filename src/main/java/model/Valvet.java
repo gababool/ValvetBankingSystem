@@ -37,11 +37,7 @@ public class Valvet {
                 }
             }
         Customer customer = customers.get(personalNumber);
-        customer.createAccount(accountID)
-    }
-
-    public String deleteCustomer(){
-
+        customer.createAccount(accountID);
     }
 
     public String viewAllCustomers(){

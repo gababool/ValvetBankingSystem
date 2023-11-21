@@ -30,7 +30,7 @@ public class Account {
 
     public String sendTransaction(Account toAccount, double amount){
         String message;
-        if (this.getAccountBalance() < amount) {
+        if (balance < amount) {
             message = "Not enough currency available for this transaction";
         } else {
 
