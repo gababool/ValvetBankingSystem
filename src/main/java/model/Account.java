@@ -33,11 +33,8 @@ public class Account {
         if (balance < amount) {
             message = "Not enough currency available for this transaction";
         } else {
-            double toAccountOldBalance = toAccount.getAccountBalance();
-            toAccount.setBalance(toAccountOldBalance + amount);
-
-            double fromAccountOldBalance = this.getAccountBalance();
-            this.setBalance(fromAccountOldBalance - amount);
+            toAccount.setBalance(toAccount.getBalance() + amount);
+            setBalance(balance - amount);
 
             message = String.format(Locale.ENGLISH, "Transaction successfull. %d has been transfered.", amount);
         }
@@ -45,17 +42,19 @@ public class Account {
     }
 
 
-    public Transaction receiveTransaction(Account fromAccount, double amount){
+/*    public Transaction receiveTransaction(Account fromAccount, double amount){
         return new Transaction();
     }
 
-    public String withdraw( Account fromAccount, double amount){
+ */
+
+    public String withdraw( double amount){
 
         String message ="";
-        if (amount > this.getAccountBalance()){
+        if (amount > balance){
             message = "Not enough currency";
         } else {
-            setBalance(this.getAccountBalance() - amount);
+            setBalance(balance - amount);
         }
         message = "Withdrawal successfull";
         return message;

@@ -4,14 +4,14 @@ import java.util.HashMap;
 import java.util.concurrent.ExecutionException;
 
 public class Valvet {
-    private HashMap<Integer, Customer> customers;
+    private static HashMap<Integer, Customer> customers = new HashMap<Integer, Customer>();
 
     public Valvet(){}
 
-    public String createCustomer() throws Exception{
-        String firstName = IOScanner.nextLine("Enter customer first name");
-        String lastName = IOScanner.nextLine("Enter customer last name");
-        int personalNumber = IOScanner.nextInt("Enter customer personal number");
+    public static String createCustomer() throws Exception{
+        String firstName = IOScanner.nextLine("Enter customer first name: ");
+        String lastName = IOScanner.nextLine("Enter customer last name: ");
+        int personalNumber = IOScanner.nextInt("Enter customer personal number: ");
         if (customers.containsKey(personalNumber)){
             throw new AlreadyExistsException("Customer already exists.");
         }
@@ -21,7 +21,7 @@ public class Valvet {
     }
 
     public String deleteCustomer() throws Exception {
-        int customerPNO = IOScanner.nextInt("Enter personal number of customer to be deleted");
+        int customerPNO = IOScanner.nextInt("Enter personal number of customer to be deleted: ");
         Customer customer = customers.get(customerPNO);
         if (customer.getTotalBalance() != 0) {
             throw new BalanceNotZeroException("Deletion failed. Customer has remaining balance.");
@@ -38,18 +38,24 @@ public class Valvet {
             }
         Customer customer = customers.get(personalNumber);
         customer.createAccount(accountID);
+
+        return "Account " + accountID + "was successfully created.";
     }
 
-    public String viewAllCustomers(){
-
+    public static void viewAllCustomers(){
+        System.out.println("List of customers: ");
+        for (Customer customer : customers.values()){
+            System.out.println(customer);
+        }
     }
 
-    public Customer viewCustomer(){
-
+    public static Customer viewCustomer(){
+        int customerPNO = IOScanner.nextInt("Enter personal number of customer: ");
+        return customers.get(customerPNO);
     }
 
     public String makeTransaction(){
-
+        return "TEMP";
     }
 
 }
