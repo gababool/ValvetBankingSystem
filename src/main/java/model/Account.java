@@ -20,7 +20,7 @@ public class Account {
     public double getBalance(){
         return this.balance;
     }
-    public double getAccountID (){
+    public double getAccountID(){
         return this.accountID;
     }
     //Setters
