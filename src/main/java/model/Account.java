@@ -20,7 +20,7 @@ public class Account {
     public double getAccountBalance(){
         return this.balance;
     }
-    public double getAccountID (){
+    public double getAccountID(){
         return this.accountID;
     }
     //Setters
@@ -33,9 +33,6 @@ public class Account {
         if (this.getAccountBalance() < amount) {
             message = "Not enough currency available for this transaction";
         } else {
-
-            Transaction newTransaction = new Transaction(amount, Account, toAccount);
-
             double toAccountOldBalance = toAccount.getAccountBalance();
             toAccount.setBalance(toAccountOldBalance + amount);
 
