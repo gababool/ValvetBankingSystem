@@ -49,7 +49,18 @@ public class Account {
         return new Transaction();
     }
 
-    public Transaction withdraw( Account fromAccount, double amount){
+    public String withdraw( Account fromAccount, double amount){
+
+        String message ="";
+        if (amount > this.getAccountBalance()){
+            message = "This did not work";
+        } else {
+            double oldAmount = this.getAccountBalance();
+            double newAmount = oldAmount - amount;
+            setBalance(newAmount);
+        }
+        message = "Withdrawal successfull";
+        return message;
 
     }
 
