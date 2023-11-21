@@ -31,13 +31,13 @@ public class Account implements Serializable {
 
     public String sendTransaction(Account toAccount, double amount){
         String message;
-        if (balance < amount) {
+        if (this.balance < amount) {
             message = "Not enough currency available for this transaction";
         } else {
             toAccount.setBalance(toAccount.getBalance() + amount);
-            setBalance(balance - amount);
+            setBalance(this.balance - amount);
 
-            message = String.format(Locale.ENGLISH, "Transaction successfull. %d has been transfered.", amount);
+            message = String.format(Locale.ENGLISH, "Transaction successfull. %d has been transferred.", amount);
         }
         return message;
     }
@@ -52,10 +52,10 @@ public class Account implements Serializable {
     public String withdraw( double amount){
 
         String message ="";
-        if (amount > balance){
+        if (amount > this.balance){
             message = "Not enough currency";
         } else {
-            setBalance(balance - amount);
+            setBalance(this.balance - amount);
         }
         message = "Withdrawal successfull";
         return message;
@@ -63,7 +63,7 @@ public class Account implements Serializable {
     }
 
     public String toString() {
-        return String.format("Account %f currently has %d in account balance.",accountID, balance);
+        return String.format("Account %f currently has %d in account balance.",this.accountID, this.balance);
     }
 
 }

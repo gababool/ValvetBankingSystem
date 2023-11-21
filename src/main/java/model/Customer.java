@@ -20,40 +20,40 @@ public class Customer implements Serializable {
        public Customer(){this.PERSONAL_NUMBER = 0000000;}
     @Override
     public String toString(){
-         return "Name: " + firstName + ", Surname: "  + surname + ", PNO: " + PERSONAL_NUMBER;
+         return "Name: " + this.firstName + ", Surname: "  + this.surname + ", PNO: " + this.PERSONAL_NUMBER;
     }
 
     public String getSurname() {
-        return surname;
+        return this.surname;
     }
 
     public String getFirstName(){
-           return firstName;
+           return this.firstName;
     }
 
     public int getPERSONAL_NUMBER(){
-           return PERSONAL_NUMBER;
+           return this.PERSONAL_NUMBER;
     }
 
     public HashMap<Integer, Account> getAccounts(){
-           return accounts;
+           return this.accounts;
     }
 
 
     public void createAccount(int accountID) {
            Account newAccount = new Account(accountID);
-        accounts.put(accountID, newAccount);
+        this.accounts.put(accountID, newAccount);
     }
 
     public void closeAccount(int accountID) throws Exception {
-           if (accounts.get(accountID) == null) throw new Exception("The account you are trying to remove does not exist!");
-           accounts.remove(accountID);
+           if (this.accounts.get(accountID) == null) throw new Exception("The account you are trying to remove does not exist!");
+           this.accounts.remove(accountID);
     }
 
     public String viewAllAccounts(){
         String lineSeparator = System.lineSeparator();
-        String allAccounts = "Accounts for " + firstName + " " + surname + lineSeparator;
-        for (Account account : accounts.values()){
+        String allAccounts = "Accounts for " + this.firstName + " " + this.surname + lineSeparator;
+        for (Account account : this.accounts.values()){
             allAccounts += account.toString() + lineSeparator;
         }
             return allAccounts;
@@ -61,7 +61,7 @@ public class Customer implements Serializable {
 
 
        public String viewAccount(int accountID){
-        Account account = accounts.get(accountID);
+        Account account = this.accounts.get(accountID);
         if (account != null) {
             return account.toString();
         } else {
@@ -73,7 +73,7 @@ public class Customer implements Serializable {
        public double getTotalBalance(){
            double totalBalance = 0;
 
-           for (Account account : accounts.values()){
+           for (Account account : this.accounts.values()){
                totalBalance += account.getBalance();
            }
            return totalBalance;
