@@ -3,13 +3,14 @@ import java.time.LocalDateTime;
 import java.util.Locale;
 
 public class Transaction {
-    private String transactionID;
+    private final String transactionID;
     private LocalDateTime transactionDate;
     private double transactionAmount;
     private Account sendingAccount;
     private Account receivingAccount;
 
-    public Transaction(double transactionAmount, Account sendingAccount, Account receivingAccount){
+    public Transaction(String transactionID, double transactionAmount, Account sendingAccount, Account receivingAccount){
+        this.transactionID = transactionID;
         this.transactionDate = LocalDateTime.now();
         this.transactionAmount = transactionAmount;
         this.sendingAccount = sendingAccount;
@@ -17,7 +18,7 @@ public class Transaction {
     }
 
     public String toString(){
-        return ;
+        return this.transactionAmount + " kr was transfered from " + this.sendingAccount + " to " + this.receivingAccount;
     }
 
     public LocalDateTime getDate(){
@@ -25,16 +26,16 @@ public class Transaction {
     }
 
     public double getAmount(){
-        return transactionAmount;
+        return this.transactionAmount;
     }
 
 
     public Account getSendingAccount(){
-        return sendingAccount;
+        return this.sendingAccount;
     }
 
     public Account getReceivingAccount(){
-        return receivingAccount;
+        return this.receivingAccount;
     }
 
 
