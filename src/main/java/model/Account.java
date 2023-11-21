@@ -17,7 +17,7 @@ public class Account {
     }
 
     //Getters
-    public double getAccountBalance(){
+    public double getBalance(){
         return this.balance;
     }
     public double getAccountID(){

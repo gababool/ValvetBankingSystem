@@ -34,8 +34,9 @@ public class Customer {
            return accounts;
     }
 
-    public void createAccount(Account account) {
-           accounts.put(account.getAccountID(), account);
+    public void createAccount(int accountID) {
+           Account newAccount = new Account(accountID);
+        accounts.put(accountID, newAccount);
     }
     public String viewAllAccounts(){
         String lineSeparator = System.lineSeparator();
@@ -53,6 +54,14 @@ public class Customer {
         } else {
             return "Account not found";
         }
+       }
+
+       public int getTotalBalance(){
+           double totaltBalance = 0;
+
+           for (Account accounjt : account.values()){
+
+           }
        }
 
 
