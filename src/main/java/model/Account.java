@@ -53,11 +53,9 @@ public class Account {
 
         String message ="";
         if (amount > this.getAccountBalance()){
-            message = "This did not work";
+            message = "Not enough currency";
         } else {
-            double oldAmount = this.getAccountBalance();
-            double newAmount = oldAmount - amount;
-            setBalance(newAmount);
+            setBalance(this.getAccountBalance() - amount);
         }
         message = "Withdrawal successfull";
         return message;
