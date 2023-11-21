@@ -4,7 +4,7 @@ import java.util.HashMap;
 
 public class Customer {
 
-    private HashMap<Account, Integer> accounts;
+   private HashMap<Account, Integer> accounts;
    private String firstName;
    private String lastName;
    final int PERSONAL_NUMBER;
