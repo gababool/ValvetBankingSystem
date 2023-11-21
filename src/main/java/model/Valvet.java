@@ -3,11 +3,12 @@ package src.main.java.model;
 import java.util.HashMap;
 
 public class Valvet {
-    private HashMap<Integer, Customer> customers;
+
+    // Replace this later. Should be loaded from JSON.
+    private HashMap<Integer, Customer> customers = new HashMap<Integer, Customer>();
 
     public Valvet(){
-        this.customers =  new HashMap<Integer, Customer>();
-        // Replace this later. Should be loaded from JSON.
+
     }
 
     public String createCustomer(String firstName, String lastName, int personalNumber) throws Exception{
@@ -19,11 +20,15 @@ public class Valvet {
         return "Customer: " + newCustomer + " successfully created!";
     }
 
+    public String deleteCustomer(){
+
+    }
+
     public String createAccount(){
 
     }
 
-    public String deleteCustomer(){
+    public String deleteAccount(){
 
     }
 
