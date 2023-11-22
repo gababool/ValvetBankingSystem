@@ -8,13 +8,14 @@ public class Account implements Serializable {
 
     private HashMap<Integer, Transaction> transactions;
     private double balance;
-    private final int accountID;
+    private int accountID;
 
     public Account(int accountID){
         this.transactions = new HashMap<>();
         this.balance = 0;
         this.accountID = accountID;
     }
+    public Account(){};
     //Getters
     public double getBalance() {
         return this.balance;
@@ -79,7 +80,7 @@ public class Account implements Serializable {
         }
 
         public String toString () {
-            return String.format("Account %f currently has %d in account balance.", this.accountID, this.balance);
+            return String.format("Account %d currently has %f in account balance.", this.accountID, this.balance);
         }
 
     }

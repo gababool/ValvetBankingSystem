@@ -24,8 +24,8 @@ public class Main {
         Valvet loadedBank = ValvetFileManager.loadBank();
 
         loadedBank.viewAllCustomers();
-        valv.getCustomer(123).viewAllAccounts();
-        valv.getCustomer(321).viewAllAccounts();
+        System.out.println(valv.getCustomer(123).viewAllAccounts());
+        System.out.println(valv.getCustomer(321).viewAllAccounts());
 
         // Display the loaded bank data
         if (loadedBank != null) {

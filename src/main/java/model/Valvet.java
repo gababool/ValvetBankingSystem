@@ -5,9 +5,12 @@ import java.util.HashMap;
 import java.util.concurrent.ExecutionException;
 
 public class Valvet implements Serializable {
-    private HashMap<Integer, Customer> customers = new HashMap<Integer, Customer>();
 
-    public Valvet(){}
+    private HashMap<Integer, Customer> customers;
+
+    public Valvet(){
+        this.customers = new HashMap<Integer, Customer>();
+    }
 
     public String createCustomer() throws Exception{
         String firstName = IOScanner.nextLine("Enter customer first name: ");
