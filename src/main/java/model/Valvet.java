@@ -45,7 +45,7 @@ public class Valvet implements Serializable {
         return "Account " + accountID + "was successfully created.";
     }
 
-    public void updatePersonalInformation(){
+    public void updateCustomerFirstName(){
 
     }
 
