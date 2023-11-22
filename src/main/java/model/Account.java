@@ -27,15 +27,12 @@ public class Account implements Serializable {
     }
 
     //Setters
-    public void setBalance(double newBalance) {
-        this.balance = newBalance;
-    }
 
-    public void increaseBalance (double increaseAmount){
+    private void increaseBalance (double increaseAmount){
         this.balance += increaseAmount;
     }
 
-    public void decreaseBalance (double decreaseAmount) {
+    private void decreaseBalance (double decreaseAmount) {
         if ((this.balance -= decreaseAmount) < 0) {
             this.balance = 0;
         } else {
@@ -73,7 +70,7 @@ public class Account implements Serializable {
             if (amount > this.balance) {
                 message = "Not enough currency";
             } else {
-                setBalance(this.balance - amount);
+                //setBalance(this.balance - amount);
             }
             message = "Withdrawal successfull";
             return message;
