@@ -28,8 +28,8 @@ public class Valvet implements Serializable{
             throw new AlreadyExistsException("Customer already exists.");
         }
         Customer newCustomer = new Customer(firstName, surname, personalNumber);
-        createAccount(personalNumber);
         this.customers.put(personalNumber, newCustomer);
+        createAccount(personalNumber);
         System.out.println("Customer: " + newCustomer + " successfully created!");
         return newCustomer;
     }
@@ -44,7 +44,6 @@ public class Valvet implements Serializable{
         }
         System.out.println("Customer " + customer + " successfully removed");
         return this.customers.remove(personalNumber);
-
     }
 
     public Account createAccount(int personalNumber) throws Exception {

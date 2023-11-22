@@ -17,9 +17,7 @@ public class Account implements Serializable {
     }
 
     public Account() {}
-
-
-
+    
     //Getters
     public double getBalance() {
         return this.balance;

@@ -18,12 +18,6 @@ public class Transaction implements Serializable {
         this.sendingAccountNumber = sendingAccountNumber;
         this.receivingAccountNumber = receivingAccountNumber;
     }
-    public Transaction(int transactionID, double transactionAmount, long receivingAccount){
-        this.transactionID = transactionID;
-        this.transactionDate = LocalDateTime.now();
-        this.transactionAmount = transactionAmount;
-        this.receivingAccountNumber = receivingAccount;
-    }
 
     public String toString(){
         return this.transactionDate + ": " + this.transactionAmount + " kr was transferred from " + this.sendingAccountNumber + " to " + this.receivingAccountNumber;
