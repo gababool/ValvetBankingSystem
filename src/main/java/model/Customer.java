@@ -1,5 +1,7 @@
 package src.main.java.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.io.Serializable;
 import java.util.HashMap;
 
@@ -8,7 +10,7 @@ public class Customer implements Serializable {
        private HashMap<Integer, Account> accounts;
        private String firstName;
        private String surname;
-       private final int PERSONAL_NUMBER;
+       private int PERSONAL_NUMBER;
 
 
        public Customer(String firstName, String surname, int PERSONAL_NUMBER){
@@ -17,7 +19,8 @@ public class Customer implements Serializable {
            this.surname = surname;
            this.accounts = new HashMap<>();
        }
-       public Customer(){this.PERSONAL_NUMBER = 0000000;}
+       public Customer(){}
+
     @Override
     public String toString(){
          return "Name: " + this.firstName + ", Surname: "  + this.surname + ", PNO: " + this.PERSONAL_NUMBER;

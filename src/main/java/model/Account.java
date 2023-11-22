@@ -10,13 +10,11 @@ public class Account implements Serializable {
     private double balance;
     private final int accountID;
 
-
-    public Account(int accountID) {
-        this.transactions = new HashMap<Integer, Transaction>();
+    public Account(int accountID){
+        this.transactions = new HashMap<>();
         this.balance = 0;
         this.accountID = accountID;
     }
-
     //Getters
     public double getBalance() {
         return this.balance;
@@ -27,12 +25,15 @@ public class Account implements Serializable {
     }
 
     //Setters
+    public void setBalance(double newBalance) {
+        this.balance = newBalance;
+    }
 
-    private void increaseBalance (double increaseAmount){
+    public void increaseBalance (double increaseAmount){
         this.balance += increaseAmount;
     }
 
-    private void decreaseBalance (double decreaseAmount) {
+    public void decreaseBalance (double decreaseAmount) {
         if ((this.balance -= decreaseAmount) < 0) {
             this.balance = 0;
         } else {
@@ -70,7 +71,7 @@ public class Account implements Serializable {
             if (amount > this.balance) {
                 message = "Not enough currency";
             } else {
-                //setBalance(this.balance - amount);
+                setBalance(this.balance - amount);
             }
             message = "Withdrawal successfull";
             return message;

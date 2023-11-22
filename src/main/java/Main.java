@@ -11,8 +11,11 @@ public class Main {
         // Create a bank with customers, accounts, and transactions
         Valvet valv = new Valvet();
         // Populate your bank with data...
-        valv.createCustomer();
-        valv.createCustomer();
+        valv.createCustomer("Hans", "Bertil", 123);
+        valv.createCustomer("Bertil", "Hans", 321);
+        valv.createAccount(543453, 321);
+        valv.createAccount(32155, 321);
+        valv.createAccount(16771, 123);
         valv.viewAllCustomers();
         // Save the bank data to a JSON file
         ValvetFileManager.saveBank(valv);
@@ -21,6 +24,8 @@ public class Main {
         Valvet loadedBank = ValvetFileManager.loadBank();
 
         loadedBank.viewAllCustomers();
+        valv.getCustomer(123).viewAllAccounts();
+        valv.getCustomer(321).viewAllAccounts();
 
         // Display the loaded bank data
         if (loadedBank != null) {

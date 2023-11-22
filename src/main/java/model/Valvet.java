@@ -50,9 +50,8 @@ public class Valvet implements Serializable {
         }
     }
 
-    public Customer viewCustomer(){
-        int customerPNO = IOScanner.nextInt("Enter personal number of customer: ");
-        return this.customers.get(customerPNO);
+    public Customer getCustomer(int personalNumber){
+        return this.customers.get(personalNumber);
     }
 
     public String makeTransaction(){

@@ -1,1 +1,1 @@
-{"customers":{"321":{"accounts":{},"firstName":"Bertil","surname":"Hans","PERSONAL_NUMBER":321,"personal_NUMBER":321,"totalBalance":0.0},"123":{"accounts":{},"firstName":"Hans","surname":"Bertil","PERSONAL_NUMBER":123,"personal_NUMBER":123,"totalBalance":0.0}}}
+{"customers":{"321":{"accounts":{},"firstName":"Bertil","surname":"Hans","PERSONAL_NUMBER":321,"totalBalance":0.0,"personal_NUMBER":321},"123":{"accounts":{},"firstName":"Hans","surname":"Bertil","PERSONAL_NUMBER":123,"totalBalance":0.0,"personal_NUMBER":123}}}

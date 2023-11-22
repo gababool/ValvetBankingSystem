@@ -1,6 +1,7 @@
 package src.main.java.model;
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.PropertyAccessor;
+import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.File;
@@ -12,6 +13,7 @@ public class ValvetFileManager {
     private static ObjectMapper objectMapper = new ObjectMapper();
 
     public static void saveBank(Valvet valv) {
+        objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
         try {
             objectMapper.setVisibility(PropertyAccessor.FIELD, JsonAutoDetect.Visibility.ANY);
             objectMapper.writeValue(new File(FILE_PATH), valv);
