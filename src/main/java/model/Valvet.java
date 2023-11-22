@@ -2,6 +2,9 @@ package src.main.java.model;
 
 import java.io.Serializable;
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Random;
+import java.util.Set;
 import java.util.concurrent.ExecutionException;
 
 public class Valvet implements Serializable {
@@ -17,6 +20,7 @@ public class Valvet implements Serializable {
             throw new AlreadyExistsException("Customer already exists.");
         }
         Customer newCustomer = new Customer(firstName, surname, personalNumber);
+        createAccount(personalNumber);
         this.customers.put(personalNumber, newCustomer);
         System.out.println("Customer: " + newCustomer + " successfully created!");
         return newCustomer;
@@ -27,6 +31,9 @@ public class Valvet implements Serializable {
         Customer customer = this.customers.get(customerPNO);
         if (customer.getTotalBalance() != 0) {
             throw new BalanceNotZeroException("Deletion failed. Customer has remaining balance.");
+        }
+        for (Account account : customer.getAccounts().values()){
+            accountNumbers.remove(account.getAccountID());
         }
         System.out.println("Customer " + customer + " successfully removed");
         return this.customers.remove(customerPNO);
@@ -45,8 +52,16 @@ public class Valvet implements Serializable {
         return "Account " + accountID + "was successfully created.";
     }
 
-    public void updateCustomerFirstName(){
+    public Customer updateCustomerFirstName(int personalNumber, String name){
+        Customer customer = customers.get(personalNumber);
+        customer.setFirstName(name);
+        return customer;
+    }
 
+    public Customer updateCustomerSurname(int personalNumber, String name){
+        Customer customer = customers.get(personalNumber);
+        customer.setSurname(name);
+        return customer;
     }
 
     public void viewAllCustomers(){
@@ -60,8 +75,12 @@ public class Valvet implements Serializable {
         return this.customers.get(personalNumber);
     }
 
-    public String makeTransaction(){
-        return null;
+    public Transaction makeTransaction(Account sender, Account receiver, double amount) throws Exception{
+        currentTransactionNumber += 1;
+        Transaction transaction = new Transaction(currentTransactionNumber, amount, sender.getAccountID(), receiver.getAccountID());
+        sender.sendTransaction(transaction);
+        receiver.receiveTransaction(transaction);
+        return transaction;
     }
 
 }

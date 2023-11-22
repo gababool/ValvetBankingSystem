@@ -13,14 +13,14 @@ public class Transaction implements Serializable {
         this.transactionID = transactionID;
         this.transactionDate = LocalDateTime.now();
         this.transactionAmount = transactionAmount;
-        this.sendingAccount = sendingAccount;
-        this.receivingAccount = receivingAccount;
+        this.sendingAccountNumber = sendingAccountNumber;
+        this.receivingAccountNumber = receivingAccountNumber;
     }
     public Transaction(String transactionID, double transactionAmount, Account receivingAccount){
         this.transactionID = transactionID;
         this.transactionDate = LocalDateTime.now();
         this.transactionAmount = transactionAmount;
-        this.receivingAccount = receivingAccount;
+        this.receivingAccountNumber = receivingAccount;
     }
 
     public String toString(){

@@ -13,9 +13,21 @@ public class Main {
         // Populate your bank with data...
         valv.createCustomer("Hans", "Bertil", 123);
         valv.createCustomer("Bertil", "Hans", 321);
-        valv.createAccount(543453, 321);
-        valv.createAccount(32155, 321);
-        valv.createAccount(16771, 123);
+        valv.createAccount(321);
+        valv.createAccount(321);
+        valv.createAccount(321);
+        valv.createAccount(321);
+        valv.createAccount(321);
+        valv.createAccount(321);
+        valv.createAccount(321);
+        valv.createAccount(321);
+        valv.createAccount(321);
+        valv.createAccount(321);
+        valv.createAccount(321);
+        valv.createAccount(123);
+        valv.createAccount(123);valv.createAccount(123);valv.createAccount(123);valv.createAccount(123);valv.createAccount(123);
+
+
         valv.viewAllCustomers();
         // Save the bank data to a JSON file
         ValvetFileManager.saveBank(valv);
