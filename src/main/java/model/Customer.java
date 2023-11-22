@@ -1,54 +1,67 @@
 package src.main.java.model;
 
+import java.io.Serializable;
 import java.util.HashMap;
 
-public class Customer {
+public class Customer implements Serializable {
 
        private HashMap<Integer, Account> accounts;
        private String firstName;
-       private String lastName;
+       private String surname;
        private final int PERSONAL_NUMBER;
 
 
-       public Customer(String firstname, String lastName, int PERSONAL_NUMBER){
+       public Customer(String firstName, String surname, int PERSONAL_NUMBER){
            this.PERSONAL_NUMBER = PERSONAL_NUMBER;
-           this.firstName = firstname;
-           this.lastName = lastName;
+           this.firstName = firstName;
+           this.surname = surname;
            this.accounts = new HashMap<>();
-
        }
-
-    public String getLastName() {
-        return lastName;
+       public Customer(){this.PERSONAL_NUMBER = 0000000;}
+    @Override
+    public String toString(){
+         return "Name: " + this.firstName + ", Surname: "  + this.surname + ", PNO: " + this.PERSONAL_NUMBER;
     }
 
-    public String getfirstName(){
-           return firstName;
+    public String getSurname() {
+        return this.surname;
+    }
+
+    public String getFirstName(){
+           return this.firstName;
     }
 
     public int getPERSONAL_NUMBER(){
-           return PERSONAL_NUMBER;
+           return this.PERSONAL_NUMBER;
     }
 
     public HashMap<Integer, Account> getAccounts(){
-           return accounts;
+           return this.accounts;
     }
+
 
     public void createAccount(int accountID) {
            Account newAccount = new Account(accountID);
-        accounts.put(accountID, newAccount);
+        this.accounts.put(accountID, newAccount);
     }
+
+    public void closeAccount(int accountID) throws Exception {
+           if (this.accounts.get(accountID) == null) throw new Exception("The account you are trying to remove does not exist!");
+           this.accounts.remove(accountID);
+    }
+
     public String viewAllAccounts(){
         String lineSeparator = System.lineSeparator();
-        String allAccounts = "Accounts for " + firstName + " " + lastName + lineSeparator;
-        for (Account account : accounts.values()){
+        String allAccounts = "Accounts for " + this.firstName + " " + this.surname + lineSeparator;
+        for (Account account : this.accounts.values()){
             allAccounts += account.toString() + lineSeparator;
         }
             return allAccounts;
        }
 
+
        public String viewAccount(int accountID){
-        Account account = accounts.get(accountID);
+        Account account = this.accounts.get(accountID);
         if (account != null) {
             return account.toString();
         } else {
@@ -56,12 +69,14 @@ public class Customer {
         }
        }
 
-       public int getTotalBalance(){
-           double totaltBalance = 0;
 
-           for (Account accounjt : account.values()){
+       public double getTotalBalance(){
+           double totalBalance = 0;
 
+           for (Account account : this.accounts.values()){
+               totalBalance += account.getBalance();
            }
+           return totalBalance;
        }
 
 

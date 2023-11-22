@@ -1,7 +1,8 @@
 package src.main.java.model;
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
-public class Transaction {
+public class Transaction implements Serializable {
     private final String transactionID;
     private LocalDateTime transactionDate;
     private double transactionAmount;
@@ -36,5 +37,4 @@ public class Transaction {
     public Account getReceivingAccount(){
         return this.receivingAccount;
     }
-
 }
