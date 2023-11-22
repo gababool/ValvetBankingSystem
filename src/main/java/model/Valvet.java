@@ -12,26 +12,25 @@ public class Valvet implements Serializable {
         this.customers = new HashMap<Integer, Customer>();
     }
 
-    public String createCustomer() throws Exception{
-        String firstName = IOScanner.nextLine("Enter customer first name: ");
-        String lastName = IOScanner.nextLine("Enter customer last name: ");
-        int personalNumber = IOScanner.nextInt("Enter customer personal number: ");
+    public Customer createCustomer(String firstName, String surname, int personalNumber) throws Exception{
         if (this.customers.containsKey(personalNumber)){
             throw new AlreadyExistsException("Customer already exists.");
         }
-        Customer newCustomer = new Customer(firstName, lastName, personalNumber);
+        Customer newCustomer = new Customer(firstName, surname, personalNumber);
         this.customers.put(personalNumber, newCustomer);
-        return "Customer: " + newCustomer + " successfully created!";
+        System.out.println("Customer: " + newCustomer + " successfully created!");
+        return newCustomer;
     }
 
-    public String deleteCustomer() throws Exception {
+    public Customer deleteCustomer(int personalNumber) throws Exception {
         int customerPNO = IOScanner.nextInt("Enter personal number of customer to be deleted: ");
         Customer customer = this.customers.get(customerPNO);
         if (customer.getTotalBalance() != 0) {
             throw new BalanceNotZeroException("Deletion failed. Customer has remaining balance.");
         }
-        this.customers.remove(customerPNO);
-        return "Customer " + customer + " successfully removed";
+        System.out.println("Customer " + customer + " successfully removed");
+        return this.customers.remove(customerPNO);
+
     }
 
     public String createAccount(int accountID, int personalNumber) throws Exception{
@@ -58,7 +57,7 @@ public class Valvet implements Serializable {
     }
 
     public String makeTransaction(){
-        return "TEMP";
+        return null;
     }
 
 }
