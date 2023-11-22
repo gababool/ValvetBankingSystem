@@ -3,20 +3,19 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 
 public class Transaction implements Serializable {
-    private final String transactionID;
     private LocalDateTime transactionDate;
     private double transactionAmount;
     private Account sendingAccount;
     private Account receivingAccount;
 
-    public Transaction(String transactionID, double transactionAmount, Account sendingAccount, Account receivingAccount){
+    public Transaction(int transactionID, double transactionAmount, long sendingAccountNumber, long receivingAccountNumber){
         this.transactionID = transactionID;
         this.transactionDate = LocalDateTime.now();
         this.transactionAmount = transactionAmount;
         this.sendingAccountNumber = sendingAccountNumber;
         this.receivingAccountNumber = receivingAccountNumber;
     }
-    public Transaction(String transactionID, double transactionAmount, Account receivingAccount){
+    public Transaction(int transactionID, double transactionAmount, long receivingAccount){
         this.transactionID = transactionID;
         this.transactionDate = LocalDateTime.now();
         this.transactionAmount = transactionAmount;
