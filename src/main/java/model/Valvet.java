@@ -97,5 +97,4 @@ public class Valvet implements Serializable{
         receiver.receiveTransaction(transaction);
         return transaction;
     }
-
 }
