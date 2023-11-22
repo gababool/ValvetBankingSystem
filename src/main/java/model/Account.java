@@ -31,14 +31,26 @@ public class Account implements Serializable {
         this.balance = newBalance;
     }
 
+    public void increaseBalance (double increaseAmount){
+        this.balance += increaseAmount;
+    }
+
+    public void decreaseBalance (double decreaseAmount) {
+        if ((this.balance -= decreaseAmount) < 0) {
+            this.balance = 0;
+        } else {
+            this.balance -= decreaseAmount;
+        }
+    }
+
     public String sendTransaction(Account toAccount, double amount) {
         String message;
 
             if (this.balance < amount) {
                 message = "Not enough currency available for this transaction";
             } else {
-                toAccount.setBalance(toAccount.getBalance() + amount);
-                setBalance(this.balance - amount);
+                toAccount.increaseBalance(amount);
+                decreaseBalance(amount);
 
                 message = String.format(Locale.ENGLISH, "Transaction successfull. %d has been transferred.", amount);
             }
