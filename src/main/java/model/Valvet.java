@@ -7,13 +7,21 @@ import java.util.Random;
 import java.util.Set;
 import java.util.concurrent.ExecutionException;
 
-public class Valvet implements Serializable {
+public class Valvet implements Serializable{
 
+    private long clearingNumber;
     private HashMap<Integer, Customer> customers;
+    private Set<Long> accountNumbers;
+    private int currentTransactionNumber;
+    private Random random = new Random();
 
-    public Valvet(){
+    public Valvet(long clearingNumber){
+        this.clearingNumber = (clearingNumber * 1000000000);
         this.customers = new HashMap<Integer, Customer>();
+        this.accountNumbers = new HashSet<>();
+        this.currentTransactionNumber = 100000;
     }
+    public Valvet(){}
 
     public Customer createCustomer(String firstName, String surname, int personalNumber) throws Exception{
         if (this.customers.containsKey(personalNumber)){
@@ -27,29 +35,36 @@ public class Valvet implements Serializable {
     }
 
     public Customer deleteCustomer(int personalNumber) throws Exception {
-        int customerPNO = IOScanner.nextInt("Enter personal number of customer to be deleted: ");
-        Customer customer = this.customers.get(customerPNO);
+        Customer customer = this.customers.get(personalNumber);
         if (customer.getTotalBalance() != 0) {
-            throw new BalanceNotZeroException("Deletion failed. Customer has remaining balance.");
+            throw new BalanceNotZeroException("Deletion failed. Customer has remaining balance: " + customer.getTotalBalance());
         }
         for (Account account : customer.getAccounts().values()){
             accountNumbers.remove(account.getAccountID());
         }
         System.out.println("Customer " + customer + " successfully removed");
-        return this.customers.remove(customerPNO);
+        return this.customers.remove(personalNumber);
 
     }
 
-    public String createAccount(int accountID, int personalNumber) throws Exception{
-        for (Customer customer : this.customers.values()) {
-                if (customer.getAccounts().get(accountID) != null){
-                    throw new AlreadyExistsException(accountID);
-                }
-            }
+    public Account createAccount(int personalNumber) throws Exception {
+        if (!customers.containsKey(personalNumber)) {
+            throw new NotFoundException("Customer not found");
+        }
         Customer customer = this.customers.get(personalNumber);
-        customer.createAccount(accountID);
+        long accountID = clearingNumber + generateRandomNumber();
+        Account createdAccount = customer.createAccount(accountID);
+        accountNumbers.add(accountID);
+        return createdAccount;
+    }
 
-        return "Account " + accountID + "was successfully created.";
+    private long generateRandomNumber(){
+        long number = 0;
+        do {
+            number = random.nextInt(100000000, 999999999);
+
+        } while (accountNumbers.contains(number));
+        return number;
     }
 
     public Customer updateCustomerFirstName(int personalNumber, String name){

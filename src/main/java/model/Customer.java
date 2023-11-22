@@ -7,7 +7,7 @@ import java.util.HashMap;
 
 public class Customer implements Serializable {
 
-       private HashMap<Integer, Account> accounts;
+       private HashMap<Long, Account> accounts;
        private String firstName;
        private String surname;
        private int PERSONAL_NUMBER;
@@ -39,7 +39,7 @@ public class Customer implements Serializable {
            return this.PERSONAL_NUMBER;
     }
 
-    public HashMap<Integer, Account> getAccounts(){
+    public HashMap<Long, Account> getAccounts(){
            return this.accounts;
     }
 
@@ -59,9 +59,11 @@ public class Customer implements Serializable {
 
 
 
-    public void createAccount(int accountID) {
-           Account newAccount = new Account(accountID);
-        this.accounts.put(accountID, newAccount);
+    public Account createAccount(long accountID) {
+           Account createdAccount = new Account(accountID);
+        this.accounts.put(accountID, createdAccount);
+
+        return createdAccount;
     }
 
     public void closeAccount(int accountID) throws Exception {

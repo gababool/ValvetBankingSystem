@@ -8,9 +8,9 @@ public class Account implements Serializable {
 
     private HashMap<Integer, Transaction> transactions;
     private double balance;
-    private int accountID;
+    private long accountID;
 
-    public Account(int accountID){
+    public Account(long accountID) {
         this.transactions = new HashMap<>();
         this.balance = 0;
         this.accountID = accountID;
@@ -25,7 +25,7 @@ public class Account implements Serializable {
         return this.balance;
     }
 
-    public double getAccountID() {
+    public long getAccountID() {
         return this.accountID;
     }
 
@@ -70,9 +70,9 @@ public class Account implements Serializable {
     */
 
 
-        public String toString () {
-            return String.format("Account %d currently has %f in account balance.", this.accountID, this.balance);
-        }
+    public String toString () {
+        return String.format("Account %d currently has %.2f in account balance.", this.accountID, this.balance);
+    }
 
 }
 

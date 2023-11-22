@@ -9,7 +9,7 @@ public class Main {
     public static void main(String[] args) throws Exception {
         // 1. Load Valvet, customers, accounts and transactions from data.json
         // Create a bank with customers, accounts, and transactions
-        Valvet valv = new Valvet();
+        Valvet valv = new Valvet(1337);
         // Populate your bank with data...
         valv.createCustomer("Hans", "Bertil", 123);
         valv.createCustomer("Bertil", "Hans", 321);

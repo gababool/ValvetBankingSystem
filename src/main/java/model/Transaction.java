@@ -7,8 +7,9 @@ import java.util.HashSet;
 public class Transaction implements Serializable {
     private LocalDateTime transactionDate;
     private double transactionAmount;
-    private Account sendingAccount;
-    private Account receivingAccount;
+    private long sendingAccountNumber;
+    private long receivingAccountNumber;
+    private int transactionID;
 
     public Transaction(int transactionID, double transactionAmount, long sendingAccountNumber, long receivingAccountNumber){
         this.transactionID = transactionID;
@@ -25,7 +26,7 @@ public class Transaction implements Serializable {
     }
 
     public String toString(){
-        return this.transactionDate + ": " + this.transactionAmount + " kr was transferred from " + this.sendingAccount + " to " + this.receivingAccount;
+        return this.transactionDate + ": " + this.transactionAmount + " kr was transferred from " + this.sendingAccountNumber + " to " + this.receivingAccountNumber;
     }
 
     public LocalDateTime getDate(){
@@ -36,12 +37,6 @@ public class Transaction implements Serializable {
         return this.transactionAmount;
     }
 
+    public int getTransactionID(){return transactionID;}
 
-    public Account getSendingAccount(){
-        return this.sendingAccount;
-    }
-
-    public Account getReceivingAccount(){
-        return this.receivingAccount;
-    }
 }
