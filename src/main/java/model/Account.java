@@ -16,6 +16,7 @@ public class Account implements Serializable {
         this.accountID = accountID;
     }
     public Account(){};
+
     //Getters
     public double getBalance() {
         return this.balance;
@@ -33,6 +34,7 @@ public class Account implements Serializable {
     public void increaseBalance (double increaseAmount){
         this.balance += increaseAmount;
     }
+
 
     public void decreaseBalance (double decreaseAmount) {
         if ((this.balance -= decreaseAmount) < 0) {

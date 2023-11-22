@@ -26,6 +26,7 @@ public class Customer implements Serializable {
          return "Name: " + this.firstName + ", Surname: "  + this.surname + ", PNO: " + this.PERSONAL_NUMBER;
     }
 
+    //Getters
     public String getSurname() {
         return this.surname;
     }
@@ -41,6 +42,21 @@ public class Customer implements Serializable {
     public HashMap<Integer, Account> getAccounts(){
            return this.accounts;
     }
+
+    public double getTotalBalance(){
+        double totalBalance = 0;
+
+        for (Account account : this.accounts.values()){
+            totalBalance += account.getBalance();
+        }
+        return totalBalance;
+    }
+
+    //Setters
+    public void setSurname(String surname){ this.surname = surname; }
+
+    public void setFirstName(String firstName) { this.firstName = firstName; }
+
 
 
     public void createAccount(int accountID) {
@@ -73,14 +89,9 @@ public class Customer implements Serializable {
        }
 
 
-       public double getTotalBalance(){
-           double totalBalance = 0;
 
-           for (Account account : this.accounts.values()){
-               totalBalance += account.getBalance();
-           }
-           return totalBalance;
-       }
+
+
 
 
 

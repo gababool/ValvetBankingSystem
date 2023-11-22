@@ -45,6 +45,10 @@ public class Valvet implements Serializable {
         return "Account " + accountID + "was successfully created.";
     }
 
+    public void updatePersonalInformation(){
+
+    }
+
     public void viewAllCustomers(){
         System.out.println("List of customers: ");
         for (Customer customer : this.customers.values()){
