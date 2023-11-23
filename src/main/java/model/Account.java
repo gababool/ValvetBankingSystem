@@ -27,49 +27,56 @@ public class Account implements Serializable {
         return this.accountID;
     }
 
-    private void increaseBalance(double increaseAmount) {
-        this.balance += increaseAmount;
+    //Setters
+
+    public void increaseBalance (double increaseAmount){
+        this.balance = this.balance + increaseAmount;
     }
 
-    private void decreaseBalance(double decreaseAmount) {
-        if ((this.balance -= decreaseAmount) < 0) {
-            this.balance = 0;
-        } else {
-            this.balance -= decreaseAmount;
+    private void decreaseBalance (double decreaseAmount) throws Exception{
+        if (decreaseAmount > this.balance){
+            throw new Exception("Unable to perform action");
         }
+        this.balance = this.balance - decreaseAmount;
     }
 
-    public void sendTransaction(Transaction transaction) throws Exception {
-        if (this.balance < transaction.getAmount()) {
-            throw new Exception("Insufficient funds"); // REPLACE ME!
-        } else {
-            this.balance -= transaction.getAmount();
-            this.transactions.put(transaction.getTransactionID(), transaction);
-        }
+    private int createTransactionId() {
+        return this.transactions.size();
     }
 
-    public void receiveTransaction (Transaction transaction){
-        this.balance += transaction.getAmount();
-        this.transactions.put(transaction.getTransactionID(), transaction);
+    private void addTransactionToHistory(Transaction transaction) {
+        int transactionId = this.createTransactionId();
+        this.transactions.put(transactionId, transaction);
     }
 
-    /*
-    public String withdraw( double amount){
-
-        String message = "";
-        if (amount > this.balance) {
-            message = "Not enough currency";
-        } else {
-            setBalance(this.balance - amount);
-        }
-        message = "Withdrawal successfull";
-        return message;
+    public void sendTransaction(Account receivingAccount, double amount) throws Exception {
+        Transaction transaction = new Transaction(amount, receivingAccount, this, "send");
+        addTransactionToHistory(transaction);
+        this.decreaseBalance(amount);
     }
-    */
+
+    public void receiveTransaction(Account currentAccount, double amount) {
+        Transaction transaction = new Transaction(amount, this, currentAccount, "receive");
+        addTransactionToHistory(transaction);
+        this.increaseBalance(amount);
+    }
+
+
+    public void withdraw (double amount) throws Exception {
+        this.decreaseBalance(amount);
+        Transaction transaction = new Transaction(amount, this, "withdraw");
+        addTransactionToHistory(transaction);
+    }
+
+    public void deposit (double amount){
+        this.increaseBalance(amount);
+        Transaction transaction = new Transaction(amount, this, "deposit");
+        addTransactionToHistory(transaction);
+    }
 
 
     public String toString () {
-        return String.format("Account %d currently has %.2f in account balance.", this.accountID, this.balance);
+        return String.format("Account %f currently has %d in account balance.", this.accountID, this.balance);
     }
 
 }
