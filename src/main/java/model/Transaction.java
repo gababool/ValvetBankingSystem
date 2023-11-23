@@ -26,6 +26,6 @@ public class Transaction implements Serializable {
     }
 
     public String toString(){
-        return this.transactionDate + ": " + this.transactionAmount + " kr was transferred from " + this.toAccount + " to " + this.fromAccount;
+        return this.transactionDate + ": " + this.transactionAmount + " kr was transferred from " + this.currentAccount + " to " + this.recievingAccount;
     }
 }
