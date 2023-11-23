@@ -20,11 +20,20 @@ public class Transaction implements Serializable {
         this.transactionID = transactionID;
         this.transactionDate = LocalDateTime.now();
         this.transactionAmount = transactionAmount;
-        this.receivingAccount = receivingAccount;
+        this.toAccount = toAccount;
+        this.type = type;
+    }
+
+    public Transaction(double transactionAmount, Account toAccount, Account fromAccount, String type){
+        this.transactionDate = LocalDateTime.now();
+        this.transactionAmount = transactionAmount;
+        this.fromAccount = fromAccount;
+        this.toAccount = toAccount;
+        this.type = type;
     }
 
     public String toString(){
-        return this.transactionDate + ": " + this.transactionAmount + " kr was transferred from " + this.sendingAccount + " to " + this.receivingAccount;
+        return this.transactionDate + ": " + this.transactionAmount + " kr was transferred from " + this.toAccount + " to " + this.fromAccount;
     }
 
     public LocalDateTime getDate(){

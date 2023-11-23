@@ -2,7 +2,6 @@ package src.main.java.model;
 
 import java.io.Serializable;
 import java.util.HashMap;
-import java.util.Locale;
 
 public class Account implements Serializable {
 
@@ -40,6 +39,15 @@ public class Account implements Serializable {
         }
     }
 
+    private int createTransactionId() {
+        return this.transactions.size();
+    }
+
+    private void addTransactionToHistory(Transaction transaction) {
+        int transactionId = this.createTransactionId();
+        this.transactions.put(transactionId, transaction);
+    }
+
     public String sendTransaction(Account toAccount, double amount) {
         String message;
 
@@ -64,22 +72,22 @@ public class Account implements Serializable {
     }
 
  */
-        public String withdraw ( double amount){
-
-            String message = "";
-            if (amount > this.balance) {
-                message = "Not enough currency";
-            } else {
-                //setBalance(this.balance - amount);
-            }
-            message = "Withdrawal successfull";
-            return message;
-
-        }
-
-        public String toString () {
-            return String.format("Account %f currently has %d in account balance.", this.accountID, this.balance);
-        }
-
+    public void withdraw (double amount){
+        this.decreaseBalance(amount);
+        Transaction transaction = new Transaction(amount, this, "withdraw");
+        addTransactionToHistory(transaction);
     }
+
+    public void deposit (double amount){
+        this.increaseBalance(amount);
+        Transaction transaction = new Transaction(amount, this, "deposit");
+        addTransactionToHistory(transaction);
+    }
+
+
+    public String toString () {
+        return String.format("Account %f currently has %d in account balance.", this.accountID, this.balance);
+    }
+
+}
 
