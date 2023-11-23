@@ -9,6 +9,7 @@ public class Account implements Serializable {
     private double balance;
     private final int accountID;
 
+    // ska vi verkligen sätta in accountID själva? det blir inte randomized då
     public Account(int accountID) {
         this.transactions = new HashMap<Integer, Transaction>();
         this.balance = 0;
@@ -27,11 +28,14 @@ public class Account implements Serializable {
     //Setters
 
     public void increaseBalance (double increaseAmount){
-        transaction.increaseBalance(increaseAmount);
+        this.balance = this.balance + increaseAmount;
     }
 
-    private void decreaseBalance (double decreaseAmount) {
-        transaction.decreaseBalance(decreaseAmount);
+    private void decreaseBalance (double decreaseAmount) throws Exception{
+        if (decreaseAmount > this.balance){
+            throw new Exception("Unable to perform action");
+        }
+        this.balance = this.balance - decreaseAmount;
     }
 
     private int createTransactionId() {
@@ -43,29 +47,20 @@ public class Account implements Serializable {
         this.transactions.put(transactionId, transaction);
     }
 
-    public void sendTransaction(Account toAccount, double amount) {
-        Transaction transaction = new Transaction(amount, toAccount, this, "send");
+    public void sendTransaction(Account receivingAccount, double amount) throws Exception {
+        Transaction transaction = new Transaction(amount, receivingAccount, this, "send");
         addTransactionToHistory(transaction);
         this.decreaseBalance(amount);
     }
 
-    public void receiveTransaction(Account fromAccount, double amount) {
-        Transaction transaction = new Transaction(amount, this, fromAccount, "receive");
+    public void receiveTransaction(Account currentAccount, double amount) {
+        Transaction transaction = new Transaction(amount, this, currentAccount, "receive");
         addTransactionToHistory(transaction);
         this.increaseBalance(amount);
     }
 
-/*
-    public Transaction receiveTransaction(Account fromAccount, double amount){
-=======
 
-/*    public Transaction receiveTransaction(Account fromAccount, double amount){
->>>>>>> 67d1e367daad071861f1a5c899422211a99033a3
-        return new Transaction();
-    }
-
- */
-    public void withdraw (double amount){
+    public void withdraw (double amount) throws Exception {
         this.decreaseBalance(amount);
         Transaction transaction = new Transaction(amount, this, "withdraw");
         addTransactionToHistory(transaction);
@@ -83,4 +78,5 @@ public class Account implements Serializable {
     }
 
 }
+
 

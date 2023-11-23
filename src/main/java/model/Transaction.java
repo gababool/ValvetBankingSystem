@@ -5,23 +5,23 @@ import java.time.LocalDateTime;
 public class Transaction implements Serializable {
     public LocalDateTime transactionDate;
     public double transactionAmount;
-    public Account toAccount;
-    public Account fromAccount;
+    public Account recievingAccount;
+    public Account currentAccount;
 
     public String type;
 
-    public Transaction(double transactionAmount, Account toAccount, String type){
+    public Transaction(double transactionAmount, Account recievingAccount, String type){
         this.transactionDate = LocalDateTime.now();
         this.transactionAmount = transactionAmount;
-        this.toAccount = toAccount;
+        this.recievingAccount = recievingAccount;
         this.type = type;
     }
 
-    public Transaction(double transactionAmount, Account toAccount, Account fromAccount, String type){
+    public Transaction(double transactionAmount, Account recievingAccount, Account currentAccount, String type){
         this.transactionDate = LocalDateTime.now();
         this.transactionAmount = transactionAmount;
-        this.fromAccount = fromAccount;
-        this.toAccount = toAccount;
+        this.currentAccount = currentAccount;
+        this.recievingAccount = recievingAccount;
         this.type = type;
     }
 
