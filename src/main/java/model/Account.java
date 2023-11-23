@@ -9,7 +9,6 @@ public class Account implements Serializable {
     private double balance;
     private final int accountID;
 
-
     public Account(int accountID) {
         this.transactions = new HashMap<Integer, Transaction>();
         this.balance = 0;
@@ -27,16 +26,12 @@ public class Account implements Serializable {
 
     //Setters
 
-    private void increaseBalance (double increaseAmount){
-        this.balance += increaseAmount;
+    public void increaseBalance (double increaseAmount){
+        transaction.increaseBalance(increaseAmount);
     }
 
     private void decreaseBalance (double decreaseAmount) {
-        if ((this.balance -= decreaseAmount) < 0) {
-            this.balance = 0;
-        } else {
-            this.balance -= decreaseAmount;
-        }
+        transaction.decreaseBalance(decreaseAmount);
     }
 
     private int createTransactionId() {
@@ -48,19 +43,17 @@ public class Account implements Serializable {
         this.transactions.put(transactionId, transaction);
     }
 
-    public String sendTransaction(Account toAccount, double amount) {
-        String message;
+    public void sendTransaction(Account toAccount, double amount) {
+        Transaction transaction = new Transaction(amount, toAccount, this, "send");
+        addTransactionToHistory(transaction);
+        this.decreaseBalance(amount);
+    }
 
-            if (this.balance < amount) {
-                message = "Not enough currency available for this transaction";
-            } else {
-                toAccount.increaseBalance(amount);
-                decreaseBalance(amount);
-
-                message = String.format(Locale.ENGLISH, "Transaction successfull. %d has been transferred.", amount);
-            }
-            return message;
-        }
+    public void receiveTransaction(Account fromAccount, double amount) {
+        Transaction transaction = new Transaction(amount, this, fromAccount, "receive");
+        addTransactionToHistory(transaction);
+        this.increaseBalance(amount);
+    }
 
 /*
     public Transaction receiveTransaction(Account fromAccount, double amount){
