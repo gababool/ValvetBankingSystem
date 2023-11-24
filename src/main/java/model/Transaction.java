@@ -13,15 +13,6 @@ public class Transaction implements Serializable {
 
     public String type;
 
-    public Transaction(double transactionAmount, Account recievingAccount, String type){
-    public Transaction(int transactionID, double transactionAmount, long sendingAccountNumber, long receivingAccountNumber){
-        this.transactionID = transactionID;
-        this.transactionDate = LocalDateTime.now();
-        this.transactionAmount = transactionAmount;
-        this.recievingAccount = recievingAccount;
-        this.type = type;
-    }
-
     public Transaction(double transactionAmount, Account recievingAccount, Account currentAccount, String type){
         this.transactionDate = LocalDateTime.now();
         this.transactionAmount = transactionAmount;

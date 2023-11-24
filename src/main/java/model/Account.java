@@ -50,26 +50,26 @@ public class Account implements Serializable {
         this.transactions.put(transactionId, transaction);
     }
 
-    public void sendTransaction(Account receivingAccount, double amount) throws Exception {
-        Transaction transaction = new Transaction(amount, receivingAccount, this, "send");
+    public void sendTransaction(long recievingAccountNumber, double amount) throws Exception {
+        Transaction transaction = new Transaction(amount, recievingAccountNumber, this.accountID, "send");
         addTransactionToHistory(transaction);
         this.decreaseBalance(amount);
     }
 
-    public void receiveTransaction(Account currentAccount, double amount) {
-        Transaction transaction = new Transaction(amount, this, currentAccount, "receive");
+    public void receiveTransaction(long sendingAccountNumber, double amount) {
+        Transaction transaction = new Transaction(amount, sendingAccountNumber, this.accountID, "receive");
         addTransactionToHistory(transaction);
         this.increaseBalance(amount);
     }
 
 
-    public void withdraw (double amount) throws Exception {
+    public void withdraw (long sendingAccountNumber, double amount) throws Exception {
         this.decreaseBalance(amount);
-        Transaction transaction = new Transaction(amount, this, "withdraw");
+        Transaction transaction = new Transaction(amount, sendingAccountNumber, this.accountID, "withdraw");
         addTransactionToHistory(transaction);
     }
 
-    public void deposit (double amount){
+    public void deposit (long receivingAccountNumber, double amount){
         this.increaseBalance(amount);
         Transaction transaction = new Transaction(amount, this.accountID, "deposit");
         addTransactionToHistory(transaction);
