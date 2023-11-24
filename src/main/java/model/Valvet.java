@@ -89,9 +89,9 @@ public class Valvet implements Serializable{
         return this.customers.get(personalNumber);
     }
 
-    public Transaction makeTransaction(Account sender, Account receiver, double amount) throws Exception{
+    public Transaction makeTransaction(long sender, long receiver, double amount) throws Exception{
         currentTransactionNumber += 1;
-        Transaction transaction = new Transaction(currentTransactionNumber, amount, sender.getAccountID(), receiver.getAccountID());
+        Transaction transaction = new Transaction(currentTransactionNumber, amount, sender, receiver);
         sender.sendTransaction(transaction);
         receiver.receiveTransaction(transaction);
         return transaction;

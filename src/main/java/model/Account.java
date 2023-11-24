@@ -19,6 +19,7 @@ public class Account implements Serializable {
     public Account() {}
 
     //Getters
+
     public double getBalance() {
         return this.balance;
     }
@@ -70,13 +71,13 @@ public class Account implements Serializable {
 
     public void deposit (double amount){
         this.increaseBalance(amount);
-        Transaction transaction = new Transaction(amount, this, "deposit");
+        Transaction transaction = new Transaction(amount, this.accountID, "deposit");
         addTransactionToHistory(transaction);
     }
 
 
     public String toString () {
-        return String.format("Account %f currently has %d in account balance.", this.accountID, this.balance);
+        return String.format("Account %d currently has %f in account balance.", this.accountID, this.balance);
     }
 
 }
