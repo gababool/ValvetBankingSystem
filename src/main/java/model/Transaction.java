@@ -3,15 +3,15 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.Random;
 import java.util.HashSet;
+import java.util.UUID;
 
 public class Transaction implements Serializable {
     private LocalDateTime transactionDate;
     private double transactionAmount;
     private long sendingAccountNumber;
     private long receivingAccountNumber;
-    private int transactionID;
-
     public String type;
+    private UUID transactionID;
 
     public Transaction(double transactionAmount, long receivingAccountNumber, long sendingAccountNumber, String type){
         this.transactionDate = LocalDateTime.now();
@@ -19,6 +19,7 @@ public class Transaction implements Serializable {
         this.sendingAccountNumber = sendingAccountNumber;
         this.receivingAccountNumber = receivingAccountNumber;
         this.type = type;
+        this.transactionID = UUID.randomUUID();
     }
 
     public String toString(){
@@ -33,6 +34,6 @@ public class Transaction implements Serializable {
         return this.transactionAmount;
     }
 
-    public int getTransactionID(){return transactionID;}
+    public UUID getTransactionID(){return this.transactionID;}
 
 }
