@@ -7,7 +7,7 @@ import java.util.HashMap;
 
 public class Customer implements Serializable {
 
-       private HashMap<Long, Account> accounts;
+       private HashMap<String, Account> accounts;
        private String firstName;
        private String surname;
        private int PERSONAL_NUMBER;
@@ -28,7 +28,15 @@ public class Customer implements Serializable {
 
     //Getters
     public String getSurname() {
-        return this.surname;
+           return this.surname;
+    }
+
+    public Account getAccount(String accountNumber){
+           return accounts.get(accountNumber);
+    }
+
+    public int getNumberOfAccounts(){
+           return accounts.size();
     }
 
     public String getFirstName(){
@@ -39,7 +47,7 @@ public class Customer implements Serializable {
            return this.PERSONAL_NUMBER;
     }
 
-    public HashMap<Long, Account> getAccounts(){
+    public HashMap<String, Account> getAccounts(){
            return this.accounts;
     }
 
@@ -53,22 +61,24 @@ public class Customer implements Serializable {
     }
 
     //Setters
-    public void setSurname(String surname){ this.surname = surname; }
+    public void setSurname(String surname){
+           this.surname = surname;
+    }
 
-    public void setFirstName(String firstName) { this.firstName = firstName; }
+    public void setFirstName(String firstName) {
+           this.firstName = firstName;
+       }
 
 
-
-    public Account createAccount(long accountID) {
-           Account createdAccount = new Account(accountID);
+    public Account createAccount(String accountID) {
+        Account createdAccount = new Account(accountID);
         this.accounts.put(accountID, createdAccount);
-
         return createdAccount;
     }
 
-    public void closeAccount(int accountID) throws Exception {
-           if (this.accounts.get(accountID) == null) throw new Exception("The account you are trying to remove does not exist!");
-           this.accounts.remove(accountID);
+    public void closeAccount(String accountNumber) throws Exception {
+           if (this.accounts.get(accountNumber) == null) throw new Exception("The account you are trying to remove does not exist!");
+           else {this.accounts.remove(accountNumber);}
     }
 
     public String viewAllAccounts(){
@@ -81,8 +91,8 @@ public class Customer implements Serializable {
        }
 
 
-       public String viewAccount(int accountID){
-        Account account = this.accounts.get(accountID);
+       public String viewAccount(String accountNumber){
+        Account account = this.accounts.get(accountNumber);
         if (account != null) {
             return account.toString();
         } else {

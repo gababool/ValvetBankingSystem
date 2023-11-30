@@ -1,19 +1,21 @@
 package src.main.java.model;
 
+import javafx.scene.input.TransferMode;
+
 import java.io.Serializable;
-import java.util.HashMap;
-import java.util.Locale;
+import java.util.LinkedHashMap;
+import java.util.UUID;
 
 public class Account implements Serializable {
 
-    private HashMap<Integer, Transaction> transactions;
+    private LinkedHashMap<UUID, Transaction> transactions;
     private double balance;
-    private long accountID;
+    private String accountNumber;
 
-    public Account(long accountID) {
-        this.transactions = new HashMap<>();
+    public Account(String accountNumber) {
+        this.transactions = new LinkedHashMap<>();
         this.balance = 0;
-        this.accountID = accountID;
+        this.accountNumber = accountNumber;
     }
 
     public Account() {}
@@ -24,13 +26,11 @@ public class Account implements Serializable {
         return this.balance;
     }
 
-    public long getAccountID() {
-        return this.accountID;
+    public String getAccountNumber() {
+        return this.accountNumber;
     }
 
-    //Setters
-
-    public void increaseBalance (double increaseAmount){
+    private void increaseBalance (double increaseAmount){
         this.balance = this.balance + increaseAmount;
     }
 
@@ -41,45 +41,17 @@ public class Account implements Serializable {
         this.balance = this.balance - decreaseAmount;
     }
 
-    private int createTransactionId() {
-        return this.transactions.size();
+    public void sendTransaction(Transaction transaction) throws Exception {
+        transactions.put(transaction.getTransactionID(), transaction);
+        this.decreaseBalance(transaction.getAmount());
     }
 
-    private void addTransactionToHistory(Transaction transaction) {
-        int transactionId = this.createTransactionId();
-        this.transactions.put(transactionId, transaction);
+    public void receiveTransaction(Transaction transaction) {
+        transactions.put(transaction.getTransactionID(), transaction);
+        this.increaseBalance(transaction.getAmount());
     }
-
-    public void sendTransaction(long recievingAccountNumber, double amount) throws Exception {
-        Transaction transaction = new Transaction(amount, recievingAccountNumber, this.accountID, "send");
-        addTransactionToHistory(transaction);
-        this.decreaseBalance(amount);
-    }
-
-    public void receiveTransaction(long sendingAccountNumber, double amount) {
-        Transaction transaction = new Transaction(amount, sendingAccountNumber, this.accountID, "receive");
-        addTransactionToHistory(transaction);
-        this.increaseBalance(amount);
-    }
-
-
-    public void withdraw (long sendingAccountNumber, double amount) throws Exception {
-        this.decreaseBalance(amount);
-        Transaction transaction = new Transaction(amount, sendingAccountNumber, this.accountID, "withdraw");
-        addTransactionToHistory(transaction);
-    }
-
-    public void deposit (long receivingAccountNumber, double amount){
-        this.increaseBalance(amount);
-        Transaction transaction = new Transaction(amount, this.accountID, "deposit");
-        addTransactionToHistory(transaction);
-    }
-
 
     public String toString () {
-        return String.format("Account %d currently has %f in account balance.", this.accountID, this.balance);
+        return String.format("Account %s currently has %f in account balance.", this.accountNumber, this.balance);
     }
-
 }
-
-

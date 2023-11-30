@@ -8,22 +8,21 @@ import java.util.UUID;
 public class Transaction implements Serializable {
     private LocalDateTime transactionDate;
     private double transactionAmount;
-    private long sendingAccountNumber;
-    private long receivingAccountNumber;
-    public String type;
+    private String senderAccountNumber;
+    private String receiverAccountNumber;
+    //public String type;
     private UUID transactionID;
 
-    public Transaction(double transactionAmount, long receivingAccountNumber, long sendingAccountNumber, String type){
+    public Transaction(double transactionAmount, String receiverAccountNumber, String senderAccountNumber){
         this.transactionDate = LocalDateTime.now();
         this.transactionAmount = transactionAmount;
-        this.sendingAccountNumber = sendingAccountNumber;
-        this.receivingAccountNumber = receivingAccountNumber;
-        this.type = type;
+        this.senderAccountNumber = senderAccountNumber;
+        this.receiverAccountNumber = receiverAccountNumber;
         this.transactionID = UUID.randomUUID();
     }
 
     public String toString(){
-        return this.transactionDate + ": " + this.transactionAmount + " kr was transferred from " + this.sendingAccountNumber + " to " + this.receivingAccountNumber;
+        return this.transactionDate + ": " + this.transactionAmount + " kr was transferred from " + this.senderAccountNumber + " to " + this.receiverAccountNumber;
     }
 
     public LocalDateTime getDate(){
@@ -34,6 +33,8 @@ public class Transaction implements Serializable {
         return this.transactionAmount;
     }
 
-    public UUID getTransactionID(){return this.transactionID;}
+    public UUID getTransactionID(){
+        return this.transactionID;
+    }
 
 }

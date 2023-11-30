@@ -2,24 +2,15 @@ package src.main.java.model;
 
 import java.io.Serializable;
 import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Random;
-import java.util.Set;
-import java.util.concurrent.ExecutionException;
 
 public class Valvet implements Serializable{
 
-    private long clearingNumber;
+    private String clearingNumber;
     private HashMap<Integer, Customer> customers;
-    private Set<Long> accountNumbers;
-    private int currentTransactionNumber;
-    private Random random = new Random();
 
-    public Valvet(long clearingNumber){
-        this.clearingNumber = (clearingNumber * 1000000000);
+    public Valvet(String clearingNumber){
+        this.clearingNumber = clearingNumber;
         this.customers = new HashMap<Integer, Customer>();
-        this.accountNumbers = new HashSet<>();
-        this.currentTransactionNumber = 100000;
     }
     public Valvet(){}
 
@@ -28,8 +19,8 @@ public class Valvet implements Serializable{
             throw new AlreadyExistsException("Customer already exists.");
         }
         Customer newCustomer = new Customer(firstName, surname, personalNumber);
-        this.customers.put(personalNumber, newCustomer);
         createAccount(personalNumber);
+        this.customers.put(personalNumber, newCustomer);
         System.out.println("Customer: " + newCustomer + " successfully created!");
         return newCustomer;
     }
@@ -38,9 +29,6 @@ public class Valvet implements Serializable{
         Customer customer = this.customers.get(personalNumber);
         if (customer.getTotalBalance() != 0) {
             throw new BalanceNotZeroException("Deletion failed. Customer has remaining balance: " + customer.getTotalBalance());
-        }
-        for (Account account : customer.getAccounts().values()){
-            accountNumbers.remove(account.getAccountID());
         }
         System.out.println("Customer " + customer + " successfully removed");
         return this.customers.remove(personalNumber);
@@ -51,20 +39,10 @@ public class Valvet implements Serializable{
             throw new NotFoundException("Customer not found");
         }
         Customer customer = this.customers.get(personalNumber);
-        long accountID = clearingNumber + generateRandomNumber();
-        Account createdAccount = customer.createAccount(accountID);
-        accountNumbers.add(accountID);
-        return createdAccount;
+        String accountNumber = clearingNumber + "-" + customer.getPERSONAL_NUMBER() + "-" + (customer.getNumberOfAccounts()+1);
+        return customer.createAccount(accountNumber);
     }
 
-    private long generateRandomNumber(){
-        long number = 0;
-        do {
-            number = random.nextInt(100000000, 999999999);
-
-        } while (accountNumbers.contains(number));
-        return number;
-    }
 
     public Customer updateCustomerFirstName(int personalNumber, String name){
         Customer customer = customers.get(personalNumber);
@@ -79,6 +57,7 @@ public class Valvet implements Serializable{
     }
 
     public void viewAllCustomers(){
+        // Comparator for printing in alphabetical order
         System.out.println("List of customers: ");
         for (Customer customer : this.customers.values()){
             System.out.println(customer);
@@ -89,9 +68,12 @@ public class Valvet implements Serializable{
         return this.customers.get(personalNumber);
     }
 
-    public Transaction makeTransaction(long sender, long receiver, double amount) throws Exception{
-        currentTransactionNumber += 1;
-        Transaction transaction = new Transaction(currentTransactionNumber, amount, sender, receiver);
+    public Transaction makeTransaction(Account sender, Account receiver, double amount) throws Exception{
+        //Exception for account not existing!!!!
+
+        String receiverAccountNumber = receiver.getAccountNumber();
+        String senderAccountNumber = sender.getAccountNumber();
+        Transaction transaction = new Transaction(amount, receiverAccountNumber, senderAccountNumber);
         sender.sendTransaction(transaction);
         receiver.receiveTransaction(transaction);
         return transaction;
