@@ -10,7 +10,6 @@ public class Transaction implements Serializable {
     private double transactionAmount;
     private String senderAccountNumber;
     private String receiverAccountNumber;
-    //public String type;
     private UUID transactionID;
 
     public Transaction(double transactionAmount, String receiverAccountNumber, String senderAccountNumber){
@@ -26,7 +25,7 @@ public class Transaction implements Serializable {
     }
 
     public LocalDateTime getDate(){
-        return LocalDateTime.now();
+        return this.transactionDate;
     }
 
     public double getAmount(){

@@ -20,10 +20,7 @@ public class Main {
         valv.createAccount(321);
         valv.createAccount(321);
         valv.createAccount(321);
-        valv.createAccount(321);
-        valv.createAccount(321);
-        valv.createAccount(321);
-        valv.createAccount(321);
+
         valv.createAccount(123);
         valv.createAccount(123);
         valv.createAccount(123);

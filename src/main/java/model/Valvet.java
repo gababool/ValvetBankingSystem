@@ -78,4 +78,19 @@ public class Valvet implements Serializable{
         receiver.receiveTransaction(transaction);
         return transaction;
     }
+
+    public Transaction makeWithdrawal(Account sender, String receiverAccountNumber, double amount) throws Exception{
+        String senderAccountNumber = sender.getAccountNumber();
+        Transaction transaction = new Transaction(amount, receiverAccountNumber, senderAccountNumber);
+        sender.sendTransaction(transaction);
+        return transaction;
+    }
+
+    // We assume this information comes externally and is executed automatically
+    public Transaction makeDeposit(String senderAccountNumber, Account receiver, double amount){
+        String receiverAccountNumber = receiver.getAccountNumber();
+        Transaction transaction = new Transaction(amount, receiverAccountNumber, senderAccountNumber);
+        receiver.receiveTransaction(transaction);
+        return transaction;
+    }
 }
