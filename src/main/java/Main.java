@@ -1,8 +1,9 @@
 package src.main.java;
+
+
 import src.main.java.model.Valvet;
 import src.main.java.model.ValvetFileManager;
-
-import java.sql.SQLOutput;
+import src.main.java.model.Customer;
 
 public class Main {
 
@@ -11,22 +12,17 @@ public class Main {
         // Create a bank with customers, accounts, and transactions
         Valvet valv = new Valvet("1337");
         // Populate your bank with data...
-        valv.createCustomer("Hans", "Bertil", 123);
-        valv.createCustomer("Bertil", "Hans", 321);
-        valv.createAccount(321);
-        valv.createAccount(321);
-        valv.createAccount(321);
-        valv.createAccount(321);
-        valv.createAccount(321);
-        valv.createAccount(321);
-        valv.createAccount(321);
+        Customer Beyonce = valv.createCustomer("Beyonce", "Johansson", 11111);
+        Customer Michael = valv.createCustomer("Michael", "Jordan", 22222);
 
-        valv.createAccount(123);
-        valv.createAccount(123);
-        valv.createAccount(123);
-        valv.createAccount(123);
-        valv.createAccount(123);
-        valv.createAccount(123);
+        valv.makeDeposit("23123123", Beyonce.getAccount("1337-11111-1"), 500);
+        valv.makeTransaction(Beyonce.getAccount("1337-11111-1"), Michael.getAccount("1337-22222-1"), 250);
+
+        valv.createAccount(11111);
+
+        System.out.println(valv.getCustomer(11111).viewAllAccounts());
+        System.out.println(valv.getCustomer(22222).viewAllAccounts());
+
 
 
         valv.viewAllCustomers();
