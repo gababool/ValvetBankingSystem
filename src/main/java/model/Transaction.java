@@ -1,8 +1,6 @@
 package src.main.java.model;
 import java.io.Serializable;
 import java.time.LocalDateTime;
-import java.util.Random;
-import java.util.HashSet;
 import java.util.UUID;
 
 public class Transaction implements Serializable {
