@@ -4,6 +4,7 @@ import javafx.scene.input.TransferMode;
 
 import java.io.Serializable;
 import java.util.LinkedHashMap;
+import java.util.Objects;
 import java.util.UUID;
 
 public class Account implements Serializable {
@@ -51,7 +52,28 @@ public class Account implements Serializable {
         this.increaseBalance(transaction.getAmount());
     }
 
+    // ROUND OFF ACCOUNT BALANCE TO 2 DECIMALS AND CHANGE TESTS ACCORDINGLY
     public String toString () {
-        return String.format("Account %s currently has %f in account balance.", this.accountNumber, this.balance);
+        return String.format("Account %s: Balance %f kr", this.accountNumber, this.balance);
+    }
+
+    @Override
+    public boolean equals(Object obj){
+        if (this == obj){
+            return true;
+        }
+        if (obj == null || !(obj instanceof Account)){
+            return false;
+        }
+        Account otherAccount = (Account) obj;
+        boolean equalAccountNumber = this.accountNumber == otherAccount.getAccountNumber();
+        boolean equalBalance = this.balance == otherAccount.getBalance();
+        boolean equalTransactions = this.transactions.values().equals(otherAccount.transactions.values());
+
+        return equalAccountNumber && equalBalance && equalTransactions;
+    }
+    @Override
+    public int hashCode() {
+        return Objects.hash(accountNumber, balance, transactions);
     }
 }

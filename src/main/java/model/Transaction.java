@@ -1,6 +1,7 @@
 package src.main.java.model;
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.Objects;
 import java.util.UUID;
 
 public class Transaction implements Serializable {
@@ -35,4 +36,16 @@ public class Transaction implements Serializable {
         return this.transactionID;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Transaction that = (Transaction) o;
+        return Objects.equals(transactionID, that.transactionID);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(transactionID);
+    }
 }

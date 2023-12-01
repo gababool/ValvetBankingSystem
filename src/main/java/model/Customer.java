@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import java.io.Serializable;
 import java.util.HashMap;
+import java.util.Objects;
 
 public class Customer implements Serializable {
 
@@ -100,9 +101,25 @@ public class Customer implements Serializable {
         }
        }
 
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || !(obj instanceof Customer)) {
+            return false;
+        }
+        Customer otherCustomer = (Customer) obj;
+        boolean equalPersonNumber = this.PERSONAL_NUMBER == otherCustomer.getPERSONAL_NUMBER();
+        boolean equalFirstName = Objects.equals(this.firstName, otherCustomer.getFirstName());
+        boolean equalSurname = Objects.equals(this.surname, otherCustomer.getSurname());
+        return equalPersonNumber && equalFirstName && equalSurname;
+    }
 
-
-
+    @Override
+    public int hashCode() {
+        return Objects.hash(PERSONAL_NUMBER, firstName, surname);
+    }
 
 
 
