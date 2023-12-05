@@ -2,6 +2,7 @@ package src.main.java.model;
 
 import java.io.Serializable;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 public class Valvet implements Serializable{
 
@@ -68,27 +69,63 @@ public class Valvet implements Serializable{
         return this.customers.get(personalNumber);
     }
 
-    public Transaction makeTransaction(Account sender, Account receiver, double amount) throws Exception{
-        //Exception for account not existing!!!!
+    public Transaction makeTransaction(String senderAccountNumber, String receiverAccountNumber, double amount) throws Exception{
+        Account sender = null;
+        for (Customer customer : customers.values()){
+            HashMap<String, Account> accounts = customer.getAccounts();
+                if (accounts.containsKey(senderAccountNumber)){
+                    sender = accounts.get(senderAccountNumber);
+                }
+            }
+        Account receiver = null;
+        for (Customer customer : customers.values()){
+            HashMap<String, Account> accounts = customer.getAccounts();
+            if (accounts.containsKey(receiverAccountNumber)){
+                receiver = accounts.get(receiverAccountNumber);
+            }
+        }
 
-        String receiverAccountNumber = receiver.getAccountNumber();
-        String senderAccountNumber = sender.getAccountNumber();
-        Transaction transaction = new Transaction(amount, receiverAccountNumber, senderAccountNumber);
+        if (receiver == null){
+            throw new NotFoundException("Receiver account not found");
+        }
+        if (sender == null){
+            throw new NotFoundException("Sender account not found");
+        }
+
+        Transaction transaction = new Transaction(amount, receiver.getAccountNumber(), sender.getAccountNumber());
         sender.sendTransaction(transaction);
         receiver.receiveTransaction(transaction);
         return transaction;
     }
 
-    public Transaction makeWithdrawal(Account sender, String receiverAccountNumber, double amount) throws Exception{
-        String senderAccountNumber = sender.getAccountNumber();
-        Transaction transaction = new Transaction(amount, receiverAccountNumber, senderAccountNumber);
+    public Transaction makeWithdrawal(String senderAccountNumber, String receiverAccountNumber, double amount) throws Exception{
+        Account sender = null;
+        for (Customer customer : customers.values()){
+            HashMap<String, Account> accounts = customer.getAccounts();
+            if (accounts.containsKey(senderAccountNumber)){
+                sender = accounts.get(senderAccountNumber);
+            }
+        }
+        if (sender == null){
+            throw new NotFoundException("Sender account not found");
+        }
+        Transaction transaction = new Transaction(amount, receiverAccountNumber, sender.getAccountNumber());
         sender.sendTransaction(transaction);
         return transaction;
     }
 
     // We assume this information comes externally and is executed automatically
-    public Transaction makeDeposit(String senderAccountNumber, Account receiver, double amount){
-        String receiverAccountNumber = receiver.getAccountNumber();
+    public Transaction makeDeposit(String senderAccountNumber, String receiverAccountNumber, double amount) throws NotFoundException {
+        Account receiver = null;
+        for (Customer customer : customers.values()){
+            HashMap<String, Account> accounts = customer.getAccounts();
+            if (accounts.containsKey(receiverAccountNumber)){
+                receiver = accounts.get(receiverAccountNumber);
+            }
+        }
+        if (receiver == null){
+            throw new NotFoundException("Receiver account not found");
+        }
         Transaction transaction = new Transaction(amount, receiverAccountNumber, senderAccountNumber);
         receiver.receiveTransaction(transaction);
         return transaction;

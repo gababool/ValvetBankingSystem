@@ -12,11 +12,7 @@ public class Main {
         // Create a bank with customers, accounts, and transactions
         Valvet valv = new Valvet("1337");
         // Populate your bank with data...
-        Customer Beyonce = valv.createCustomer("Beyonce", "Johansson", 11111);
-        Customer Michael = valv.createCustomer("Michael", "Jordan", 22222);
-
-        valv.makeDeposit("23123123", Beyonce.getAccount("1337-11111-1"), 500);
-        valv.makeTransaction(Beyonce.getAccount("1337-11111-1"), Michael.getAccount("1337-22222-1"), 250);
+       
 
         valv.createAccount(11111);
 
