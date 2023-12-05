@@ -1,7 +1,9 @@
 package src.main.java;
 
 
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Group;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import src.main.java.model.Valvet;
@@ -29,14 +31,19 @@ public class Main extends Application {
             System.out.println(loadedBank);
 
         }
+
+        launch(args);
     }
 
     @Override
     public void start(Stage stage) throws Exception {
-        Group root = new Group();
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("/src/main/java/view/MainView.fxml"));
+            stage.setScene(new Scene(root, 600, 600));
+            stage.show();
+        } catch (Exception e){
+            e.printStackTrace();
+        }
     }
 }
 
