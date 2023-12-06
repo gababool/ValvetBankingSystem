@@ -6,6 +6,7 @@ import javafx.scene.control.TextField;
 import src.main.java.Main;
 import src.main.java.model.Customer;
 import src.main.java.model.Valvet;
+import src.main.java.model.ValvetFileManager;
 
 public class ValvetController {
 
@@ -16,6 +17,7 @@ public class ValvetController {
         // Replace this. This is for testing only.
         Customer customer = Main.valv.deleteCustomer("0002171437");
         System.out.println(Main.valv.getCustomer("0002171437"));
+        ValvetFileManager.saveBank(Main.valv);
 
     }
 }

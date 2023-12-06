@@ -22,9 +22,6 @@ public class Main extends Application {
 
         // Populate your bank with data...
         Customer martin = valv.createCustomer("Martin", "Lidgren", "0002171437");
-        System.out.println(martin);
-
-        /*
 
         // Save the bank data to a JSON file
         ValvetFileManager.saveBank(valv);
@@ -37,8 +34,6 @@ public class Main extends Application {
             System.out.println(loadedBank);
 
         }
-
-         */
 
         launch(args);
     }
