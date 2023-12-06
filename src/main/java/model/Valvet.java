@@ -44,12 +44,31 @@ public class Valvet implements Serializable{
         return customer.createAccount(accountNumber);
     }
 
+    // ADD SO THAT THE PERSONAL NUMBER CAN BE EXTRACTED FROM THE ACCOUNT NUMBER
+    public void deleteAccount(String personalNumber, String accountNumber) throws Exception {
+        Account account = null;
+        for (Customer customer : customers.values()) {
+            HashMap<String, Account> accounts = customer.getAccounts();
+            if (accounts.containsKey(accountNumber)) {
+                account = accounts.get(accountNumber);
+            }
+        }
+        if (account == null){
+            throw new NotFoundException("Account not found");
+        }
+        if (!(account.getBalance() == 0)) {
+            throw new BalanceNotZeroException("Account could not be deleted. Balance is not zero. ");
+        }
+        customers.get(personalNumber).closeAccount(accountNumber);
+    }
 
     public Customer updateCustomerFirstName(String personalNumber, String name){
         Customer customer = customers.get(personalNumber);
         customer.setFirstName(name);
         return customer;
     }
+
+
 
     public Customer updateCustomerSurname(String personalNumber, String name){
         Customer customer = customers.get(personalNumber);

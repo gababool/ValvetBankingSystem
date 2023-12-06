@@ -13,7 +13,7 @@ import javafx.application.Application;
 
 public class Main extends Application {
 
-    public static Valvet valv;
+    private static Valvet valv;
 
     public static void main(String[] args) throws Exception {
         // 1. Load Valvet, customers, accounts and transactions from data.json
@@ -22,6 +22,7 @@ public class Main extends Application {
 
         // Populate your bank with data...
         Customer martin = valv.createCustomer("Martin", "Lidgren", "0002171437");
+        valv.createAccount("0002171437");
 
         // Save the bank data to a JSON file
         ValvetFileManager.saveBank(valv);
@@ -48,5 +49,11 @@ public class Main extends Application {
             e.printStackTrace();
         }
     }
-}
+
+    public static Valvet getValvet() {
+        return valv;
+    }
+    }
+
+
 

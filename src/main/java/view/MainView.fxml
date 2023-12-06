@@ -12,11 +12,11 @@
       <Button layoutX="234.0" layoutY="148.0" mnemonicParsing="false" text="Add New Account" />
       <Button layoutX="38.0" layoutY="347.0" mnemonicParsing="false" text="Add New Customer" />
       <Button layoutX="230.0" layoutY="74.0" mnemonicParsing="false" text="Find Customer" />
-      <Button layoutX="234.0" layoutY="187.0" mnemonicParsing="false" text="Delete Account" />
+      <Button fx:id="deleteAccountButton" layoutX="234.0" layoutY="187.0" mnemonicParsing="false" onAction="#deleteAccount" text="Delete Account" />
       <TextField layoutX="38.0" layoutY="74.0" promptText="Personal  Number" />
       <TextField fx:id="deleteCustomerTextField" layoutX="38.0" layoutY="112.0" promptText="Personal Number" />
       <TextField layoutX="38.0" layoutY="148.0" promptText="Personal Number" />
-      <TextField layoutX="38.0" layoutY="187.0" promptText="Account Number" />
+      <TextField fx:id="deleteAccountTextField" layoutX="38.0" layoutY="187.0" promptText="Account Number" />
       <Button layoutX="37.0" layoutY="231.0" mnemonicParsing="false" text="Make Transaction" />
       <Button layoutX="37.0" layoutY="268.0" mnemonicParsing="false" text="Make Deposit" />
       <Button layoutX="38.0" layoutY="306.0" mnemonicParsing="false" text="Make Withdrawal" />

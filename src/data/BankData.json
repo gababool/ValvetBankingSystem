@@ -1,1 +1,1 @@
-{"clearingNumber":"1337","customers":{}}
+{"clearingNumber":"1337","customers":{"0002171437":{"accounts":{"1337-0002171437-2":{"transactions":{},"balance":0.0,"accountNumber":"1337-0002171437-2"},"1337-0002171437-1":{"transactions":{},"balance":0.0,"accountNumber":"1337-0002171437-1"}},"firstName":"Martin","surname":"Lidgren","PERSONAL_NUMBER":"0002171437","numberOfAccounts":2,"totalBalance":0.0,"personal_NUMBER":"0002171437"}}}
