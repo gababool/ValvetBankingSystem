@@ -6,19 +6,25 @@ import javafx.scene.Group;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import src.main.java.model.Customer;
 import src.main.java.model.Valvet;
 import src.main.java.model.ValvetFileManager;
 import javafx.application.Application;
 
 public class Main extends Application {
 
+    public static Valvet valv;
+
     public static void main(String[] args) throws Exception {
         // 1. Load Valvet, customers, accounts and transactions from data.json
         // Create a bank with customers, accounts, and transactions
-        Valvet valv = new Valvet("1337");
+        valv = new Valvet("1337");
 
         // Populate your bank with data...
-        // MAIN MENU HERE
+        Customer martin = valv.createCustomer("Martin", "Lidgren", "0002171437");
+        System.out.println(martin);
+
+        /*
 
         // Save the bank data to a JSON file
         ValvetFileManager.saveBank(valv);
@@ -31,6 +37,8 @@ public class Main extends Application {
             System.out.println(loadedBank);
 
         }
+
+         */
 
         launch(args);
     }

@@ -11,10 +11,10 @@ public class Customer implements Serializable {
        private HashMap<String, Account> accounts;
        private String firstName;
        private String surname;
-       private int PERSONAL_NUMBER;
+       private String PERSONAL_NUMBER;
 
 
-       public Customer(String firstName, String surname, int PERSONAL_NUMBER){
+       public Customer(String firstName, String surname, String PERSONAL_NUMBER){
            this.PERSONAL_NUMBER = PERSONAL_NUMBER;
            this.firstName = firstName;
            this.surname = surname;
@@ -44,7 +44,7 @@ public class Customer implements Serializable {
            return this.firstName;
     }
 
-    public int getPERSONAL_NUMBER(){
+    public String getPERSONAL_NUMBER(){
            return this.PERSONAL_NUMBER;
     }
 

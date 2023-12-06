@@ -7,15 +7,15 @@ import java.util.LinkedHashMap;
 public class Valvet implements Serializable{
 
     private String clearingNumber;
-    private HashMap<Integer, Customer> customers;
+    private HashMap<String, Customer> customers;
 
     public Valvet(String clearingNumber){
         this.clearingNumber = clearingNumber;
-        this.customers = new HashMap<Integer, Customer>();
+        this.customers = new HashMap<String, Customer>();
     }
     public Valvet(){}
 
-    public Customer createCustomer(String firstName, String surname, int personalNumber) throws Exception{
+    public Customer createCustomer(String firstName, String surname, String personalNumber) throws Exception{
         if (this.customers.containsKey(personalNumber)){
             throw new AlreadyExistsException("Customer already exists.");
         }
@@ -26,7 +26,7 @@ public class Valvet implements Serializable{
         return newCustomer;
     }
 
-    public Customer deleteCustomer(int personalNumber) throws Exception {
+    public Customer deleteCustomer(String personalNumber) throws Exception {
         Customer customer = this.customers.get(personalNumber);
         if (customer.getTotalBalance() != 0) {
             throw new BalanceNotZeroException("Deletion failed. Customer has remaining balance: " + customer.getTotalBalance());
@@ -35,7 +35,7 @@ public class Valvet implements Serializable{
         return this.customers.remove(personalNumber);
     }
 
-    public Account createAccount(int personalNumber) throws Exception {
+    public Account createAccount(String personalNumber) throws Exception {
         if (!customers.containsKey(personalNumber)) {
             throw new NotFoundException("Customer not found");
         }
@@ -45,13 +45,13 @@ public class Valvet implements Serializable{
     }
 
 
-    public Customer updateCustomerFirstName(int personalNumber, String name){
+    public Customer updateCustomerFirstName(String personalNumber, String name){
         Customer customer = customers.get(personalNumber);
         customer.setFirstName(name);
         return customer;
     }
 
-    public Customer updateCustomerSurname(int personalNumber, String name){
+    public Customer updateCustomerSurname(String personalNumber, String name){
         Customer customer = customers.get(personalNumber);
         customer.setSurname(name);
         return customer;
@@ -65,7 +65,7 @@ public class Valvet implements Serializable{
         }
     }
 
-    public Customer getCustomer(int personalNumber){
+    public Customer getCustomer(String personalNumber){
         return this.customers.get(personalNumber);
     }
 
