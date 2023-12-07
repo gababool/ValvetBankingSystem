@@ -35,5 +35,6 @@
          </font>
       </Label>
       <Label fx:id="numberOfAccountsLabel" layoutX="47.0" layoutY="122.0" text="Number of Accounts" />
+      <Button fx:id="returnToMenuButton" layoutX="489.0" layoutY="345.0" mnemonicParsing="false" onAction="#goToMainMenu" text="Return to Menu" />
    </children>
 </AnchorPane>

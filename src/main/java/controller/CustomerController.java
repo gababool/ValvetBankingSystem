@@ -16,6 +16,7 @@ import java.util.LinkedHashMap;
 public class CustomerController {
     public Label totalBalanceLabel;
     public Label numberOfAccountsLabel;
+    public Button returnToMenuButton;
     @FXML
     private Label titleNameLabel;
     @FXML
@@ -42,6 +43,10 @@ public class CustomerController {
         Account account = accountList.getSelectionModel().getSelectedItem();
         Customer customer = Main.getValvet().getCustomer(personalNumberLabel.getText().replace("Personal Number: ", ""));
         switcher.switchToAccountPage(event, account, customer);
+    }
+
+    public void goToMainMenu(ActionEvent event) throws IOException {
+        switcher.switchToMain(event);
     }
 
 }
