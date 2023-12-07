@@ -2,6 +2,7 @@ package src.main.java.controller;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import src.main.java.Main;
 import src.main.java.model.Customer;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
@@ -39,8 +40,8 @@ public class CustomerController {
     }
     public void goToAccount(ActionEvent event) throws IOException {
         Account account = accountList.getSelectionModel().getSelectedItem();
-        switcher.switchToAccountPage(event, account);
-
+        Customer customer = Main.getValvet().getCustomer(personalNumberLabel.getText().replace("Personal Number: ", ""));
+        switcher.switchToAccountPage(event, account, customer);
     }
 
 }

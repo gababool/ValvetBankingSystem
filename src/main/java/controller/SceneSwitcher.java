@@ -49,12 +49,12 @@ public class SceneSwitcher {
         stage.setScene(scene);
         stage.show();
     }
-    public void switchToAccountPage(ActionEvent event, Account account) throws IOException {
+    public void switchToAccountPage(ActionEvent event, Account account, Customer lastCustomer) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/src/main/java/view/AccountView.fxml"));
         Parent root = loader.load();
 
         AccountController accountController = loader.getController();
-        accountController.loadAccount(account);
+        accountController.loadAccount(account, lastCustomer);
 
         stage = (Stage)((Node) event.getSource()).getScene().getWindow();
         Scene scene = new Scene(root);

@@ -51,6 +51,9 @@ public class Account implements Serializable {
         transactions.put(transaction.getTransactionID(), transaction);
         this.increaseBalance(transaction.getAmount());
     }
+    public LinkedHashMap<UUID, Transaction> getTransactions(){
+        return  this.transactions;
+    }
 
     // ROUND OFF ACCOUNT BALANCE TO 2 DECIMALS AND CHANGE TESTS ACCORDINGLY
     public String toString () {
