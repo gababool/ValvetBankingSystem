@@ -43,7 +43,7 @@ public class Main extends Application {
     public void start(Stage stage) throws Exception {
         try {
             Parent root = FXMLLoader.load(getClass().getResource("/src/main/java/view/MainView.fxml"));
-            stage.setScene(new Scene(root, 600, 600));
+            stage.setScene(new Scene(root, 600, 400));
             stage.show();
         } catch (Exception e){
             e.printStackTrace();
