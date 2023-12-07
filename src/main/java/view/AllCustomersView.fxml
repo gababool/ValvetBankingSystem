@@ -3,6 +3,8 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="src.main.java.controller.AllCustomersController">
@@ -11,5 +13,13 @@
       <Label layoutX="15.0" layoutY="14.0" text="All Customers" />
       <Button fx:id="goToCustomerButton" layoutX="15.0" layoutY="345.0" mnemonicParsing="false" onAction="#goToCustomer" text="Go To Customer" />
       <Button fx:id="returnToMainMenuButton" layoutX="454.0" layoutY="345.0" mnemonicParsing="false" onAction="#goToMainMenu" text="Return to Main Menu" />
+      <TableView layoutX="280.0" layoutY="40.0" prefHeight="293.0" prefWidth="304.0">
+        <columns>
+          <TableColumn prefWidth="75.0" text="Name" />
+          <TableColumn prefWidth="129.0" text="Personal Number" />
+            <TableColumn prefWidth="75.0" text="Accounts" />
+            <TableColumn prefWidth="121.0" text="Total Balance" />
+        </columns>
+      </TableView>
    </children>
 </AnchorPane>

@@ -5,10 +5,13 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.scene.Node;
+import src.main.java.Main;
 import src.main.java.model.Account;
 import src.main.java.model.Customer;
 
 import javafx.event.ActionEvent;
+import src.main.java.model.ValvetFileManager;
+
 import java.io.IOException;
 
 public class SceneSwitcher {
@@ -27,6 +30,7 @@ public class SceneSwitcher {
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
+        ValvetFileManager.saveBank(Main.getValvet());
     }
 
     public void switchToCustomerPage(ActionEvent event, Customer customer) throws IOException {
@@ -40,6 +44,7 @@ public class SceneSwitcher {
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
+        ValvetFileManager.saveBank(Main.getValvet());
     }
     public void switchToTransactionPage(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/src/main/java/view/TransactionView.fxml"));
@@ -48,6 +53,7 @@ public class SceneSwitcher {
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
+        ValvetFileManager.saveBank(Main.getValvet());
     }
     public void switchToAccountPage(ActionEvent event, Account account, Customer lastCustomer) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/src/main/java/view/AccountView.fxml"));
@@ -60,6 +66,7 @@ public class SceneSwitcher {
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
+        ValvetFileManager.saveBank(Main.getValvet());
     }
 
     public void switchToAllCustomersView(ActionEvent event) throws IOException {
@@ -73,6 +80,17 @@ public class SceneSwitcher {
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
+        ValvetFileManager.saveBank(Main.getValvet());
+    }
+    public void switchToCreateCustomerView(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/src/main/java/view/CreateCustomerView.fxml"));
+        Parent root = loader.load();
+
+        stage = (Stage)((Node) event.getSource()).getScene().getWindow();
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+        ValvetFileManager.saveBank(Main.getValvet());
     }
 
 }

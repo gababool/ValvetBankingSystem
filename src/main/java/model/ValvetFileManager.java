@@ -25,7 +25,9 @@ public class ValvetFileManager {
 
     public static Valvet loadBank() {
         try {
-            return objectMapper.readValue(new File(FILE_PATH), Valvet.class);
+            objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+            objectMapper.setVisibility(PropertyAccessor.FIELD, JsonAutoDetect.Visibility.ANY);
+            return objectMapper.readValue(new File("src/data/BankData.json"), Valvet.class);
         } catch (IOException e) {
             e.printStackTrace();
             return null;

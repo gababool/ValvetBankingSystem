@@ -6,6 +6,7 @@ import java.util.LinkedHashMap;
 
 public class Valvet implements Serializable{
 
+
     private String clearingNumber;
     private LinkedHashMap<String, Customer> customers;
 

@@ -41,7 +41,7 @@ public class ValvetController {
         switcher.switchToAllCustomersView(actionEvent);
     }
 
-    public void addNewCustomer(ActionEvent actionEvent) {
-
+    public void addNewCustomer(ActionEvent actionEvent) throws IOException {
+        switcher.switchToCreateCustomerView(actionEvent);
     }
 }

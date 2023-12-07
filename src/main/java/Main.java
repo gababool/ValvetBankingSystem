@@ -16,13 +16,16 @@ public class Main extends Application {
 
     private static Valvet valv;
     // private static SceneSwitcher sceneSwitcher;
+    //private static Valvet
 
     public static void main(String[] args) throws Exception {
+        valv = ValvetFileManager.loadBank();
         // 1. Load Valvet, customers, accounts and transactions from data.json
         // Create a bank with customers, accounts, and transactions
-        valv = new Valvet("1337");
-
+        //valv = new Valvet("1337");
+        //valv = ValvetFileManager.loadBank();
         // Populate your bank with data...
+        /*
         Customer martin = valv.createCustomer("Martin", "Lidgren", "123");
         valv.createAccount("123");
         valv.makeDeposit("911", "1337-123-1", 500);
@@ -51,19 +54,18 @@ public class Main extends Application {
         valv.createAccount("129");
         valv.makeDeposit("911", "1337-129-1", 500);
         valv.makeDeposit("911", "1337-129-2", 500);
+        */
 
-        ;
         // Save the bank data to a JSON file
-        ValvetFileManager.saveBank(valv);
-
-        // Load the bank data from the JSON file
-        Valvet loadedBank = ValvetFileManager.loadBank();
+        //ValvetFileManager.saveBank(valv);
+        //valv = ValvetFileManager.loadBank();
+        // Load the bank data from the JSON fil
 
         // Display the loaded bank data
-        if (loadedBank != null) {
-            System.out.println(loadedBank);
+        //if (loadedBank != null) {
+        //    System.out.println(loadedBank);
 
-        }
+        //}
 
         launch(args);
     }
