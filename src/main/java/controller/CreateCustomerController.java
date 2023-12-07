@@ -5,7 +5,7 @@ import javafx.scene.control.TextField;
 import src.main.java.Main;
 import src.main.java.model.Customer;
 
-public class CreateCustomerViewController {
+public class CreateCustomerController {
 
     public TextField personalNumberField;
     public TextField firstNameField;
