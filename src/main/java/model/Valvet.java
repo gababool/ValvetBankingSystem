@@ -7,11 +7,11 @@ import java.util.LinkedHashMap;
 public class Valvet implements Serializable{
 
     private String clearingNumber;
-    private HashMap<String, Customer> customers;
+    private LinkedHashMap<String, Customer> customers;
 
     public Valvet(String clearingNumber){
         this.clearingNumber = clearingNumber;
-        this.customers = new HashMap<String, Customer>();
+        this.customers = new LinkedHashMap<String, Customer>();
     }
     public Valvet(){}
 
@@ -76,13 +76,10 @@ public class Valvet implements Serializable{
         return customer;
     }
 
-    public void viewAllCustomers(){
-        // Comparator for printing in alphabetical order
-        System.out.println("List of customers: ");
-        for (Customer customer : this.customers.values()){
-            System.out.println(customer);
-        }
+    public LinkedHashMap<String, Customer> getAllCustomers(){
+        return (LinkedHashMap<String, Customer>) customers;
     }
+
 
     public Customer getCustomer(String personalNumber){
         return this.customers.get(personalNumber);
