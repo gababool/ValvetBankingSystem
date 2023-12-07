@@ -30,7 +30,7 @@ public class CustomerController {
     public void loadCustomer(Customer customer){
         this.titleNameLabel.setText("Name: " + customer.getFullName());
         this.personalNumberLabel.setText("Personal Number: " + customer.getPERSONAL_NUMBER());
-        this.totalBalanceLabel.setText("Total Balance " + customer.getTotalBalance());
+        this.totalBalanceLabel.setText("Total Balance: " + customer.getTotalBalance());
         this.numberOfAccountsLabel.setText("Number Of Accounts: " + customer.getNumberOfAccounts());
 
         LinkedHashMap<String, Account> Accounts = customer.getAccounts();

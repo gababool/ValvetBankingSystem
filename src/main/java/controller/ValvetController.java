@@ -19,13 +19,13 @@ public class ValvetController {
     @FXML
     public Button transactionsButton;
     @FXML
-    public Button customerOverviewButton;
-    @FXML
     public Button addNewCustomerButton;
     @FXML
     public TextField personalNumberField;
     private static SceneSwitcher switcher = new SceneSwitcher();
     private static CustomerController customerController;
+    @FXML
+    public Button viewAllCustomersButton;
 
 
     public void findCustomer(ActionEvent event) throws IOException {
@@ -37,8 +37,8 @@ public class ValvetController {
 
     }
 
-    public void viewAllCustomers(ActionEvent actionEvent) {
-
+    public void viewAllCustomers(ActionEvent actionEvent) throws IOException {
+        switcher.switchToAllCustomersView(actionEvent);
     }
 
     public void addNewCustomer(ActionEvent actionEvent) {
