@@ -54,7 +54,7 @@ public class Account implements Serializable {
 
     // ROUND OFF ACCOUNT BALANCE TO 2 DECIMALS AND CHANGE TESTS ACCORDINGLY
     public String toString () {
-        return String.format("Account %s: Balance %f kr", this.accountNumber, this.balance);
+        return String.format("Account:  %s  |  Balance:  %.2f kr", this.accountNumber, this.balance);
     }
 
     @Override

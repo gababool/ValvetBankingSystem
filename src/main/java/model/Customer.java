@@ -3,12 +3,12 @@ package src.main.java.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import java.io.Serializable;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Objects;
 
 public class Customer implements Serializable {
 
-       private HashMap<String, Account> accounts;
+       private LinkedHashMap<String, Account> accounts;
        private String firstName;
        private String surname;
        private String PERSONAL_NUMBER;
@@ -18,7 +18,7 @@ public class Customer implements Serializable {
            this.PERSONAL_NUMBER = PERSONAL_NUMBER;
            this.firstName = firstName;
            this.surname = surname;
-           this.accounts = new HashMap<>();
+           this.accounts = new LinkedHashMap<>();
        }
        public Customer(){}
 
@@ -44,11 +44,13 @@ public class Customer implements Serializable {
            return this.firstName;
     }
 
+    public String getFullName(){ return this.firstName + " " + this.surname;}
+
     public String getPERSONAL_NUMBER(){
            return this.PERSONAL_NUMBER;
     }
 
-    public HashMap<String, Account> getAccounts(){
+    public LinkedHashMap<String, Account> getAccounts(){
            return this.accounts;
     }
 

@@ -6,6 +6,7 @@ import javafx.scene.Group;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import src.main.java.controller.SceneSwitcher;
 import src.main.java.model.Customer;
 import src.main.java.model.Valvet;
 import src.main.java.model.ValvetFileManager;
@@ -14,6 +15,7 @@ import javafx.application.Application;
 public class Main extends Application {
 
     private static Valvet valv;
+    // private static SceneSwitcher sceneSwitcher;
 
     public static void main(String[] args) throws Exception {
         // 1. Load Valvet, customers, accounts and transactions from data.json
@@ -21,8 +23,8 @@ public class Main extends Application {
         valv = new Valvet("1337");
 
         // Populate your bank with data...
-        Customer martin = valv.createCustomer("Martin", "Lidgren", "123");
-        valv.createAccount("123");
+        Customer martin = valv.createCustomer("Martin", "Lidgren", "0002171437");
+        valv.createAccount("0002171437");
 
         // Save the bank data to a JSON file
         ValvetFileManager.saveBank(valv);
@@ -42,8 +44,12 @@ public class Main extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("/src/main/java/view/MainView.fxml"));
-            stage.setScene(new Scene(root, 600, 400));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/src/main/java/view/MainView.fxml"));
+            Parent root = loader.load();
+            Scene scene = new Scene(root);
+            stage.setResizable(false);
+            stage.setTitle("V.A.L.V.E.T. Banking System");
+            stage.setScene(scene);
             stage.show();
         } catch (Exception e){
             e.printStackTrace();
@@ -53,7 +59,8 @@ public class Main extends Application {
     public static Valvet getValvet() {
         return valv;
     }
-    }
+
+}
 
 
 
