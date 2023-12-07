@@ -21,8 +21,8 @@ public class Main extends Application {
         valv = new Valvet("1337");
 
         // Populate your bank with data...
-        Customer martin = valv.createCustomer("Martin", "Lidgren", "0002171437");
-        valv.createAccount("0002171437");
+        Customer martin = valv.createCustomer("Martin", "Lidgren", "123");
+        valv.createAccount("123");
 
         // Save the bank data to a JSON file
         ValvetFileManager.saveBank(valv);

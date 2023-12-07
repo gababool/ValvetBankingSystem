@@ -10,24 +10,24 @@ import src.main.java.model.ValvetFileManager;
 
 public class ValvetController {
 
-    public TextField deleteCustomerTextField;
-    public Button deleteCustomerButton;
 
+    public Button customerSearchButton;
+    public Button transactionsButton;
+    public Button customerOverviewButton;
+    public Button addNewCustomerButton;
 
-    public Button deleteAccountButton;
-    public TextField deleteAccountTextField;
+    public void findCustomer(ActionEvent actionEvent) {
+    }
 
-
-    public void deleteCustomer(ActionEvent actionEvent) throws Exception {
-        // Replace this. This is for testing only.
-        Customer customer = Main.getValvet().deleteCustomer(deleteCustomerTextField.getText());
-        System.out.println(Main.getValvet().getCustomer("0002171437"));
-        ValvetFileManager.saveBank(Main.getValvet());
+    public void goToTransactionScreen(ActionEvent actionEvent) {
 
     }
 
-    public void deleteAccount(ActionEvent actionEvent) throws Exception{
-        Main.getValvet().deleteAccount("0002171437", deleteAccountTextField.getText());
-        ValvetFileManager.saveBank(Main.getValvet());
+    public void viewAllCustomers(ActionEvent actionEvent) {
+
+    }
+
+    public void addNewCustomer(ActionEvent actionEvent) {
+
     }
 }
