@@ -34,8 +34,8 @@ public class CustomerController {
         this.totalBalanceLabel.setText("Total Balance: " + customer.getTotalBalance());
         this.numberOfAccountsLabel.setText("Number Of Accounts: " + customer.getNumberOfAccounts());
 
-        LinkedHashMap<String, Account> Accounts = customer.getAccounts();
-        for(Account account : Accounts.values()){
+        LinkedHashMap<String, Account> accounts = customer.getAccounts();
+        for(Account account : accounts.values()){
             accountList.getItems().add(account);
         }
     }
