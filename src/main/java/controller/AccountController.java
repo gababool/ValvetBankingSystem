@@ -46,5 +46,4 @@ public class AccountController {
         Customer customer = Main.getValvet().getCustomer(personalNumberLabel.getText().replace("Personal Number: ", ""));
         switcher.switchToCustomerPage(event, customer);
     }
-
 }
