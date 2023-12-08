@@ -3,6 +3,7 @@ package src.main.java.model;
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
+import java.util.Random;
 
 public class Valvet implements Serializable{
 
@@ -41,7 +42,7 @@ public class Valvet implements Serializable{
             throw new NotFoundException("Customer not found");
         }
         Customer customer = this.customers.get(personalNumber);
-        String accountNumber = clearingNumber + "-" + customer.getPERSONAL_NUMBER() + "-" + (customer.getNumberOfAccounts()+1);
+        String accountNumber = clearingNumber + "-" + generateRandomNumber();
         return customer.createAccount(accountNumber);
     }
 
@@ -69,7 +70,17 @@ public class Valvet implements Serializable{
         return customer;
     }
 
-
+    public int generateRandomNumber(){
+        Random random = new Random();
+        int randomNumber = random.nextInt(100000000, 99999999);
+        for (Customer customer : customers.values()){
+            HashMap<String, Account> accounts = customer.getAccounts();
+            if (accounts.containsKey(randomNumber + "")){
+                generateRandomNumber();
+            }
+        }
+        return randomNumber;
+    }
 
     public Customer updateCustomerSurname(String personalNumber, String name){
         Customer customer = customers.get(personalNumber);

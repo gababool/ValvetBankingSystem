@@ -13,12 +13,12 @@
       <Label layoutX="15.0" layoutY="14.0" text="All Customers" />
       <Button fx:id="goToCustomerButton" layoutX="15.0" layoutY="345.0" mnemonicParsing="false" onAction="#goToCustomer" text="Go To Customer" />
       <Button fx:id="returnToMainMenuButton" layoutX="454.0" layoutY="345.0" mnemonicParsing="false" onAction="#goToMainMenu" text="Return to Main Menu" />
-      <TableView layoutX="280.0" layoutY="40.0" prefHeight="293.0" prefWidth="304.0">
+      <TableView layoutX="410.0" layoutY="40.0" prefHeight="293.0" prefWidth="174.0">
         <columns>
-          <TableColumn prefWidth="75.0" text="Name" />
-          <TableColumn prefWidth="129.0" text="Personal Number" />
-            <TableColumn prefWidth="75.0" text="Accounts" />
-            <TableColumn prefWidth="121.0" text="Total Balance" />
+          <TableColumn fx:id="nameColumn" prefWidth="75.0" text="Name" />
+          <TableColumn fx:id="personalNumberColumn" prefWidth="129.0" text="Personal Number" />
+            <TableColumn fx:id="accountColumn" prefWidth="75.0" text="Accounts" />
+            <TableColumn fx:id="totalBalanceColumn" prefWidth="121.0" text="Total Balance" />
         </columns>
       </TableView>
    </children>

@@ -15,7 +15,6 @@ import src.main.java.model.ValvetFileManager;
 import java.io.IOException;
 
 public class SceneSwitcher {
-    //private Stage stage;
 
     private Scene scene;
     private Stage stage;
@@ -23,74 +22,60 @@ public class SceneSwitcher {
 
     public SceneSwitcher(){}
 
-    public void switchToMain(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/src/main/java/view/MainView.fxml"));
-        Parent root = loader.load();
+    private void prepareScene(ActionEvent event, Parent root) {
         stage = (Stage)((Node) event.getSource()).getScene().getWindow();
-        Scene scene = new Scene(root);
+        scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
+        ValvetFileManager.saveBank(Main.getValvet());
+    }
+
+    public void switchToMain(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/src/main/java/view/MainView.fxml"));
+        root = loader.load();
+        prepareScene(event,root);
         ValvetFileManager.saveBank(Main.getValvet());
     }
 
     public void switchToCustomerPage(ActionEvent event, Customer customer) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/src/main/java/view/CustomerView.fxml"));
-        Parent root = loader.load();
+        root = loader.load();
 
         CustomerController customerController = loader.getController();
         customerController.loadCustomer(customer);
 
-        stage = (Stage)((Node) event.getSource()).getScene().getWindow();
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-        ValvetFileManager.saveBank(Main.getValvet());
+        prepareScene(event, root);
     }
+
     public void switchToTransactionPage(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/src/main/java/view/TransactionView.fxml"));
-        Parent root = loader.load();
-        stage = (Stage)((Node) event.getSource()).getScene().getWindow();
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-        ValvetFileManager.saveBank(Main.getValvet());
+        root = loader.load();
+        prepareScene(event, root);
     }
     public void switchToAccountPage(ActionEvent event, Account account, Customer lastCustomer) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/src/main/java/view/AccountView.fxml"));
-        Parent root = loader.load();
+        root = loader.load();
 
         AccountController accountController = loader.getController();
         accountController.loadAccount(account, lastCustomer);
 
-        stage = (Stage)((Node) event.getSource()).getScene().getWindow();
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-        ValvetFileManager.saveBank(Main.getValvet());
+        prepareScene(event, root);
     }
 
     public void switchToAllCustomersView(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/src/main/java/view/AllCustomersView.fxml"));
-        Parent root = loader.load();
+        root = loader.load();
 
         AllCustomersController allCustomersController = loader.getController();
         allCustomersController.loadAllCustomers();
 
-        stage = (Stage)((Node) event.getSource()).getScene().getWindow();
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-        ValvetFileManager.saveBank(Main.getValvet());
+        prepareScene(event, root);
     }
     public void switchToCreateCustomerView(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/src/main/java/view/CreateCustomerView.fxml"));
-        Parent root = loader.load();
+        root = loader.load();
 
-        stage = (Stage)((Node) event.getSource()).getScene().getWindow();
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-        ValvetFileManager.saveBank(Main.getValvet());
+        prepareScene(event, root);
     }
 
 }

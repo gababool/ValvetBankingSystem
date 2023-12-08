@@ -3,6 +3,7 @@ package src.main.java.controller;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
+import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import src.main.java.Main;
 import src.main.java.model.Account;
@@ -17,7 +18,10 @@ public class AllCustomersController {
     public Button goToCustomerButton;
 
     public TableView<Customer> allCustomers;
-    //public TableColumn<Customer, String> nameField;
+    public TableColumn<Customer, String> nameColumn;
+    public TableColumn<Customer, String> personalNumberColumn;
+    public TableColumn<Customer, String> accountColumn;
+    public TableColumn<Customer, String> totalBalanceColumn;
 
     private static SceneSwitcher switcher = new SceneSwitcher();
 
