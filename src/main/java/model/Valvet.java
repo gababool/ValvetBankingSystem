@@ -72,7 +72,7 @@ public class Valvet implements Serializable{
 
     public int generateRandomNumber(){
         Random random = new Random();
-        int randomNumber = random.nextInt(100000000, 99999999);
+        int randomNumber = random.nextInt(100000000, 999999999);
         for (Customer customer : customers.values()){
             HashMap<String, Account> accounts = customer.getAccounts();
             if (accounts.containsKey(randomNumber + "")){
