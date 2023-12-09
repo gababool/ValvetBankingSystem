@@ -34,7 +34,6 @@ public class SceneSwitcher {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/src/main/java/view/MainView.fxml"));
         root = loader.load();
         prepareScene(event,root);
-        ValvetFileManager.saveBank(Main.getValvet());
     }
 
     public void switchToCustomerPage(ActionEvent event, Customer customer) throws IOException {

@@ -31,6 +31,9 @@ public class ValvetController {
 
     public void findCustomer(ActionEvent event) throws IOException {
         Customer customer = Main.getValvet().getCustomer(personalNumberField.getText());
+        if (personalNumberField.getText().isBlank()){
+            MessageDisplayer.displayErrorAlert("Error", "Please enter a personal number");
+        }
         if (customer == null){
             MessageDisplayer.displayErrorAlert("Error", "Customer not found");
         }
