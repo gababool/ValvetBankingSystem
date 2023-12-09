@@ -107,7 +107,7 @@ public class CustomerController{
             Main.getValvet().deleteAccount(customer.getPERSONAL_NUMBER(), account.getAccountNumber());
         } catch (NullPointerException e){
             MessageDisplayer.displayErrorAlert("Error", "No account selected");
-        } catch (BalanceNotZeroException e) {
+        } catch (BalanceNotZeroException | CannotBeZeroException e) {
             MessageDisplayer.displayErrorAlert("Error", e.getMessage());
         }
         this.loadCustomer(customer);

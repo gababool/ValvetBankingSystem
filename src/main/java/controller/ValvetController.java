@@ -24,7 +24,6 @@ public class ValvetController {
     @FXML
     public TextField personalNumberField;
     private static SceneSwitcher switcher = new SceneSwitcher();
-    private static CustomerController customerController;
     @FXML
     public Button viewAllCustomersButton;
 
@@ -34,7 +33,7 @@ public class ValvetController {
         if (personalNumberField.getText().isBlank()){
             MessageDisplayer.displayErrorAlert("Error", "Please enter a personal number");
         }
-        if (customer == null){
+        else if (customer == null){
             MessageDisplayer.displayErrorAlert("Error", "Customer not found");
         }
         switcher.switchToCustomerPage(event, customer);

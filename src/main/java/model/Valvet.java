@@ -50,7 +50,7 @@ public class Valvet implements Serializable{
     }
 
     // ADD SO THAT THE PERSONAL NUMBER CAN BE EXTRACTED FROM THE ACCOUNT NUMBER
-    public void deleteAccount(String personalNumber, String accountNumber) throws BalanceNotZeroException {
+    public void deleteAccount(String personalNumber, String accountNumber) throws BalanceNotZeroException, CannotBeZeroException {
         Account account = null;
         for (Customer customer : customers.values()) {
             HashMap<String, Account> accounts = customer.getAccounts();
@@ -60,6 +60,9 @@ public class Valvet implements Serializable{
         }
         if (!(account.getBalance() == 0)) {
             throw new BalanceNotZeroException("Account could not be deleted. Balance is not zero. ");
+        }
+        else if (customers.get(personalNumber).getNumberOfAccounts() == 1){
+            throw new CannotBeZeroException("Customer cannot have zero accounts");
         }
         customers.get(personalNumber).closeAccount(accountNumber);
     }
