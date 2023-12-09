@@ -39,7 +39,10 @@
               </rowConstraints>
                <children>
                   <Button fx:id="findCustomerButton" mnemonicParsing="false" onAction="#findCustomer" prefHeight="101.0" prefWidth="308.0" text="Find Customer" GridPane.rowIndex="1" />
-                  <TextField fx:id="personalNumberField" prefHeight="87.0" prefWidth="300.0" promptText="Personal Number" />
+                  <TextField fx:id="personalNumberField" prefHeight="87.0" prefWidth="300.0" promptText="Personal Number">
+                     <font>
+                        <Font size="20.0" />
+                     </font></TextField>
                </children>
             </GridPane>
          </children>
