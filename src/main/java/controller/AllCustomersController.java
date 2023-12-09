@@ -25,7 +25,7 @@ public class AllCustomersController implements Initializable {
 
 
     @FXML private TableView<Customer> allCustomers;
-    @FXML private TableColumn<Customer, SimpleStringProperty> nameColumn;
+    @FXML private TableColumn<Customer, String> nameColumn;
     @FXML private TableColumn<Customer, String> personalNumberColumn;
     @FXML private TableColumn<Customer, String> accountColumn;
     @FXML private TableColumn<Customer, Double> totalBalanceColumn;
@@ -33,7 +33,7 @@ public class AllCustomersController implements Initializable {
     private static SceneSwitcher switcher = new SceneSwitcher();
 
     public void initialize(URL url, ResourceBundle resourceBundle){
-        nameColumn.setCellValueFactory(new PropertyValueFactory<Customer, SimpleStringProperty>("name"));
+        nameColumn.setCellValueFactory(new PropertyValueFactory<Customer, String>("name"));
         personalNumberColumn.setCellValueFactory(new PropertyValueFactory<Customer, String>("PERSONAL_NUMBER"));
         accountColumn.setCellValueFactory(new PropertyValueFactory<Customer, String>("account"));
         totalBalanceColumn.setCellValueFactory(new PropertyValueFactory<Customer, Double>("totalBalance"));
@@ -48,8 +48,8 @@ public class AllCustomersController implements Initializable {
     public void searchAction(ActionEvent event){
         String searchID = searchField.getText().toUpperCase();
         Stream<Customer> customerStream = allCustomers.getItems().stream();
-        Optional<Customer> founditem = customerStream.filter(item -> item.getPERSONAL_NUMBER().toUpperCase().startsWith(searchID)|| item.getFullName().toUpperCase().startsWith(searchID)).findAny();
-        founditem.ifPresent(item -> {
+        Optional<Customer> foundItem = customerStream.filter(item -> item.getPERSONAL_NUMBER().toUpperCase().startsWith(searchID)|| item.getFullName().toUpperCase().startsWith(searchID)).findAny();
+        foundItem.ifPresent(item -> {
                     allCustomers.getSelectionModel().select(item);
                     allCustomers.scrollTo(item);
                 });
