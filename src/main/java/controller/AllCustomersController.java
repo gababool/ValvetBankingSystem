@@ -8,17 +8,14 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import org.w3c.dom.Text;
 import src.main.java.Main;
-import src.main.java.model.Account;
 import src.main.java.model.Customer;
-
-import javax.print.DocFlavor;
 import java.io.IOException;
 import java.net.URL;
 import java.util.LinkedHashMap;
-import java.util.LinkedList;
+import java.util.Optional;
 import java.util.ResourceBundle;
+import java.util.stream.Stream;
 
 public class AllCustomersController implements Initializable {
     @FXML public Button returnToMainMenuButton;
@@ -49,14 +46,16 @@ public class AllCustomersController implements Initializable {
         return ObservableCustomers;
     }
     public void searchAction(ActionEvent event){
-        String searchID = searchField.getText();
-        allCustomers.getItems().stream()
-                .filter(item -> item.getPERSONAL_NUMBER().startsWith(searchID)|| item.getFullName().startsWith(searchID))
-                .findAny()
-                .ifPresent(item -> {
+        String searchID = searchField.getText().toUpperCase();
+        Stream<Customer> customerStream = allCustomers.getItems().stream();
+        Optional<Customer> founditem = customerStream.filter(item -> item.getPERSONAL_NUMBER().toUpperCase().startsWith(searchID)|| item.getFullName().toUpperCase().startsWith(searchID)).findAny();
+        founditem.ifPresent(item -> {
                     allCustomers.getSelectionModel().select(item);
                     allCustomers.scrollTo(item);
                 });
+    }
+    public void onEnter(ActionEvent event){
+        searchAction(event);
     }
     public void goToMainMenu(ActionEvent event) throws IOException {
         switcher.switchToMain(event);
