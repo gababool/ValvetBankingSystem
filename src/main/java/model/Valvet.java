@@ -33,7 +33,7 @@ public class Valvet implements Serializable{
     public Customer deleteCustomer(String personalNumber) throws Exception {
         Customer customer = this.customers.get(personalNumber);
         if (customer.getTotalBalance() != 0) {
-            throw new BalanceNotZeroException("Deletion failed. Customer has remaining balance: " + customer.getTotalBalance());
+           throw new BalanceNotZeroException("Deletion failed. Customer has remaining balance: " + customer.getTotalBalance());
         }
         System.out.println("Customer " + customer + " successfully removed");
         return this.customers.remove(personalNumber);
