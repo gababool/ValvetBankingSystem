@@ -37,8 +37,8 @@ public class ValvetController {
         switcher.switchToCustomerPage(event, customer);
     }
 
-    public void goToTransactionScreen(ActionEvent actionEvent) {
-
+    public void goToTransactionScreen(ActionEvent actionEvent) throws IOException {
+        switcher.switchToTransactionPage(actionEvent);
     }
 
     public void viewAllCustomers(ActionEvent actionEvent) throws IOException {

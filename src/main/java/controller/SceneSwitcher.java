@@ -52,6 +52,7 @@ public class SceneSwitcher {
         root = loader.load();
         prepareScene(event, root);
     }
+
     public void switchToAccountPage(ActionEvent event, Account account, Customer lastCustomer) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/src/main/java/view/AccountView.fxml"));
         root = loader.load();

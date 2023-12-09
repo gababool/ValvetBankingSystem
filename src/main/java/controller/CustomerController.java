@@ -18,6 +18,10 @@ public class CustomerController {
     public Label totalBalanceLabel;
     public Label numberOfAccountsLabel;
     public Button returnToMenuButton;
+    public Button makeTransactionButton;
+    public Button deleteCustomerButton;
+    public Button makeDepositButton;
+    public Button makeWithdrawalButton;
     @FXML
     private Label titleNameLabel;
     @FXML
@@ -53,6 +57,16 @@ public class CustomerController {
         switcher.switchToMain(event);
     }
 
+    public void goToTransactionView(ActionEvent event) throws IOException {
+        switcher.switchToTransactionPage(event);
+    }
 
+    public void goToWithdrawalView(ActionEvent event) {
+    }
 
+    public void goToDepositionView(ActionEvent event) {
+    }
+
+    public void deleteCustomer(ActionEvent event) {
+    }
 }

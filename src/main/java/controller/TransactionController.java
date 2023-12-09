@@ -1,4 +1,4 @@
 package src.main.java.controller;
 
-public class TransactionView {
+public class TransactionController {
 }
