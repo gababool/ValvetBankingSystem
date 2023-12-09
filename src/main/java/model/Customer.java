@@ -56,7 +56,7 @@ public class Customer implements Serializable {
            return this.firstName;
     }
 
-    public String getFullName(){ return this.firstName + " " + this.surname;}
+    public String getFullName(){ return this.surname + " " + this.firstName;}
 
     public String getPERSONAL_NUMBER(){
            return this.PERSONAL_NUMBER;
