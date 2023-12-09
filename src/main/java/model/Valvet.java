@@ -7,7 +7,6 @@ import java.util.Random;
 
 public class Valvet implements Serializable{
 
-
     private String clearingNumber;
     private LinkedHashMap<String, Customer> customers;
 
@@ -18,7 +17,10 @@ public class Valvet implements Serializable{
     public Valvet(){}
 
     public Customer createCustomer(String firstName, String surname, String personalNumber) throws Exception{
-        if (this.customers.containsKey(personalNumber)){
+        if (!checkValidCustomerInfo(firstName, surname, personalNumber)){
+            throw new InvalidInputException("Entered information not valid");
+        }
+        else if (this.customers.containsKey(personalNumber)){
             throw new AlreadyExistsException("Customer already exists.");
         }
         Customer newCustomer = new Customer(firstName, surname, personalNumber);
@@ -158,4 +160,21 @@ public class Valvet implements Serializable{
         receiver.receiveTransaction(transaction);
         return transaction;
     }
+
+    public boolean checkValidCustomerInfo(String firstName, String surname, String personalNumber){
+        boolean validPNO = true;
+        boolean validName = true;
+        if (firstName.isBlank() || surname.isBlank()){
+            validName = false;
+        }
+        else if (personalNumber.length() != 12 ){
+            validPNO = false;
+        }
+        else if (personalNumber.isBlank()){
+            validPNO = false;
+        }
+        // Add more conditionals if necessary
+        return validPNO && validName;
+    }
+
 }

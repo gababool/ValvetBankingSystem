@@ -1,6 +1,7 @@
 package src.main.java.controller;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import src.main.java.Main;
 import src.main.java.model.Customer;
@@ -41,6 +42,9 @@ public class CustomerController {
     }
     public void goToAccount(ActionEvent event) throws IOException {
         Account account = accountList.getSelectionModel().getSelectedItem();
+        if (account == null){
+            MessageDisplayer.displayErrorAlert("Error", "No account selected");
+        }
         Customer customer = Main.getValvet().getCustomer(personalNumberLabel.getText().replace("Personal Number: ", ""));
         switcher.switchToAccountPage(event, account, customer);
     }
@@ -48,5 +52,7 @@ public class CustomerController {
     public void goToMainMenu(ActionEvent event) throws IOException {
         switcher.switchToMain(event);
     }
+
+
 
 }
