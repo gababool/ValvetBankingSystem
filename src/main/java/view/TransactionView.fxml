@@ -6,17 +6,16 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="src.main.java.controller.TransactionController">
    <children>
-      <Label layoutX="40.0" layoutY="35.0" text="Transaction / Deposition / Withdrawal">
+      <Label layoutX="40.0" layoutY="35.0" text="New Transaction">
          <font>
             <Font size="20.0" />
          </font>
       </Label>
-      <TextField layoutX="107.0" layoutY="136.0" prefHeight="25.0" prefWidth="335.0" promptText="Receiver Account Number" />
-      <TextField layoutX="107.0" layoutY="103.0" prefHeight="25.0" prefWidth="335.0" promptText="Sender Account Number" />
-      <TextField layoutX="107.0" layoutY="176.0" prefHeight="25.0" prefWidth="335.0" promptText="Amount" />
+      <TextField fx:id="receiverTextField" layoutX="107.0" layoutY="136.0" prefHeight="25.0" prefWidth="335.0" promptText="Receiver Account Number" />
+      <TextField fx:id="senderTextField" layoutX="107.0" layoutY="103.0" prefHeight="25.0" prefWidth="335.0" promptText="Sender Account Number" />
+      <TextField fx:id="amountTextField" layoutX="107.0" layoutY="176.0" prefHeight="25.0" prefWidth="335.0" promptText="Amount" />
       <Label layoutX="46.0" layoutY="105.0" text="From:">
          <font>
             <Font size="14.0" />
@@ -32,8 +31,8 @@
             <Font size="13.0" />
          </font>
       </Label>
-      <Button layoutX="40.0" layoutY="248.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="398.0" text="Done" />
-      <Button layoutX="40.0" layoutY="287.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="398.0" text="Clear All" />
-      <Button layoutX="40.0" layoutY="328.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="398.0" text="Cancel" />
+      <Button fx:id="makeTransactionButton" layoutX="40.0" layoutY="248.0" mnemonicParsing="false" onAction="#makeTransaction" prefHeight="30.0" prefWidth="398.0" text="Done" />
+      <Button fx:id="clearAllButton" layoutX="40.0" layoutY="287.0" mnemonicParsing="false" onAction="#clearAll" prefHeight="30.0" prefWidth="398.0" text="Clear All" />
+      <Button fx:id="cancelButton" layoutX="40.0" layoutY="328.0" mnemonicParsing="false" onAction="#returnToLastView" prefHeight="30.0" prefWidth="398.0" text="Cancel" />
    </children>
 </AnchorPane>

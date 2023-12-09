@@ -115,49 +115,24 @@ public class Valvet implements Serializable{
             }
         }
 
-        if (receiver == null){
-            throw new NotFoundException("Receiver account not found");
-        }
-        if (sender == null){
-            throw new NotFoundException("Sender account not found");
-        }
-
-        Transaction transaction = new Transaction(amount, receiver.getAccountNumber(), sender.getAccountNumber());
-        sender.sendTransaction(transaction);
-        receiver.receiveTransaction(transaction);
-        return transaction;
-    }
-
-    public Transaction makeWithdrawal(String senderAccountNumber, String receiverAccountNumber, double amount) throws Exception{
-        Account sender = null;
-        for (Customer customer : customers.values()){
-            HashMap<String, Account> accounts = customer.getAccounts();
-            if (accounts.containsKey(senderAccountNumber)){
-                sender = accounts.get(senderAccountNumber);
-            }
-        }
-        if (sender == null){
-            throw new NotFoundException("Sender account not found");
-        }
-        Transaction transaction = new Transaction(amount, receiverAccountNumber, sender.getAccountNumber());
-        sender.sendTransaction(transaction);
-        return transaction;
-    }
-
-    // We assume this information comes externally and is executed automatically
-    public Transaction makeDeposit(String senderAccountNumber, String receiverAccountNumber, double amount) throws NotFoundException {
-        Account receiver = null;
-        for (Customer customer : customers.values()){
-            HashMap<String, Account> accounts = customer.getAccounts();
-            if (accounts.containsKey(receiverAccountNumber)){
-                receiver = accounts.get(receiverAccountNumber);
-            }
-        }
-        if (receiver == null){
-            throw new NotFoundException("Receiver account not found");
-        }
         Transaction transaction = new Transaction(amount, receiverAccountNumber, senderAccountNumber);
-        receiver.receiveTransaction(transaction);
+
+        if (sender == null && receiver == null){
+            throw new NotFoundException("Sending and receiving accounts not found");
+        }
+        else if (sender != null && receiver == null){
+            sender.sendTransaction(transaction);
+            System.out.println("Withdrawal of " + amount + " successfully made");
+        }
+        else if (sender == null && receiver != null){
+            receiver.receiveTransaction(transaction);
+            System.out.println("Deposition of " + amount + " successfully made");
+        }
+        else {
+            sender.sendTransaction(transaction);
+            receiver.receiveTransaction(transaction);
+        }
+
         return transaction;
     }
 
