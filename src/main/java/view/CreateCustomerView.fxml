@@ -9,16 +9,18 @@
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="src.main.java.controller.CreateCustomerController">
    <children>
-      <TextField fx:id="personalNumberField" layoutX="137.0" layoutY="164.0" prefHeight="26.0" prefWidth="327.0" promptText="Personal Number" />
-      <TextField fx:id="firstNameField" layoutX="137.0" layoutY="230.0" prefHeight="26.0" prefWidth="327.0" promptText="First Name" />
-      <TextField fx:id="lastNameField" layoutX="137.0" layoutY="263.0" prefHeight="26.0" prefWidth="327.0" promptText="Last Name" />
-      <Label layoutX="137.0" layoutY="147.0" prefHeight="17.0" prefWidth="191.0" text="Customer Personal Number:" />
-      <Label layoutX="137.0" layoutY="213.0" prefHeight="17.0" prefWidth="106.0" text="Customer Name:" />
-      <Text layoutX="137.0" layoutY="117.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Register Customer" textAlignment="CENTER" wrappingWidth="327.0">
+      <TextField fx:id="personalNumberField" layoutX="137.0" layoutY="120.0" prefHeight="26.0" prefWidth="327.0" promptText="Personal Number" />
+      <TextField fx:id="firstNameField" layoutX="137.0" layoutY="172.0" prefHeight="26.0" prefWidth="327.0" promptText="First Name" />
+      <TextField fx:id="lastNameField" layoutX="137.0" layoutY="200.0" prefHeight="26.0" prefWidth="327.0" promptText="Last Name" />
+      <Label layoutX="137.0" layoutY="103.0" prefHeight="17.0" prefWidth="191.0" text="Customer Personal Number:" />
+      <Label layoutX="137.0" layoutY="155.0" prefHeight="17.0" prefWidth="106.0" text="Customer Name:" />
+      <Text layoutX="137.0" layoutY="73.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Register Customer" textAlignment="CENTER" wrappingWidth="327.0">
          <font>
-            <Font name="Comic Sans MS Bold" size="32.0" />
+            <Font name="System Bold" size="32.0" />
          </font>
       </Text>
-      <Button fx:id="registerCustomerButton" layoutX="137.0" layoutY="307.0" mnemonicParsing="false" onAction="#registerCustomerAction" prefHeight="26.0" prefWidth="327.0" text="Register Customer" />
+      <Button fx:id="registerCustomerButton" layoutX="137.0" layoutY="245.0" mnemonicParsing="false" onAction="#registerCustomerAction" prefHeight="26.0" prefWidth="327.0" text="Register Customer" />
+      <Button fx:id="returnToMainMenuButton" layoutX="137.0" layoutY="349.0" mnemonicParsing="false" onAction="#returnToMainMenu" prefHeight="26.0" prefWidth="327.0" text="Return to Main Menu" />
+      <Button fx:id="clearAllButton" layoutX="137.0" layoutY="314.0" mnemonicParsing="false" onAction="#clearTextFields" prefHeight="26.0" prefWidth="327.0" text="Clear All" />
    </children>
 </AnchorPane>

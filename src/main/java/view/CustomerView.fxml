@@ -4,37 +4,27 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="src.main.java.controller.CustomerController">
    <children>
       <Label fx:id="titleNameLabel" layoutX="47.0" layoutY="67.0" text="Customer Name" />
       <Label fx:id="personalNumberLabel" layoutX="47.0" layoutY="95.0" text="Personal Number" />
-      <ListView fx:id="accountList" layoutX="252.0" layoutY="33.0" prefHeight="300.0" prefWidth="338.0" />
-      <GridPane layoutX="30.0" layoutY="165.0" prefHeight="205.0" prefWidth="197.0">
-        <columnConstraints>
-          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-        </columnConstraints>
-        <rowConstraints>
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-        </rowConstraints>
-         <children>
-            <Button mnemonicParsing="false" prefHeight="74.0" prefWidth="203.0" text="Button" />
-         </children>
-      </GridPane>
-      <Button fx:id="goToAccountButton" layoutX="252.0" layoutY="345.0" mnemonicParsing="false" onAction="#goToAccount" text="Go To Account" />
+      <ListView fx:id="accountList" layoutX="252.0" layoutY="33.0" prefHeight="278.0" prefWidth="338.0" />
+      <Button fx:id="goToAccountButton" layoutX="252.0" layoutY="320.0" mnemonicParsing="false" onAction="#goToAccount" prefHeight="25.0" prefWidth="110.0" text="Go To Account" />
       <Label fx:id="totalBalanceLabel" layoutX="252.0" layoutY="14.0" text="Total Balance: " />
-      <Label layoutX="47.0" layoutY="25.0" text="Customer Overview">
+      <Label layoutX="47.0" layoutY="31.0" text="Customer Overview">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
       <Label fx:id="numberOfAccountsLabel" layoutX="47.0" layoutY="122.0" text="Number of Accounts" />
-      <Button fx:id="returnToMenuButton" layoutX="489.0" layoutY="345.0" mnemonicParsing="false" onAction="#goToMainMenu" text="Return to Menu" />
+      <Button fx:id="returnToMenuButton" layoutX="252.0" layoutY="355.0" mnemonicParsing="false" onAction="#goToMainMenu" prefHeight="25.0" prefWidth="338.0" text="Return to Menu" />
+      <Button fx:id="makeTransactionButton" layoutX="24.0" layoutY="172.0" mnemonicParsing="false" onAction="#goToTransactionView" prefHeight="40.0" prefWidth="207.0" text="Make Transaction" />
+      <Button layoutX="366.0" layoutY="320.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="110.0" text="Add Account" />
+      <Button layoutX="480.0" layoutY="320.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="110.0" text="Delete Account" underline="true" />
+      <Button fx:id="deleteCustomerButton" layoutX="21.0" layoutY="355.0" mnemonicParsing="false" onAction="#deleteCustomer" prefHeight="25.0" prefWidth="207.0" text="Delete Customer" />
+      <Button fx:id="makeDepositButton" layoutX="24.0" layoutY="221.0" mnemonicParsing="false" onAction="#goToDepositionView" prefHeight="40.0" prefWidth="207.0" text="Make Depostition" />
+      <Button fx:id="makeWithdrawalButton" layoutX="24.0" layoutY="271.0" mnemonicParsing="false" onAction="#goToWithdrawalView" prefHeight="40.0" prefWidth="207.0" text="Make Withdrawal" />
    </children>
 </AnchorPane>

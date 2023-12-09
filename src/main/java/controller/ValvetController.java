@@ -2,6 +2,7 @@ package src.main.java.controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.CustomMenuItem;
 import javafx.scene.control.TextField;
@@ -30,11 +31,14 @@ public class ValvetController {
 
     public void findCustomer(ActionEvent event) throws IOException {
         Customer customer = Main.getValvet().getCustomer(personalNumberField.getText());
+        if (customer == null){
+            MessageDisplayer.displayErrorAlert("Error", "Customer not found");
+        }
         switcher.switchToCustomerPage(event, customer);
     }
 
-    public void goToTransactionScreen(ActionEvent actionEvent) {
-
+    public void goToTransactionScreen(ActionEvent actionEvent) throws IOException {
+        switcher.switchToTransactionPage(actionEvent);
     }
 
     public void viewAllCustomers(ActionEvent actionEvent) throws IOException {
@@ -44,4 +48,5 @@ public class ValvetController {
     public void addNewCustomer(ActionEvent actionEvent) throws IOException {
         switcher.switchToCreateCustomerView(actionEvent);
     }
+
 }
