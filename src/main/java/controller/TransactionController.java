@@ -4,6 +4,8 @@ import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import src.main.java.Main;
+import src.main.java.model.Customer;
+import src.main.java.model.Account;
 
 import java.io.IOException;
 
@@ -14,6 +16,8 @@ public class TransactionController {
     public Button makeTransactionButton;
     public Button clearAllButton;
     public Button cancelButton;
+    public Customer customer;
+    public Account account;
 
     private static SceneSwitcher switcher = new SceneSwitcher();
 
@@ -29,9 +33,15 @@ public class TransactionController {
         }
         try {
             Main.getValvet().makeTransaction(senderAccountNumber, receiverAccountNumber, value);
-        } catch (Exception ex) {
-            MessageDisplayer.displayErrorAlert("Error", ex.getMessage());
+        } catch (Exception e) {
+            MessageDisplayer.displayErrorAlert("Error", e.getMessage());
         }
+    }
+
+    public void loadTransactionWithCustomer(Customer customer, Account account){
+        this.customer = customer;
+        this.account = account;
+        this.senderTextField.setText(account.getAccountNumber());
     }
 
     public void clearAll(ActionEvent event) {
@@ -41,7 +51,11 @@ public class TransactionController {
     }
 
     public void returnToLastView(ActionEvent event) throws IOException {
-        // Want to make it so it either returns to a customer or the menu, depending on where the user was before
-        switcher.switchToMain(event);
+        if (customer == null){
+            switcher.switchToMain(event);
+        } else {
+            switcher.switchToCustomerPage(event, customer);
+        }
+
     }
 }

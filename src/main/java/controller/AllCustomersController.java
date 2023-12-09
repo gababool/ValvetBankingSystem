@@ -38,6 +38,11 @@ public class AllCustomersController implements Initializable {
         accountColumn.setCellValueFactory(new PropertyValueFactory<Customer, String>("account"));
         totalBalanceColumn.setCellValueFactory(new PropertyValueFactory<Customer, Double>("totalBalance"));
         allCustomers.setItems(hashMapToObservableList());
+        allCustomers.getSortOrder().add(nameColumn);
+    }
+    public void loadWithCustomer(Customer customer){
+        allCustomers.getSelectionModel().select(customer);
+        allCustomers.scrollTo(customer);
     }
     public ObservableList<Customer> hashMapToObservableList(){
         ObservableList<Customer> ObservableCustomers = FXCollections.observableArrayList();
@@ -57,6 +62,7 @@ public class AllCustomersController implements Initializable {
     public void onEnter(ActionEvent event){
         searchAction(event);
     }
+
     public void goToMainMenu(ActionEvent event) throws IOException {
         switcher.switchToMain(event);
     }

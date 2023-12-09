@@ -49,16 +49,13 @@ public class Valvet implements Serializable{
     }
 
     // ADD SO THAT THE PERSONAL NUMBER CAN BE EXTRACTED FROM THE ACCOUNT NUMBER
-    public void deleteAccount(String personalNumber, String accountNumber) throws Exception {
+    public void deleteAccount(String personalNumber, String accountNumber) throws BalanceNotZeroException {
         Account account = null;
         for (Customer customer : customers.values()) {
             HashMap<String, Account> accounts = customer.getAccounts();
             if (accounts.containsKey(accountNumber)) {
                 account = accounts.get(accountNumber);
             }
-        }
-        if (account == null){
-            throw new NotFoundException("Account not found");
         }
         if (!(account.getBalance() == 0)) {
             throw new BalanceNotZeroException("Account could not be deleted. Balance is not zero. ");
@@ -117,6 +114,9 @@ public class Valvet implements Serializable{
 
         Transaction transaction = new Transaction(amount, receiverAccountNumber, senderAccountNumber);
 
+        if (senderAccountNumber == receiverAccountNumber) {
+            throw new NotFoundException("Sending account cannot be same as receiving account");
+        }
         if (sender == null && receiver == null){
             throw new NotFoundException("Sending and receiving accounts not found");
         }

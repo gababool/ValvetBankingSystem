@@ -91,19 +91,15 @@ public class Customer implements Serializable {
         return createdAccount;
     }
 
-    public void closeAccount(String accountNumber) throws Exception {
-           if (this.accounts.get(accountNumber) == null) throw new Exception("The account you are trying to remove does not exist!");
-           else {this.accounts.remove(accountNumber);}
-    }
+    public void closeAccount(String accountNumber) {this.accounts.remove(accountNumber);}
 
-       public String viewAccount(String accountNumber){
-        Account account = this.accounts.get(accountNumber);
-        if (account != null) {
-            return account.toString();
-        } else {
-            return "Account not found";
-        }
-       }
+
+   public String viewAccount(String accountNumber){
+    Account account = this.accounts.get(accountNumber);
+    if (account != null) {
+        return account.toString();
+    } else {return "Account not found";}
+   }
 
     @Override
     public boolean equals(Object obj) {

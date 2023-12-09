@@ -21,19 +21,20 @@ public class AccountController {
     private Label titleNameLabel;
     @FXML
     private Label personalNumberLabel;
-    @FXML
-    private Button goToAccountButton;
+
     @FXML
     private ListView<Transaction> transactionList;
     @FXML
     private Account account;
 
+    private Customer customer;
     private static SceneSwitcher switcher = new SceneSwitcher();
     public void loadAccount(Account account, Customer customer){
         this.titleNameLabel.setText("Name: " + customer.getFullName());
         this.personalNumberLabel.setText("Personal Number: " + customer.getPERSONAL_NUMBER());
         this.totalBalanceLabel.setText("Total Balance " + account.getBalance());
-
+        this.customer = customer;
+        this.account = account;
         LinkedHashMap<UUID, Transaction> transactions = account.getTransactions();
         for(Transaction transaction : transactions.values()){
             transactionList.getItems().add(transaction);
@@ -43,7 +44,6 @@ public class AccountController {
         switcher.switchToMain(event);
     }
     public void goToCustomer(ActionEvent event) throws IOException{
-        Customer customer = Main.getValvet().getCustomer(personalNumberLabel.getText().replace("Personal Number: ", ""));
         switcher.switchToCustomerPage(event, customer);
     }
 

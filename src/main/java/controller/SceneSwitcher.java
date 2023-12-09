@@ -53,6 +53,16 @@ public class SceneSwitcher {
         prepareScene(event, root);
     }
 
+    public void switchToTransactionPage(ActionEvent event, Customer customer, Account account) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/src/main/java/view/TransactionView.fxml"));
+        root = loader.load();
+
+        TransactionController transactionController = loader.getController();
+        transactionController.loadTransactionWithCustomer(customer, account);
+
+        prepareScene(event, root);
+    }
+
     public void switchToAccountPage(ActionEvent event, Account account, Customer lastCustomer) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/src/main/java/view/AccountView.fxml"));
         root = loader.load();
@@ -68,6 +78,15 @@ public class SceneSwitcher {
         root = loader.load();
         prepareScene(event, root);
     }
+
+    public void switchToAllCustomersView(ActionEvent event, Customer customer) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/src/main/java/view/AllCustomersView.fxml"));
+        root = loader.load();
+        AllCustomersController allCustomersController = loader.getController();
+        allCustomersController.loadWithCustomer(customer);
+        prepareScene(event, root);
+    }
+
     public void switchToCreateCustomerView(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/src/main/java/view/CreateCustomerView.fxml"));
         root = loader.load();

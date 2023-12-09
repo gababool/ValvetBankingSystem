@@ -1,5 +1,7 @@
 package src.main.java.model;
 
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 import javafx.scene.input.TransferMode;
 
 import java.io.Serializable;
@@ -31,13 +33,18 @@ public class Account implements Serializable {
         return this.accountNumber;
     }
 
+    public StringProperty balanceProperty(){
+        StringProperty balanceString = new SimpleStringProperty(String.format("%.2f kr", getBalance()));
+        return balanceString;
+    }
+
     private void increaseBalance (double increaseAmount){
         this.balance = this.balance + increaseAmount;
     }
 
     private void decreaseBalance (double decreaseAmount) throws Exception{
         if (decreaseAmount > this.balance){
-            throw new Exception("Unable to perform action");
+            throw new Exception("Insufficient funds");
         }
         this.balance = this.balance - decreaseAmount;
     }
