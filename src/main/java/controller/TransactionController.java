@@ -28,16 +28,13 @@ public class TransactionController {
         double value = 0;
         try {
             value = Double.parseDouble(amount);
+            Main.getValvet().makeTransaction(senderAccountNumber, receiverAccountNumber, value);
         } catch (NumberFormatException e) {
             MessageDisplayer.displayErrorAlert("Error", "Amount not valid");
-        }
-        try {
-            Main.getValvet().makeTransaction(senderAccountNumber, receiverAccountNumber, value);
         } catch (Exception e) {
             MessageDisplayer.displayErrorAlert("Error", e.getMessage());
         }
     }
-
     public void loadTransactionWithCustomer(Customer customer, Account account){
         this.customer = customer;
         this.account = account;

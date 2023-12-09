@@ -101,7 +101,6 @@ public class CustomerController{
         this.loadCustomer(customer);
     }
     public void deleteAccount(ActionEvent event){
-    // if nu
         try {
             Account account = allAccounts.getSelectionModel().getSelectedItem();
             Main.getValvet().deleteAccount(customer.getPERSONAL_NUMBER(), account.getAccountNumber());
