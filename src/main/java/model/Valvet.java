@@ -3,6 +3,7 @@ package src.main.java.model;
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
+import java.util.Objects;
 import java.util.Random;
 
 public class Valvet implements Serializable{
@@ -88,7 +89,7 @@ public class Valvet implements Serializable{
     }
 
     public LinkedHashMap<String, Customer> getAllCustomers(){
-        return (LinkedHashMap<String, Customer>) customers;
+        return customers;
     }
 
 
@@ -96,7 +97,17 @@ public class Valvet implements Serializable{
         return this.customers.get(personalNumber);
     }
 
-    public Transaction makeTransaction(String senderAccountNumber, String receiverAccountNumber, double amount) throws Exception{
+    public void makeTransaction(String senderAccountNumber, String receiverAccountNumber, double amount) throws Exception{
+        if (amount <= 0){
+            throw new InvalidInputException("Amount must be greater than zero");
+        }
+        if (senderAccountNumber.isBlank()){
+            throw new InvalidInputException("Sending account number cannot be blank");
+        }
+        if (receiverAccountNumber.isBlank()){
+            throw new InvalidInputException("Receiving account number cannot be blank");
+        }
+
         Account sender = null;
         for (Customer customer : customers.values()){
             HashMap<String, Account> accounts = customer.getAccounts();
@@ -114,7 +125,7 @@ public class Valvet implements Serializable{
 
         Transaction transaction = new Transaction(amount, receiverAccountNumber, senderAccountNumber);
 
-        if (senderAccountNumber == receiverAccountNumber) {
+        if (Objects.equals(senderAccountNumber, receiverAccountNumber)) {
             throw new NotFoundException("Sending account cannot be same as receiving account");
         }
         if (sender == null && receiver == null){
@@ -133,7 +144,6 @@ public class Valvet implements Serializable{
             receiver.receiveTransaction(transaction);
         }
 
-        return transaction;
     }
 
     public boolean checkValidCustomerInfo(String firstName, String surname, String personalNumber){
