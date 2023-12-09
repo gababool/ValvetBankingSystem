@@ -24,11 +24,6 @@ public class Main extends Application {
 
     public static void main(String[] args) throws Exception {
         valv = ValvetFileManager.loadBank();
-        LinkedHashMap<String, Customer> customers = valv.getAllCustomers();
-        for (Customer hans : customers.values()){
-            ValvetFileManager.saveBank(valv);
-        }
-
         launch(args);
     }
 

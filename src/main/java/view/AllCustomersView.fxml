@@ -23,7 +23,7 @@
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
          </columnResizePolicy>
       </TableView>
-      <TextField fx:id="searchField" layoutX="109.0" layoutY="25.0" onAction="#onEnter" prefHeight="26.0" prefWidth="411.0" />
+      <TextField fx:id="searchField" layoutX="109.0" layoutY="25.0" onAction="#onEnter" prefHeight="26.0" prefWidth="411.0" promptText="Search a name or personal number..." />
       <Button fx:id="searchButton" layoutX="529.0" layoutY="25.0" mnemonicParsing="false" onAction="#searchAction" text="Search" />
    </children>
 </AnchorPane>
