@@ -125,10 +125,4 @@ public class Customer implements Serializable {
         return Objects.hash(PERSONAL_NUMBER, firstName, surname);
     }
 
-
-
-
-
-
-
 }
