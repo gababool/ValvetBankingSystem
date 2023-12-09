@@ -65,10 +65,6 @@ public class SceneSwitcher {
     public void switchToAllCustomersView(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/src/main/java/view/AllCustomersView.fxml"));
         root = loader.load();
-
-        AllCustomersController allCustomersController = loader.getController();
-        allCustomersController.loadAllCustomers();
-
         prepareScene(event, root);
     }
     public void switchToCreateCustomerView(ActionEvent event) throws IOException {

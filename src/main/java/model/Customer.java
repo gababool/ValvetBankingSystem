@@ -1,10 +1,13 @@
 package src.main.java.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 
 import java.io.Serializable;
 import java.util.LinkedHashMap;
 import java.util.Objects;
+import java.util.SimpleTimeZone;
 
 public class Customer implements Serializable {
 
@@ -26,6 +29,14 @@ public class Customer implements Serializable {
     public String toString(){
          return String.format("Name: %s | PNO: %s | Accounts: %d | Total Balance: %.2f",
                  getFullName(), this.getPERSONAL_NUMBER(), getNumberOfAccounts(), getTotalBalance());
+    }
+    public final StringProperty accountProperty(){
+            StringProperty accounts = new SimpleStringProperty((String)""+getNumberOfAccounts());
+           return accounts;
+    }
+    public final StringProperty nameProperty(){
+        StringProperty name = new SimpleStringProperty(getFullName());
+        return name;
     }
 
     //Getters

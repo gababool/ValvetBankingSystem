@@ -23,7 +23,6 @@ public class Main extends Application {
 
     public static void main(String[] args) throws Exception {
         valv = ValvetFileManager.loadBank();
-        GenerateDemoData.generateMultipleCustomers(2);
         launch(args);
     }
 
