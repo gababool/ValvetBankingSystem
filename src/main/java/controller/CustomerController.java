@@ -3,44 +3,31 @@ package src.main.java.controller;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import src.main.java.Main;
 import src.main.java.model.Customer;
 import src.main.java.model.*;
-
 import javafx.event.ActionEvent;
 import java.io.IOException;
-import java.net.URL;
-import java.nio.file.WatchEvent;
-import java.security.spec.ECField;
 import java.util.LinkedHashMap;
-import java.util.ResourceBundle;
-import java.util.concurrent.CyclicBarrier;
 
 public class CustomerController{
-    public Label totalBalanceLabel;
-    public Label numberOfAccountsLabel;
-    public Button returnToMenuButton;
-    public Button newTransactionButton;
+    @FXML public Label totalBalanceLabel;
+    @FXML public Label numberOfAccountsLabel;
+    @FXML public Button returnToMenuButton;
+    @FXML public Button newTransactionButton;
     @FXML public Button deleteCustomerButton;
-    @FXML
-    private Label titleNameLabel;
-    @FXML
-    private Label personalNumberLabel;
-    @FXML
-    private Button goToAccountButton;
-    @FXML
-    private Button goToAllCustomersButton;
-
+    @FXML private Label titleNameLabel;
+    @FXML private Label personalNumberLabel;
+    @FXML private Button goToAccountButton;
+    @FXML private Button goToAllCustomersButton;
     @FXML private Label newTransactionErrorLabel;
     @FXML private TableView<Account> allAccounts;
     @FXML private TableColumn<Account, String> accountNumberColumn;
     @FXML private TableColumn<Account, String> balanceColumn;
-    @FXML
-    private static SceneSwitcher switcher = new SceneSwitcher();
 
+    private static SceneSwitcher switcher = new SceneSwitcher();
     private Customer customer;
 
     public ObservableList<Account> hashMapToObservableList(){
@@ -49,6 +36,7 @@ public class CustomerController{
         ObservableCustomers.addAll(accounts.values());
         return ObservableCustomers;
     }
+
     public void loadCustomer(Customer customer){
         this.titleNameLabel.setText("Name: " + customer.getFullName());
         this.personalNumberLabel.setText("Personal Number: " + customer.getPERSONAL_NUMBER());
@@ -60,6 +48,7 @@ public class CustomerController{
         balanceColumn.setCellValueFactory(new PropertyValueFactory<Account, String>("balance"));
         allAccounts.setItems(hashMapToObservableList());
     }
+
     public void goToAccount(ActionEvent event) throws IOException {
         Account account = allAccounts.getSelectionModel().getSelectedItem();
         if (account == null){
@@ -72,6 +61,7 @@ public class CustomerController{
     public void goToMainMenu(ActionEvent event) throws IOException {
         switcher.switchToMain(event);
     }
+
     public void goToAllCustomers(ActionEvent event) throws IOException {
         switcher.switchToAllCustomersView(event, customer);
     }
@@ -92,6 +82,7 @@ public class CustomerController{
         }
         switcher.switchToAllCustomersView(event);
     }
+
     public void addAccount(ActionEvent event){
         try {
             Main.getValvet().createAccount(customer.getPERSONAL_NUMBER());
@@ -100,6 +91,7 @@ public class CustomerController{
         }
         this.loadCustomer(customer);
     }
+
     public void deleteAccount(ActionEvent event){
         try {
             Account account = allAccounts.getSelectionModel().getSelectedItem();

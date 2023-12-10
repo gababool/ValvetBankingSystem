@@ -2,17 +2,41 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="src.main.java.controller.AccountController">
     <children>
-        <Label fx:id="titleNameLabel" layoutX="50.0" layoutY="56.0" text="Customer Name" />
-        <Label fx:id="personalNumberLabel" layoutX="50.0" layoutY="84.0" text="Personal Number" />
-        <ListView fx:id="transactionList" layoutX="252.0" layoutY="33.0" prefHeight="357.0" prefWidth="338.0" />
-        <Label fx:id="totalBalanceLabel" layoutX="252.0" layoutY="14.0" text="Total Balance: " />
-      <Label fx:id="accountNumberLabel" layoutX="50.0" layoutY="110.0" prefHeight="17.0" prefWidth="95.0" text="Account Number" />
-      <Button fx:id="goToMainMenuButton" layoutX="36.0" layoutY="344.0" mnemonicParsing="false" onAction="#goToMainMenu" prefHeight="26.0" prefWidth="163.0" text="Back to Main Menu" />
-      <Button fx:id="goToCustomerButton" layoutX="36.0" layoutY="307.0" mnemonicParsing="false" onAction="#goToCustomer" prefHeight="26.0" prefWidth="163.0" text="Back to Customer" />
+      <Button fx:id="goToMainMenuButton" layoutX="36.0" layoutY="358.0" mnemonicParsing="false" onAction="#goToMainMenu" prefHeight="26.0" prefWidth="163.0" text="Back to Main Menu" />
+      <Button fx:id="goToCustomerButton" layoutX="211.0" layoutY="358.0" mnemonicParsing="false" onAction="#goToCustomer" prefHeight="26.0" prefWidth="163.0" text="Back to Customer" />
+      <TableView fx:id="transactionsTable" layoutX="36.0" layoutY="68.0" prefHeight="273.0" prefWidth="528.0">
+        <columns>
+          <TableColumn fx:id="amountColumn" prefWidth="97.0" text="Amount" />
+          <TableColumn fx:id="senderColumn" prefWidth="107.0" text="Sender" />
+            <TableColumn fx:id="receiverColumn" prefWidth="107.0" text="Receiver" />
+            <TableColumn fx:id="dateColumn" prefWidth="131.0" text="Date" />
+            <TableColumn fx:id="transactionIDColumn" prefWidth="85.0" text="ID" />
+        </columns>
+      </TableView>
+      <GridPane layoutX="34.0" layoutY="17.0" prefHeight="47.0" prefWidth="506.0">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="225.0" minWidth="10.0" prefWidth="163.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="217.0" minWidth="10.0" prefWidth="143.0" />
+        </columnConstraints>
+        <rowConstraints>
+            <RowConstraints maxHeight="24.0" minHeight="10.0" prefHeight="23.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="25.0" minHeight="10.0" prefHeight="25.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+              <Label fx:id="personalNumberLabel" prefHeight="17.0" prefWidth="212.0" text="Personal Number" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+              <Label fx:id="totalBalanceLabel" prefHeight="17.0" prefWidth="221.0" text="Total Balance: " textAlignment="RIGHT" GridPane.rowIndex="1" />
+              <Label fx:id="titleNameLabel" prefHeight="17.0" prefWidth="223.0" text="Customer Name" textAlignment="RIGHT" />
+            <Label fx:id="accountNumberLabel" prefHeight="17.0" prefWidth="211.0" text="Account Number" GridPane.columnIndex="1" />
+         </children>
+      </GridPane>
     </children>
 </AnchorPane>

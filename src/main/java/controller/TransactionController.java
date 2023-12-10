@@ -6,6 +6,7 @@ import javafx.scene.control.TextField;
 import src.main.java.Main;
 import src.main.java.model.Customer;
 import src.main.java.model.Account;
+import src.main.java.model.Transaction;
 
 import java.io.IOException;
 
@@ -18,17 +19,29 @@ public class TransactionController {
     public Button cancelButton;
     public Customer customer;
     public Account account;
+    public Button switchAccountButton;
 
     private static SceneSwitcher switcher = new SceneSwitcher();
 
+    public void switchAccount(ActionEvent event){
+        String senderAccountNumber = senderTextField.getText();
+        String receiverAccountNumber = receiverTextField.getText();
+        receiverTextField.setText(senderAccountNumber);
+        senderTextField.setText(receiverAccountNumber);
+    }
+
     public void makeTransaction(ActionEvent event) {
+        String lineSeparator = System.lineSeparator();
         String senderAccountNumber = senderTextField.getText();
         String receiverAccountNumber = receiverTextField.getText();
         String amount = amountTextField.getText();
         double value = 0;
         try {
             value = Double.parseDouble(amount);
-            Main.getValvet().makeTransaction(senderAccountNumber, receiverAccountNumber, value);
+            Transaction transaction = Main.getValvet().makeTransaction(senderAccountNumber, receiverAccountNumber, value);
+            MessageDisplayer.displayMessage("Transaction Successfully made: " + lineSeparator + transaction.toString());
+
+
         } catch (NumberFormatException e) {
             MessageDisplayer.displayErrorAlert("Error", "Amount not valid");
         } catch (Exception e) {

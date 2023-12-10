@@ -31,13 +31,13 @@ public class Valvet implements Serializable{
         return newCustomer;
     }
 
-    public Customer deleteCustomer(String personalNumber) throws Exception {
+    public void deleteCustomer(String personalNumber) throws Exception {
         Customer customer = this.customers.get(personalNumber);
         if (customer.getTotalBalance() != 0) {
            throw new BalanceNotZeroException("Deletion failed. Customer has remaining balance: " + customer.getTotalBalance());
         }
         System.out.println("Customer " + customer + " successfully removed");
-        return this.customers.remove(personalNumber);
+        this.customers.remove(personalNumber);
     }
 
     public Account createAccount(String personalNumber) throws Exception {
@@ -45,7 +45,7 @@ public class Valvet implements Serializable{
             throw new NotFoundException("Customer not found");
         }
         Customer customer = this.customers.get(personalNumber);
-        String accountNumber = clearingNumber + "-" + generateRandomNumber();
+        String accountNumber = clearingNumber + "-" + generateRandomUniqueNumber();
         return customer.createAccount(accountNumber);
     }
 
@@ -73,13 +73,13 @@ public class Valvet implements Serializable{
         return customer;
     }
 
-    public int generateRandomNumber(){
+    public int generateRandomUniqueNumber(){
         Random random = new Random();
         int randomNumber = random.nextInt(100000000, 999999999);
         for (Customer customer : customers.values()){
             HashMap<String, Account> accounts = customer.getAccounts();
-            if (accounts.containsKey(randomNumber + "")){
-                generateRandomNumber();
+            if (accounts.containsKey(String.valueOf(randomNumber))){
+                generateRandomUniqueNumber();
             }
         }
         return randomNumber;
@@ -100,7 +100,7 @@ public class Valvet implements Serializable{
         return this.customers.get(personalNumber);
     }
 
-    public void makeTransaction(String senderAccountNumber, String receiverAccountNumber, double amount) throws Exception{
+    public Transaction makeTransaction(String senderAccountNumber, String receiverAccountNumber, double amount) throws Exception{
         if (amount <= 0){
             throw new InvalidInputException("Amount must be greater than zero");
         }
@@ -146,6 +146,7 @@ public class Valvet implements Serializable{
             sender.sendTransaction(transaction);
             receiver.receiveTransaction(transaction);
         }
+        return transaction;
 
     }
 
