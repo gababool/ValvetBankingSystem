@@ -2,6 +2,7 @@ package src.main.java.controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.CustomMenuItem;
 import javafx.scene.control.TextField;
@@ -23,18 +24,23 @@ public class ValvetController {
     @FXML
     public TextField personalNumberField;
     private static SceneSwitcher switcher = new SceneSwitcher();
-    private static CustomerController customerController;
     @FXML
     public Button viewAllCustomersButton;
 
 
     public void findCustomer(ActionEvent event) throws IOException {
         Customer customer = Main.getValvet().getCustomer(personalNumberField.getText());
+        if (personalNumberField.getText().isBlank()){
+            MessageDisplayer.displayErrorAlert("Error", "Please enter a personal number");
+        }
+        else if (customer == null){
+            MessageDisplayer.displayErrorAlert("Error", "Customer not found");
+        }
         switcher.switchToCustomerPage(event, customer);
     }
 
-    public void goToTransactionScreen(ActionEvent actionEvent) {
-
+    public void goToTransactionScreen(ActionEvent actionEvent) throws IOException {
+        switcher.switchToTransactionPage(actionEvent);
     }
 
     public void viewAllCustomers(ActionEvent actionEvent) throws IOException {
@@ -44,4 +50,5 @@ public class ValvetController {
     public void addNewCustomer(ActionEvent actionEvent) throws IOException {
         switcher.switchToCreateCustomerView(actionEvent);
     }
+
 }

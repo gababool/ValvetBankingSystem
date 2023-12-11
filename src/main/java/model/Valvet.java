@@ -3,9 +3,10 @@ package src.main.java.model;
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
+import java.util.Objects;
+import java.util.Random;
 
 public class Valvet implements Serializable{
-
 
     private String clearingNumber;
     private LinkedHashMap<String, Customer> customers;
@@ -17,7 +18,10 @@ public class Valvet implements Serializable{
     public Valvet(){}
 
     public Customer createCustomer(String firstName, String surname, String personalNumber) throws Exception{
-        if (this.customers.containsKey(personalNumber)){
+        if (!checkValidCustomerInfo(firstName, surname, personalNumber)){
+            throw new InvalidInputException("Entered information not valid");
+        }
+        else if (this.customers.containsKey(personalNumber)){
             throw new AlreadyExistsException("Customer already exists.");
         }
         Customer newCustomer = new Customer(firstName, surname, personalNumber);
@@ -27,13 +31,13 @@ public class Valvet implements Serializable{
         return newCustomer;
     }
 
-    public Customer deleteCustomer(String personalNumber) throws Exception {
+    public void deleteCustomer(String personalNumber) throws Exception {
         Customer customer = this.customers.get(personalNumber);
         if (customer.getTotalBalance() != 0) {
-            throw new BalanceNotZeroException("Deletion failed. Customer has remaining balance: " + customer.getTotalBalance());
+           throw new BalanceNotZeroException("Deletion failed. Customer has remaining balance: " + customer.getTotalBalance());
         }
         System.out.println("Customer " + customer + " successfully removed");
-        return this.customers.remove(personalNumber);
+        this.customers.remove(personalNumber);
     }
 
     public Account createAccount(String personalNumber) throws Exception {
@@ -41,12 +45,12 @@ public class Valvet implements Serializable{
             throw new NotFoundException("Customer not found");
         }
         Customer customer = this.customers.get(personalNumber);
-        String accountNumber = clearingNumber + "-" + customer.getPERSONAL_NUMBER() + "-" + (customer.getNumberOfAccounts()+1);
+        String accountNumber = clearingNumber + "-" + generateRandomUniqueNumber();
         return customer.createAccount(accountNumber);
     }
 
     // ADD SO THAT THE PERSONAL NUMBER CAN BE EXTRACTED FROM THE ACCOUNT NUMBER
-    public void deleteAccount(String personalNumber, String accountNumber) throws Exception {
+    public void deleteAccount(String personalNumber, String accountNumber) throws BalanceNotZeroException, CannotBeZeroException {
         Account account = null;
         for (Customer customer : customers.values()) {
             HashMap<String, Account> accounts = customer.getAccounts();
@@ -54,11 +58,11 @@ public class Valvet implements Serializable{
                 account = accounts.get(accountNumber);
             }
         }
-        if (account == null){
-            throw new NotFoundException("Account not found");
-        }
         if (!(account.getBalance() == 0)) {
             throw new BalanceNotZeroException("Account could not be deleted. Balance is not zero. ");
+        }
+        else if (customers.get(personalNumber).getNumberOfAccounts() == 1){
+            throw new CannotBeZeroException("Customer cannot have zero accounts");
         }
         customers.get(personalNumber).closeAccount(accountNumber);
     }
@@ -69,7 +73,17 @@ public class Valvet implements Serializable{
         return customer;
     }
 
-
+    public int generateRandomUniqueNumber(){
+        Random random = new Random();
+        int randomNumber = random.nextInt(100000000, 999999999);
+        for (Customer customer : customers.values()){
+            HashMap<String, Account> accounts = customer.getAccounts();
+            if (accounts.containsKey(String.valueOf(randomNumber))){
+                generateRandomUniqueNumber();
+            }
+        }
+        return randomNumber;
+    }
 
     public Customer updateCustomerSurname(String personalNumber, String name){
         Customer customer = customers.get(personalNumber);
@@ -78,7 +92,7 @@ public class Valvet implements Serializable{
     }
 
     public LinkedHashMap<String, Customer> getAllCustomers(){
-        return (LinkedHashMap<String, Customer>) customers;
+        return customers;
     }
 
 
@@ -87,6 +101,16 @@ public class Valvet implements Serializable{
     }
 
     public Transaction makeTransaction(String senderAccountNumber, String receiverAccountNumber, double amount) throws Exception{
+        if (amount <= 0){
+            throw new InvalidInputException("Amount must be greater than zero");
+        }
+        if (senderAccountNumber.isBlank()){
+            throw new InvalidInputException("Sending account number cannot be blank");
+        }
+        if (receiverAccountNumber.isBlank()){
+            throw new InvalidInputException("Receiving account number cannot be blank");
+        }
+
         Account sender = null;
         for (Customer customer : customers.values()){
             HashMap<String, Account> accounts = customer.getAccounts();
@@ -102,49 +126,44 @@ public class Valvet implements Serializable{
             }
         }
 
-        if (receiver == null){
-            throw new NotFoundException("Receiver account not found");
-        }
-        if (sender == null){
-            throw new NotFoundException("Sender account not found");
-        }
-
-        Transaction transaction = new Transaction(amount, receiver.getAccountNumber(), sender.getAccountNumber());
-        sender.sendTransaction(transaction);
-        receiver.receiveTransaction(transaction);
-        return transaction;
-    }
-
-    public Transaction makeWithdrawal(String senderAccountNumber, String receiverAccountNumber, double amount) throws Exception{
-        Account sender = null;
-        for (Customer customer : customers.values()){
-            HashMap<String, Account> accounts = customer.getAccounts();
-            if (accounts.containsKey(senderAccountNumber)){
-                sender = accounts.get(senderAccountNumber);
-            }
-        }
-        if (sender == null){
-            throw new NotFoundException("Sender account not found");
-        }
-        Transaction transaction = new Transaction(amount, receiverAccountNumber, sender.getAccountNumber());
-        sender.sendTransaction(transaction);
-        return transaction;
-    }
-
-    // We assume this information comes externally and is executed automatically
-    public Transaction makeDeposit(String senderAccountNumber, String receiverAccountNumber, double amount) throws NotFoundException {
-        Account receiver = null;
-        for (Customer customer : customers.values()){
-            HashMap<String, Account> accounts = customer.getAccounts();
-            if (accounts.containsKey(receiverAccountNumber)){
-                receiver = accounts.get(receiverAccountNumber);
-            }
-        }
-        if (receiver == null){
-            throw new NotFoundException("Receiver account not found");
-        }
         Transaction transaction = new Transaction(amount, receiverAccountNumber, senderAccountNumber);
-        receiver.receiveTransaction(transaction);
+
+        if (Objects.equals(senderAccountNumber, receiverAccountNumber)) {
+            throw new NotFoundException("Sending account cannot be same as receiving account");
+        }
+        if (sender == null && receiver == null){
+            throw new NotFoundException("Sending and receiving accounts not found");
+        }
+        else if (sender != null && receiver == null){
+            sender.sendTransaction(transaction);
+            System.out.println("Withdrawal of " + amount + " successfully made");
+        }
+        else if (sender == null && receiver != null){
+            receiver.receiveTransaction(transaction);
+            System.out.println("Deposition of " + amount + " successfully made");
+        }
+        else {
+            sender.sendTransaction(transaction);
+            receiver.receiveTransaction(transaction);
+        }
         return transaction;
+
     }
+
+    public boolean checkValidCustomerInfo(String firstName, String surname, String personalNumber){
+        boolean validPNO = true;
+        boolean validName = true;
+        if (firstName.isBlank() || surname.isBlank()){
+            validName = false;
+        }
+        else if (personalNumber.length() != 12 ){
+            validPNO = false;
+        }
+        else if (personalNumber.isBlank()){
+            validPNO = false;
+        }
+        // Add more conditionals if necessary
+        return validPNO && validName;
+    }
+
 }

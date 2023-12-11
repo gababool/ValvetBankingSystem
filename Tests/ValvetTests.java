@@ -28,15 +28,6 @@ public class ValvetTests {
         assertEquals(customer.getAccount("1337-123-2").toString(),"Account 1337-123-2: Balance 0,000000 kr");
     }
 
-    @Test
-    public void transactionSuccessful() throws Exception {
-        Customer customer1 = valv.createCustomer("Hans", "Bertil", "123");
-        Customer customer2 = valv.createCustomer("Sven", "Ingvar", "456");
-        valv.makeDeposit("5555555", "1337-123-1", 500);
-        valv.makeTransaction("1337-123-1", "1337-456-1", 200);
-        assertEquals(customer1.getAccount("1337-123-1").getBalance(), 300);
-        assertEquals(customer2.getAccount("1337-456-1").getBalance(), 200);
-    }
 
     @Test
     public void shouldDeleteCustomer() throws Exception {
