@@ -36,11 +36,11 @@ public class CustomerController {
 
         LinkedHashMap<String, Account> Accounts = customer.getAccounts();
         for(Account account : Accounts.values()){
-            accountList.getItems().add(account);
+            this.accountList.getItems().add(account);
         }
     }
     public void goToAccount(ActionEvent event) throws IOException {
-        Account account = accountList.getSelectionModel().getSelectedItem();
+        Account account = this.accountList.getSelectionModel().getSelectedItem();
         Customer customer = Main.getValvet().getCustomer(personalNumberLabel.getText().replace("Personal Number: ", ""));
         switcher.switchToAccountPage(event, account, customer);
     }
