@@ -75,12 +75,17 @@ public class CustomerController{
     }
 
     public void deleteCustomer(ActionEvent event) throws IOException {
-        try {
-            Main.getValvet().deleteCustomer(customer.getPERSONAL_NUMBER());
-        } catch (Exception e){
-            MessageDisplayer.displayErrorAlert("Error", e.getMessage());
+        boolean result = MessageDisplayer.displayConfirmationBox("Do you want to delete customer: " + customer.getFullName() + "?");
+        if (result){
+            try {
+                Main.getValvet().deleteCustomer(customer.getPERSONAL_NUMBER());
+                if (customer != null) {
+                    switcher.switchToAllCustomersView(event);
+                }
+            } catch (Exception e) {
+                MessageDisplayer.displayErrorAlert("Error", e.getMessage());
+            }
         }
-        switcher.switchToAllCustomersView(event);
     }
 
     public void addAccount(ActionEvent event){
@@ -93,17 +98,19 @@ public class CustomerController{
     }
 
     public void deleteAccount(ActionEvent event){
-        try {
-            Account account = allAccounts.getSelectionModel().getSelectedItem();
-            Main.getValvet().deleteAccount(customer.getPERSONAL_NUMBER(), account.getAccountNumber());
-        } catch (NullPointerException e){
-            MessageDisplayer.displayErrorAlert("Error", "No account selected");
-        } catch (BalanceNotZeroException | CannotBeZeroException e) {
-            MessageDisplayer.displayErrorAlert("Error", e.getMessage());
+        boolean result = MessageDisplayer.displayConfirmationBox("Do you want to delete the selected account?");
+        if (result){
+            try {
+                Account account = allAccounts.getSelectionModel().getSelectedItem();
+                Main.getValvet().deleteAccount(customer.getPERSONAL_NUMBER(), account.getAccountNumber());
+            } catch (NullPointerException e){
+                MessageDisplayer.displayErrorAlert("Error", "No account selected");
+            } catch (BalanceNotZeroException | CannotBeZeroException e) {
+                MessageDisplayer.displayErrorAlert("Error", e.getMessage());
+            }
+            this.loadCustomer(customer);
         }
-        this.loadCustomer(customer);
+
     }
-
-
 
 }
