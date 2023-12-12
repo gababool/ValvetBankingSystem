@@ -4,11 +4,16 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.print.PrinterJob;
+import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
+import src.main.java.Main;
 import src.main.java.model.Account;
 import src.main.java.model.Customer;
 import src.main.java.model.Transaction;
+
 import java.io.IOException;
 import java.util.LinkedHashMap;
 import java.util.UUID;
@@ -26,6 +31,8 @@ public class AccountController {
     @FXML private TableColumn<Transaction, String> dateColumn;
     @FXML private TableColumn<Transaction, String> transactionIDColumn;
 
+    private Button printButton;
+
     private Account account;
     private Customer customer;
     private static SceneSwitcher switcher = new SceneSwitcher();
@@ -40,6 +47,7 @@ public class AccountController {
 
         this.account = account;
         this.customer = customer;
+
 
         titleNameLabel.setText("Customer Name: " + customer.getFullName());
         personalNumberLabel.setText("PNO: " + customer.getPERSONAL_NUMBER());
@@ -61,4 +69,13 @@ public class AccountController {
     public void goToCustomer(ActionEvent event) throws IOException{
         switcher.switchToCustomerPage(event, customer);
     }
+
+    public void printAction(ActionEvent event){
+        Stage stage = (Stage)((Node) event.getSource()).getScene().getWindow();
+        PrinterJob printerJob = PrinterJob.createPrinterJob();
+        if(printerJob.showPrintDialog(stage.getOwner()) && printerJob.printPage(transactionsTable))
+            printerJob.endJob();
+    }
+
+
 }

@@ -38,5 +38,6 @@
             <Label fx:id="accountNumberLabel" prefHeight="17.0" prefWidth="211.0" text="Account Number" GridPane.columnIndex="1" />
          </children>
       </GridPane>
+      <Button fx:id="printButton" layoutX="502.0" layoutY="359.0" mnemonicParsing="false" onAction="#printAction" text="Print" />
     </children>
 </AnchorPane>
