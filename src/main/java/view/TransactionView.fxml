@@ -1,39 +1,98 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="src.main.java.controller.TransactionController">
+<AnchorPane prefHeight="576.0" prefWidth="449.0" style="-fx-background-color: #202230;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="src.main.java.controller.TransactionController">
    <children>
-      <Label layoutX="40.0" layoutY="35.0" text="New Transaction">
+      <Label layoutX="156.0" layoutY="32.0" stylesheets="@CSS/BiggerItems.css" text="New Transaction">
          <font>
             <Font size="20.0" />
          </font>
       </Label>
-      <TextField fx:id="receiverTextField" layoutX="107.0" layoutY="136.0" prefHeight="25.0" prefWidth="335.0" promptText="Receiver Account Number" />
-      <TextField fx:id="senderTextField" layoutX="107.0" layoutY="103.0" prefHeight="25.0" prefWidth="335.0" promptText="Sender Account Number" />
-      <TextField fx:id="amountTextField" layoutX="107.0" layoutY="176.0" prefHeight="25.0" prefWidth="335.0" promptText="Amount" />
-      <Label layoutX="46.0" layoutY="105.0" text="From:">
-         <font>
-            <Font size="14.0" />
-         </font>
-      </Label>
-      <Label layoutX="46.0" layoutY="138.0" text="To:">
-         <font>
-            <Font size="14.0" />
-         </font>
-      </Label>
-      <Label layoutX="46.0" layoutY="179.0" text="Amount:">
-         <font>
-            <Font size="13.0" />
-         </font>
-      </Label>
-      <Button fx:id="makeTransactionButton" layoutX="40.0" layoutY="248.0" mnemonicParsing="false" onAction="#makeTransaction" prefHeight="30.0" prefWidth="398.0" text="Done" />
-      <Button fx:id="clearAllButton" layoutX="40.0" layoutY="287.0" mnemonicParsing="false" onAction="#clearAll" prefHeight="30.0" prefWidth="398.0" text="Clear All" />
-      <Button fx:id="cancelButton" layoutX="40.0" layoutY="328.0" mnemonicParsing="false" onAction="#returnToLastView" prefHeight="30.0" prefWidth="398.0" text="Cancel" />
-      <Button fx:id="switchAccountButton" layoutX="445.0" layoutY="124.0" mnemonicParsing="false" onAction="#switchAccount" rotate="90.0" text="&lt;-&gt;" />
+      <Button fx:id="switchAccountButton" layoutX="390.0" layoutY="123.0" mnemonicParsing="false" onAction="#switchAccount" rotate="90.0" style="-fx-background-color: #454566;" stylesheets="@CSS/SmallerItems.css" text="&lt;-&gt;" textFill="WHITE" />
+      <GridPane layoutX="-58.0" layoutY="71.0" prefHeight="206.0" prefWidth="454.0">
+        <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="117.33334350585938" minWidth="10.0" prefWidth="22.00000762939453" />
+          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="216.99999237060547" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints maxHeight="70.0" minHeight="10.0" prefHeight="70.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="102.0" minHeight="10.0" prefHeight="53.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="134.0" minHeight="10.0" prefHeight="84.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <TextField fx:id="senderTextField" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="50.0" prefWidth="300.0" promptText="Sender Account Number" stylesheets="@CSS/BiggerItems.css" GridPane.columnIndex="1">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="receiverTextField" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="50.0" prefWidth="300.0" promptText="Receiver Account Number" stylesheets="@CSS/BiggerItems.css" GridPane.columnIndex="1" GridPane.rowIndex="1">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="amountTextField" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="50.0" prefWidth="300.0" promptText="Amount" stylesheets="@CSS/BiggerItems.css" GridPane.columnIndex="1" GridPane.rowIndex="2">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </TextField>
+            <Label prefHeight="39.0" prefWidth="37.0" stylesheets="@CSS/SmallerItems.css" text="From:" GridPane.halignment="RIGHT">
+               <font>
+                  <Font size="14.0" />
+               </font>
+               <padding>
+                  <Insets right="5.0" />
+               </padding>
+            </Label>
+            <Label stylesheets="@CSS/SmallerItems.css" text="To:" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
+               <font>
+                  <Font size="14.0" />
+               </font>
+               <GridPane.margin>
+                  <Insets right="5.0" />
+               </GridPane.margin>
+            </Label>
+            <Label stylesheets="@CSS/SmallerItems.css" text="Amount:" GridPane.halignment="RIGHT" GridPane.rowIndex="2">
+               <font>
+                  <Font size="13.0" />
+               </font>
+               <GridPane.margin>
+                  <Insets right="5.0" />
+               </GridPane.margin>
+            </Label>
+         </children>
+      </GridPane>
+      <GridPane layoutX="59.0" layoutY="309.0" prefHeight="218.0" prefWidth="337.0">
+         <columnConstraints>
+            <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="216.99999237060547" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints maxHeight="85.0" minHeight="10.0" prefHeight="79.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="131.0" minHeight="10.0" prefHeight="64.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="169.0" minHeight="10.0" prefHeight="96.0" vgrow="SOMETIMES" />
+         </rowConstraints>
+         <children>
+            <Button fx:id="makeTransactionButton" mnemonicParsing="false" onAction="#makeTransaction" prefHeight="50.0" prefWidth="300.0" stylesheets="@CSS/BiggerItems.css" text="Done">
+               <font>
+                  <Font size="20.0" />
+               </font></Button>
+            <Button fx:id="clearAllButton" mnemonicParsing="false" onAction="#clearAll" prefHeight="50.0" prefWidth="300.0" stylesheets="@CSS/BiggerItems.css" text="Clear All" GridPane.rowIndex="1">
+               <font>
+                  <Font size="20.0" />
+               </font></Button>
+            <Button fx:id="cancelButton" mnemonicParsing="false" onAction="#returnToLastView" prefHeight="50.0" prefWidth="300.0" stylesheets="@CSS/BiggerItems.css" text="Cancel" GridPane.rowIndex="2">
+               <font>
+                  <Font size="20.0" />
+               </font></Button>
+         </children>
+      </GridPane>
    </children>
 </AnchorPane>

@@ -9,11 +9,11 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="src.main.java.controller.AccountController">
+<AnchorPane prefHeight="436.0" prefWidth="600.0" style="-fx-background-color: #202230;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="src.main.java.controller.AccountController">
     <children>
-      <Button fx:id="goToMainMenuButton" layoutX="36.0" layoutY="358.0" mnemonicParsing="false" onAction="#goToMainMenu" prefHeight="26.0" prefWidth="163.0" text="Back to Main Menu" />
-      <Button fx:id="goToCustomerButton" layoutX="211.0" layoutY="358.0" mnemonicParsing="false" onAction="#goToCustomer" prefHeight="26.0" prefWidth="163.0" text="Back to Customer" />
-      <TableView fx:id="transactionsTable" layoutX="36.0" layoutY="68.0" prefHeight="273.0" prefWidth="528.0">
+      <Button fx:id="goToMainMenuButton" layoutX="36.0" layoutY="385.0" mnemonicParsing="false" onAction="#goToMainMenu" prefHeight="26.0" prefWidth="163.0" stylesheets="@CSS/SmallerItems.css" text="Back to Main Menu" />
+      <Button fx:id="goToCustomerButton" layoutX="206.0" layoutY="385.0" mnemonicParsing="false" onAction="#goToCustomer" prefHeight="26.0" prefWidth="163.0" stylesheets="@CSS/SmallerItems.css" text="Back to Customer" />
+      <TableView fx:id="transactionsTable" layoutX="36.0" layoutY="101.0" prefHeight="273.0" prefWidth="528.0" stylesheets="@CSS/SmallerItems.css">
         <columns>
           <TableColumn fx:id="amountColumn" prefWidth="97.0" text="Amount" />
           <TableColumn fx:id="senderColumn" prefWidth="107.0" text="Sender" />
@@ -22,7 +22,7 @@
             <TableColumn fx:id="transactionIDColumn" prefWidth="85.0" text="ID" />
         </columns>
       </TableView>
-      <GridPane layoutX="34.0" layoutY="17.0" prefHeight="47.0" prefWidth="506.0">
+      <GridPane layoutX="35.0" layoutY="46.0" prefHeight="47.0" prefWidth="506.0">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" maxWidth="225.0" minWidth="10.0" prefWidth="163.0" />
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="217.0" minWidth="10.0" prefWidth="143.0" />
@@ -32,12 +32,13 @@
           <RowConstraints maxHeight="25.0" minHeight="10.0" prefHeight="25.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-              <Label fx:id="personalNumberLabel" prefHeight="17.0" prefWidth="212.0" text="Personal Number" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-              <Label fx:id="totalBalanceLabel" prefHeight="17.0" prefWidth="221.0" text="Total Balance: " textAlignment="RIGHT" GridPane.rowIndex="1" />
-              <Label fx:id="titleNameLabel" prefHeight="17.0" prefWidth="223.0" text="Customer Name" textAlignment="RIGHT" />
-            <Label fx:id="accountNumberLabel" prefHeight="17.0" prefWidth="211.0" text="Account Number" GridPane.columnIndex="1" />
+              <Label fx:id="personalNumberLabel" prefHeight="17.0" prefWidth="212.0" stylesheets="@CSS/SmallerItems.css" text="Personal Number" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+              <Label fx:id="totalBalanceLabel" prefHeight="17.0" prefWidth="221.0" stylesheets="@CSS/SmallerItems.css" text="Total Balance: " textAlignment="RIGHT" GridPane.rowIndex="1" />
+              <Label fx:id="titleNameLabel" prefHeight="17.0" prefWidth="223.0" stylesheets="@CSS/SmallerItems.css" text="Customer Name" textAlignment="RIGHT" />
+            <Label fx:id="accountNumberLabel" prefHeight="17.0" prefWidth="211.0" stylesheets="@CSS/SmallerItems.css" text="Account Number" GridPane.columnIndex="1" />
          </children>
       </GridPane>
-      <Button fx:id="printButton" layoutX="502.0" layoutY="359.0" mnemonicParsing="false" onAction="#printAction" text="Print" />
+      <Button fx:id="printButton" layoutX="498.0" layoutY="385.0" mnemonicParsing="false" onAction="#printAction" stylesheets="@CSS/SmallerItems.css" text="Print" />
+      <Label layoutX="35.0" layoutY="14.0" prefHeight="22.0" prefWidth="204.0" stylesheets="@CSS/BiggerItems.css" text="Account Overview" />
     </children>
 </AnchorPane>

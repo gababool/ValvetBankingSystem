@@ -7,23 +7,23 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="src.main.java.controller.AllCustomersController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #202230;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="src.main.java.controller.AllCustomersController">
    <children>
-      <Label layoutX="15.0" layoutY="29.0" text="All Customers" />
-      <Button fx:id="goToCustomerButton" layoutX="360.0" layoutY="345.0" mnemonicParsing="false" onAction="#goToCustomer" prefHeight="26.0" prefWidth="225.0" text="Go To Customer" />
-      <Button fx:id="returnToMainMenuButton" layoutX="15.0" layoutY="345.0" mnemonicParsing="false" onAction="#goToMainMenu" prefHeight="26.0" prefWidth="225.0" text="Return to Main Menu" />
-      <TableView fx:id="allCustomers" layoutX="15.0" layoutY="60.0" prefHeight="273.0" prefWidth="571.0">
+      <Label layoutX="15.0" layoutY="29.0" stylesheets="@CSS/SmallerItems.css" text="All Customers" />
+      <Button fx:id="goToCustomerButton" layoutX="360.0" layoutY="345.0" mnemonicParsing="false" onAction="#goToCustomer" prefHeight="26.0" prefWidth="225.0" stylesheets="@CSS/SmallerItems.css" text="Go To Customer" />
+      <Button fx:id="returnToMainMenuButton" layoutX="15.0" layoutY="345.0" mnemonicParsing="false" onAction="#goToMainMenu" prefHeight="26.0" prefWidth="225.0" stylesheets="@CSS/SmallerItems.css" text="Return to Main Menu" />
+      <TableView fx:id="allCustomers" layoutX="15.0" layoutY="60.0" prefHeight="273.0" prefWidth="571.0" stylesheets="@CSS/SmallerItems.css">
         <columns>
           <TableColumn fx:id="nameColumn" prefWidth="209.0" text="Name" />
           <TableColumn fx:id="personalNumberColumn" prefWidth="150.0" text="Personal Number" />
             <TableColumn fx:id="accountColumn" prefWidth="81.0" text="Accounts" />
-            <TableColumn fx:id="totalBalanceColumn" prefWidth="113.0" text="Total Balance" />
+            <TableColumn fx:id="totalBalanceColumn" prefWidth="118.0" sortable="false" text="Total Balance" />
         </columns>
          <columnResizePolicy>
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
          </columnResizePolicy>
       </TableView>
-      <TextField fx:id="searchField" layoutX="109.0" layoutY="25.0" onAction="#onEnter" prefHeight="26.0" prefWidth="411.0" promptText="Search a name or personal number..." />
-      <Button fx:id="searchButton" layoutX="529.0" layoutY="25.0" mnemonicParsing="false" onAction="#searchAction" text="Search" />
+      <TextField fx:id="searchField" layoutX="109.0" layoutY="25.0" onAction="#onEnter" prefHeight="26.0" prefWidth="411.0" promptText="Search a name or personal number..." stylesheets="@CSS/SmallerItems.css" />
+      <Button fx:id="searchButton" layoutX="529.0" layoutY="25.0" mnemonicParsing="false" onAction="#searchAction" stylesheets="@CSS/SmallerItems.css" text="Search" />
    </children>
 </AnchorPane>
