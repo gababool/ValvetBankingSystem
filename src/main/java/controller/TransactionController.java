@@ -16,7 +16,7 @@ public class TransactionController {
     @FXML public TextField amountTextField;
     @FXML public Button makeTransactionButton;
     @FXML public Button clearAllButton;
-    @FXML public Button cancelButton;
+    @FXML public Button returnButton;
 
     public Customer customer;
     public Account account;

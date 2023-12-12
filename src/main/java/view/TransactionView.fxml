@@ -31,9 +31,9 @@
             <Font size="13.0" />
          </font>
       </Label>
-      <Button fx:id="makeTransactionButton" layoutX="40.0" layoutY="248.0" mnemonicParsing="false" onAction="#makeTransaction" prefHeight="30.0" prefWidth="398.0" text="Done" />
+      <Button fx:id="makeTransactionButton" layoutX="40.0" layoutY="248.0" mnemonicParsing="false" onAction="#makeTransaction" prefHeight="30.0" prefWidth="398.0" text="Make Transaction" />
       <Button fx:id="clearAllButton" layoutX="40.0" layoutY="287.0" mnemonicParsing="false" onAction="#clearAll" prefHeight="30.0" prefWidth="398.0" text="Clear All" />
-      <Button fx:id="cancelButton" layoutX="40.0" layoutY="328.0" mnemonicParsing="false" onAction="#returnToLastView" prefHeight="30.0" prefWidth="398.0" text="Cancel" />
+      <Button fx:id="returnButton" layoutX="40.0" layoutY="328.0" mnemonicParsing="false" onAction="#returnToLastView" prefHeight="30.0" prefWidth="398.0" text="Return" />
       <Button fx:id="switchAccountButton" layoutX="445.0" layoutY="124.0" mnemonicParsing="false" onAction="#switchAccount" rotate="90.0" text="&lt;-&gt;" />
    </children>
 </AnchorPane>
