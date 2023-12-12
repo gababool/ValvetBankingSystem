@@ -44,8 +44,8 @@ public class CustomerController{
         this.numberOfAccountsLabel.setText("Number Of Accounts: " + customer.getNumberOfAccounts());
         this.customer = customer;
 
-        accountNumberColumn.setCellValueFactory(new PropertyValueFactory<Account, String>("accountNumber"));
-        balanceColumn.setCellValueFactory(new PropertyValueFactory<Account, String>("balance"));
+        accountNumberColumn.setCellValueFactory(new PropertyValueFactory<>("accountNumber"));
+        balanceColumn.setCellValueFactory(new PropertyValueFactory<>("balance"));
         allAccounts.setItems(hashMapToObservableList());
     }
 

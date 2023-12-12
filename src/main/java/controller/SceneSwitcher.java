@@ -8,7 +8,6 @@ import javafx.scene.Node;
 import src.main.java.Main;
 import src.main.java.model.Account;
 import src.main.java.model.Customer;
-
 import javafx.event.ActionEvent;
 import src.main.java.model.ValvetFileManager;
 
@@ -89,12 +88,8 @@ public class SceneSwitcher {
     public void switchToCreateCustomerView(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/src/main/java/view/CreateCustomerView.fxml"));
         root = loader.load();
-
         prepareScene(event, root);
     }
 
-    public void showPopupWindow(ActionEvent event) throws IOException{
-        FXMLLoader loader = new FXMLLoader(getClass().getResource(""));
-    }
 
 }

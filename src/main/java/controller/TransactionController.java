@@ -1,26 +1,26 @@
 package src.main.java.controller;
 
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import src.main.java.Main;
 import src.main.java.model.Customer;
 import src.main.java.model.Account;
 import src.main.java.model.Transaction;
-
 import java.io.IOException;
 
 public class TransactionController {
-    public TextField receiverTextField;
-    public TextField senderTextField;
-    public TextField amountTextField;
-    public Button makeTransactionButton;
-    public Button clearAllButton;
-    public Button cancelButton;
+    @FXML public TextField receiverTextField;
+    @FXML public TextField senderTextField;
+    @FXML public TextField amountTextField;
+    @FXML public Button makeTransactionButton;
+    @FXML public Button clearAllButton;
+    @FXML public Button cancelButton;
+
     public Customer customer;
     public Account account;
     public Button switchAccountButton;
-
     private static SceneSwitcher switcher = new SceneSwitcher();
 
     public void switchAccount(ActionEvent event){

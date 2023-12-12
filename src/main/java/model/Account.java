@@ -34,8 +34,7 @@ public class Account implements Serializable {
     }
 
     public StringProperty balanceProperty(){
-        StringProperty balanceString = new SimpleStringProperty(String.format("%.2f kr", getBalance()));
-        return balanceString;
+        return new SimpleStringProperty(String.format("%.2f kr", getBalance()));
     }
 
     private void increaseBalance (double increaseAmount){
@@ -62,7 +61,6 @@ public class Account implements Serializable {
         return  this.transactions;
     }
 
-    // ROUND OFF ACCOUNT BALANCE TO 2 DECIMALS AND CHANGE TESTS ACCORDINGLY
     public String toString () {
         return String.format("Account:  %s  |  Balance:  %.2f kr", this.accountNumber, this.balance);
     }

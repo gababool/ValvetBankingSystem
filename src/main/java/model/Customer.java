@@ -31,12 +31,10 @@ public class Customer implements Serializable {
                  getFullName(), this.getPERSONAL_NUMBER(), getNumberOfAccounts(), getTotalBalance());
     }
     public final StringProperty accountProperty(){
-            StringProperty accounts = new SimpleStringProperty((String)""+getNumberOfAccounts());
-           return accounts;
+        return new SimpleStringProperty(String.valueOf(getNumberOfAccounts()));
     }
     public final StringProperty nameProperty(){
-        StringProperty name = new SimpleStringProperty(getFullName());
-        return name;
+        return new SimpleStringProperty(getFullName());
     }
 
     //Getters

@@ -40,13 +40,13 @@ public class Valvet implements Serializable{
         this.customers.remove(personalNumber);
     }
 
-    public Account createAccount(String personalNumber) throws Exception {
+    public void createAccount(String personalNumber) throws Exception {
         if (!customers.containsKey(personalNumber)) {
             throw new NotFoundException("Customer not found");
         }
         Customer customer = this.customers.get(personalNumber);
         String accountNumber = clearingNumber + "-" + generateRandomUniqueNumber();
-        return customer.createAccount(accountNumber);
+        customer.createAccount(accountNumber);
     }
 
     public void deleteAccount(String personalNumber, String accountNumber) throws BalanceNotZeroException, CannotBeZeroException {
@@ -151,8 +151,8 @@ public class Valvet implements Serializable{
             sender.sendTransaction(transaction);
             receiver.receiveTransaction(transaction);
         }
-        return transaction;
 
+        return transaction;
     }
 
     public boolean checkValidCustomerInfo(String firstName, String surname, String personalNumber){

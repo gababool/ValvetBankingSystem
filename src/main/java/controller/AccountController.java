@@ -6,11 +6,9 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import src.main.java.Main;
 import src.main.java.model.Account;
 import src.main.java.model.Customer;
 import src.main.java.model.Transaction;
-
 import java.io.IOException;
 import java.util.LinkedHashMap;
 import java.util.UUID;
@@ -34,11 +32,11 @@ public class AccountController {
 
     public void loadAccount(Account account, Customer customer){
 
-        amountColumn.setCellValueFactory(new PropertyValueFactory<Transaction, String>("transactionAmount"));
-        senderColumn.setCellValueFactory(new PropertyValueFactory<Transaction, String>("senderAccountNumber"));
-        receiverColumn.setCellValueFactory(new PropertyValueFactory<Transaction, String>("receiverAccountNumber"));
-        dateColumn.setCellValueFactory(new PropertyValueFactory<Transaction, String>("transactionDate"));
-        transactionIDColumn.setCellValueFactory(new PropertyValueFactory<Transaction, String>("transactionID"));
+        amountColumn.setCellValueFactory(new PropertyValueFactory<>("transactionAmount"));
+        senderColumn.setCellValueFactory(new PropertyValueFactory<>("senderAccountNumber"));
+        receiverColumn.setCellValueFactory(new PropertyValueFactory<>("receiverAccountNumber"));
+        dateColumn.setCellValueFactory(new PropertyValueFactory<>("transactionDate"));
+        transactionIDColumn.setCellValueFactory(new PropertyValueFactory<>("transactionID"));
 
         this.account = account;
         this.customer = customer;

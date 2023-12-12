@@ -1,6 +1,5 @@
 package src.main.java.controller;
 
-import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -22,8 +21,6 @@ public class AllCustomersController implements Initializable {
     @FXML public Button goToCustomerButton;
     @FXML public Button searchButton;
     @FXML public TextField searchField;
-
-
     @FXML private TableView<Customer> allCustomers;
     @FXML private TableColumn<Customer, String> nameColumn;
     @FXML private TableColumn<Customer, String> personalNumberColumn;
@@ -33,10 +30,10 @@ public class AllCustomersController implements Initializable {
     private static SceneSwitcher switcher = new SceneSwitcher();
 
     public void initialize(URL url, ResourceBundle resourceBundle){
-        nameColumn.setCellValueFactory(new PropertyValueFactory<Customer, String>("name"));
-        personalNumberColumn.setCellValueFactory(new PropertyValueFactory<Customer, String>("PERSONAL_NUMBER"));
-        accountColumn.setCellValueFactory(new PropertyValueFactory<Customer, String>("account"));
-        totalBalanceColumn.setCellValueFactory(new PropertyValueFactory<Customer, Double>("totalBalance"));
+        nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
+        personalNumberColumn.setCellValueFactory(new PropertyValueFactory<>("PERSONAL_NUMBER"));
+        accountColumn.setCellValueFactory(new PropertyValueFactory<>("account"));
+        totalBalanceColumn.setCellValueFactory(new PropertyValueFactory<>("totalBalance"));
         allCustomers.setItems(hashMapToObservableList());
         allCustomers.getSortOrder().add(nameColumn);
     }

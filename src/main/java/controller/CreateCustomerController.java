@@ -1,6 +1,7 @@
 package src.main.java.controller;
 
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import src.main.java.Main;
@@ -9,12 +10,12 @@ import java.io.IOException;
 
 public class CreateCustomerController {
 
-    public TextField personalNumberField;
-    public TextField firstNameField;
-    public TextField lastNameField;
-    public Button registerCustomerButton;
-    public Button returnToMainMenuButton;
-    public Button clearAllButton;
+    @FXML  public TextField personalNumberField;
+    @FXML  public TextField firstNameField;
+    @FXML  public TextField lastNameField;
+    @FXML  public Button registerCustomerButton;
+    @FXML  public Button returnToMainMenuButton;
+    @FXML  public Button clearAllButton;
 
     private static SceneSwitcher switcher = new SceneSwitcher();
 
