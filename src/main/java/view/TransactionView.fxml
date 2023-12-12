@@ -88,7 +88,7 @@
                <font>
                   <Font size="20.0" />
                </font></Button>
-            <Button fx:id="cancelButton" mnemonicParsing="false" onAction="#returnToLastView" prefHeight="50.0" prefWidth="300.0" stylesheets="@CSS/BiggerItems.css" text="Cancel" GridPane.rowIndex="2">
+            <Button fx:id="returnButton" mnemonicParsing="false" onAction="#returnToLastView" prefHeight="50.0" prefWidth="300.0" stylesheets="@CSS/BiggerItems.css" text="Return" GridPane.rowIndex="2">
                <font>
                   <Font size="20.0" />
                </font></Button>
