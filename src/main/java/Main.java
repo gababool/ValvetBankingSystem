@@ -1,22 +1,12 @@
 package src.main.java;
 
-
-import Tests.GenerateDemoData;
-import com.github.javafaker.Faker;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import src.main.java.model.Customer;
 import src.main.java.model.Valvet;
 import src.main.java.model.ValvetFileManager;
 import javafx.application.Application;
-
-import java.io.IOException;
-import java.util.Date;
-import java.util.LinkedHashMap;
-import java.util.Random;
-import java.util.concurrent.ThreadLocalRandom;
 
 public class Main extends Application {
 

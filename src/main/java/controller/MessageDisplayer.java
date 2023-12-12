@@ -1,6 +1,9 @@
 package src.main.java.controller;
 
 import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
+
+import java.util.Optional;
 
 public class MessageDisplayer {
 
@@ -19,4 +22,18 @@ public class MessageDisplayer {
         alert.setContentText(message);
         alert.showAndWait();
     }
+
+    public static boolean displayConfirmationBox(String message) {
+        boolean answer = false;
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Are you sure?");
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.isPresent() && result.get().equals(ButtonType.OK)){
+            answer = true;
+        }
+        return answer;
+    }
+
 }

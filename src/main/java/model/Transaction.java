@@ -32,7 +32,6 @@ public class Transaction implements Serializable {
         + "Transaction ID: " + this.transactionID;
     }
 
-
     public StringProperty transactionAmountProperty(){
         StringProperty amount = new SimpleStringProperty(String.format("%.1f kr", getAmount()));
         return amount;

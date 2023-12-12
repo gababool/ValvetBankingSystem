@@ -49,7 +49,6 @@ public class Valvet implements Serializable{
         return customer.createAccount(accountNumber);
     }
 
-    // ADD SO THAT THE PERSONAL NUMBER CAN BE EXTRACTED FROM THE ACCOUNT NUMBER
     public void deleteAccount(String personalNumber, String accountNumber) throws BalanceNotZeroException, CannotBeZeroException {
         Account account = null;
         for (Customer customer : customers.values()) {
@@ -73,6 +72,12 @@ public class Valvet implements Serializable{
         return customer;
     }
 
+    public Customer updateCustomerSurname(String personalNumber, String name){
+        Customer customer = customers.get(personalNumber);
+        customer.setSurname(name);
+        return customer;
+    }
+
     public int generateRandomUniqueNumber(){
         Random random = new Random();
         int randomNumber = random.nextInt(100000000, 999999999);
@@ -83,12 +88,6 @@ public class Valvet implements Serializable{
             }
         }
         return randomNumber;
-    }
-
-    public Customer updateCustomerSurname(String personalNumber, String name){
-        Customer customer = customers.get(personalNumber);
-        customer.setSurname(name);
-        return customer;
     }
 
     public LinkedHashMap<String, Customer> getAllCustomers(){
@@ -109,6 +108,12 @@ public class Valvet implements Serializable{
         }
         if (receiverAccountNumber.isBlank()){
             throw new InvalidInputException("Receiving account number cannot be blank");
+        }
+        if (senderAccountNumber.matches(".*[a-zA-Z].*")){
+            throw new InvalidInputException("Account number cannot contain letters");
+        }
+        if (receiverAccountNumber.matches(".*[a-zA-Z].*")){
+            throw new InvalidInputException("Account number cannot contain letters");
         }
 
         Account sender = null;

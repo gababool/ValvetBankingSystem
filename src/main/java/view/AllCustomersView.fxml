@@ -10,8 +10,8 @@
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="src.main.java.controller.AllCustomersController">
    <children>
       <Label layoutX="15.0" layoutY="29.0" text="All Customers" />
-      <Button fx:id="goToCustomerButton" layoutX="15.0" layoutY="345.0" mnemonicParsing="false" onAction="#goToCustomer" text="Go To Customer" />
-      <Button fx:id="returnToMainMenuButton" layoutX="454.0" layoutY="345.0" mnemonicParsing="false" onAction="#goToMainMenu" text="Return to Main Menu" />
+      <Button fx:id="goToCustomerButton" layoutX="360.0" layoutY="345.0" mnemonicParsing="false" onAction="#goToCustomer" prefHeight="26.0" prefWidth="225.0" text="Go To Customer" />
+      <Button fx:id="returnToMainMenuButton" layoutX="15.0" layoutY="345.0" mnemonicParsing="false" onAction="#goToMainMenu" prefHeight="26.0" prefWidth="225.0" text="Return to Main Menu" />
       <TableView fx:id="allCustomers" layoutX="15.0" layoutY="60.0" prefHeight="273.0" prefWidth="571.0">
         <columns>
           <TableColumn fx:id="nameColumn" prefWidth="209.0" text="Name" />

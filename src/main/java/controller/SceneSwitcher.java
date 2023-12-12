@@ -93,4 +93,8 @@ public class SceneSwitcher {
         prepareScene(event, root);
     }
 
+    public void showPopupWindow(ActionEvent event) throws IOException{
+        FXMLLoader loader = new FXMLLoader(getClass().getResource(""));
+    }
+
 }
