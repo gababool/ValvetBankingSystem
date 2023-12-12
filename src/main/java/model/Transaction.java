@@ -33,20 +33,16 @@ public class Transaction implements Serializable {
     }
 
     public StringProperty transactionAmountProperty(){
-        StringProperty amount = new SimpleStringProperty(String.format("%.1f kr", getAmount()));
-        return amount;
+        return new SimpleStringProperty(String.format("%.1f kr", getAmount()));
     }
     public StringProperty senderAccountNumberProperty(){
-        StringProperty sender = new SimpleStringProperty("" + senderAccountNumber);
-        return sender;
+        return new SimpleStringProperty(senderAccountNumber);
     }
     public StringProperty receiverAccountNumberProperty(){
-        StringProperty receiver = new SimpleStringProperty("" + receiverAccountNumber);
-        return receiver;
+        return new SimpleStringProperty(receiverAccountNumber);
     }
     public StringProperty transactionDateProperty(){
-        StringProperty date = new SimpleStringProperty(getDate().substring(0,10) + " " + getDate().substring(11,16));
-        return date;
+        return new SimpleStringProperty(getDate().substring(0,10) + " " + getDate().substring(11,16));
     }
     public String getDate(){
         return this.transactionDate;

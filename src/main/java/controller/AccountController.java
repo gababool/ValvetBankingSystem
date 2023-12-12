@@ -39,11 +39,11 @@ public class AccountController {
 
     public void loadAccount(Account account, Customer customer){
 
-        amountColumn.setCellValueFactory(new PropertyValueFactory<Transaction, String>("transactionAmount"));
-        senderColumn.setCellValueFactory(new PropertyValueFactory<Transaction, String>("senderAccountNumber"));
-        receiverColumn.setCellValueFactory(new PropertyValueFactory<Transaction, String>("receiverAccountNumber"));
-        dateColumn.setCellValueFactory(new PropertyValueFactory<Transaction, String>("transactionDate"));
-        transactionIDColumn.setCellValueFactory(new PropertyValueFactory<Transaction, String>("transactionID"));
+        amountColumn.setCellValueFactory(new PropertyValueFactory<>("transactionAmount"));
+        senderColumn.setCellValueFactory(new PropertyValueFactory<>("senderAccountNumber"));
+        receiverColumn.setCellValueFactory(new PropertyValueFactory<>("receiverAccountNumber"));
+        dateColumn.setCellValueFactory(new PropertyValueFactory<>("transactionDate"));
+        transactionIDColumn.setCellValueFactory(new PropertyValueFactory<>("transactionID"));
 
         this.account = account;
         this.customer = customer;

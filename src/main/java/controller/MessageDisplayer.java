@@ -2,7 +2,6 @@ package src.main.java.controller;
 
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
-
 import java.util.Optional;
 
 public class MessageDisplayer {

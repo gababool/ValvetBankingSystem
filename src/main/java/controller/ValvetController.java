@@ -2,15 +2,10 @@ package src.main.java.controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
-import javafx.scene.control.CustomMenuItem;
 import javafx.scene.control.TextField;
 import src.main.java.Main;
 import src.main.java.model.Customer;
-import src.main.java.model.Valvet;
-import src.main.java.model.ValvetFileManager;
-
 import java.io.IOException;
 
 public class ValvetController {
