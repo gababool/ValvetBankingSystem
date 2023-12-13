@@ -9,16 +9,16 @@
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #202230;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="src.main.java.controller.CustomerController">
    <children>
-      <Label fx:id="titleNameLabel" layoutX="47.0" layoutY="67.0" stylesheets="@CSS/SmallerItems.css" text="Customer Name" />
-      <Label fx:id="personalNumberLabel" layoutX="47.0" layoutY="95.0" stylesheets="@CSS/SmallerItems.css" text="Personal Number" />
+      <Label fx:id="titleNameLabel" layoutX="21.0" layoutY="67.0" stylesheets="@CSS/SmallerItems.css" text="Customer Name" />
+      <Label fx:id="personalNumberLabel" layoutX="21.0" layoutY="95.0" stylesheets="@CSS/SmallerItems.css" text="Personal Number" />
       <Button fx:id="goToAccountButton" layoutX="252.0" layoutY="320.0" mnemonicParsing="false" onAction="#goToAccount" prefHeight="25.0" prefWidth="110.0" stylesheets="@CSS/SmallerItems.css" text="Go To Account" />
       <Label fx:id="totalBalanceLabel" layoutX="252.0" layoutY="14.0" stylesheets="@CSS/SmallerItems.css" text="Total Balance: " />
-      <Label layoutX="47.0" layoutY="28.0" stylesheets="@CSS/BiggerItems.css" text="Customer Overview">
+      <Label layoutX="21.0" layoutY="28.0" stylesheets="@CSS/BiggerItems.css" text="Customer Overview">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <Label fx:id="numberOfAccountsLabel" layoutX="47.0" layoutY="122.0" stylesheets="@CSS/SmallerItems.css" text="Number of Accounts" />
+      <Label fx:id="numberOfAccountsLabel" layoutX="21.0" layoutY="122.0" stylesheets="@CSS/SmallerItems.css" text="Number of Accounts" />
       <Button fx:id="returnToMenuButton" layoutX="480.0" layoutY="355.0" mnemonicParsing="false" onAction="#goToMainMenu" prefHeight="25.0" prefWidth="110.0" stylesheets="@CSS/SmallerItems.css" text="Return to Menu" />
       <Button fx:id="newTransactionButton" layoutX="21.0" layoutY="271.0" mnemonicParsing="false" onAction="#goToTransactionView" prefHeight="40.0" prefWidth="207.0" stylesheets="@CSS/BiggerItems.css" text="New Transaction" />
       <Button fx:id="addAccountButton" layoutX="366.0" layoutY="320.0" mnemonicParsing="false" onAction="#addAccount" prefHeight="25.0" prefWidth="110.0" stylesheets="@CSS/SmallerItems.css" text="Add Account" />
@@ -26,7 +26,7 @@
       <Button fx:id="deleteCustomerButton" layoutX="21.0" layoutY="355.0" mnemonicParsing="false" onAction="#deleteCustomer" prefHeight="25.0" prefWidth="207.0" stylesheets="@CSS/SmallerItems.css" text="Delete Customer" />
       <Button fx:id="goToAllCustomersButton" layoutX="252.0" layoutY="355.0" mnemonicParsing="false" onAction="#goToAllCustomers" prefHeight="25.0" prefWidth="224.0" stylesheets="@CSS/SmallerItems.css" text="Return to All Customers" />
       <Label fx:id="newTransactionErrorLabel" layoutX="21.0" layoutY="245.0" prefHeight="17.0" prefWidth="207.0" textFill="RED" />
-      <TableView fx:id="allAccounts" layoutX="252.0" layoutY="39.0" prefHeight="278.0" prefWidth="338.0" stylesheets="@CSS/SmallerItems.css">
+      <TableView fx:id="allAccounts" layoutX="252.0" layoutY="39.0" prefHeight="271.0" prefWidth="338.0" stylesheets="@CSS/SmallerItems.css">
         <columns>
           <TableColumn fx:id="accountNumberColumn" prefWidth="165.0" resizable="false" text="Account Number" />
           <TableColumn fx:id="balanceColumn" maxWidth="172.0" prefWidth="172.0" resizable="false" text="Balance" />
