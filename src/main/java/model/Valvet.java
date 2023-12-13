@@ -94,7 +94,6 @@ public class Valvet implements Serializable{
         return customers;
     }
 
-
     public Customer getCustomer(String personalNumber){
         return this.customers.get(personalNumber);
     }

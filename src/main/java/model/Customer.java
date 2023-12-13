@@ -25,11 +25,14 @@ public class Customer implements Serializable {
        }
        public Customer(){}
 
+    // toString method for printing the customer.
     @Override
     public String toString(){
          return String.format("Name: %s | PNO: %s | Accounts: %d | Total Balance: %.2f",
                  getFullName(), this.getPERSONAL_NUMBER(), getNumberOfAccounts(), getTotalBalance());
     }
+
+    // For table view to be able to collect data for GUI
     public final StringProperty accountProperty(){
         return new SimpleStringProperty(String.valueOf(getNumberOfAccounts()));
     }
@@ -92,6 +95,7 @@ public class Customer implements Serializable {
     public void closeAccount(String accountNumber) {this.accounts.remove(accountNumber);}
 
 
+    // Exceptions
    public String viewAccount(String accountNumber){
     Account account = this.accounts.get(accountNumber);
     if (account != null) {
