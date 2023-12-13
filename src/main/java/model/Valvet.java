@@ -48,7 +48,7 @@ public class Valvet implements Serializable{
         }
         Customer customer = this.getCustomer(personalNumber);
         int numberOfAccounts = customer.getNumberOfAccounts();
-        if (numberOfAccounts > 10){
+        if (numberOfAccounts >= 10){
             throw new InvalidInputException("Cannot have more than 10 accounts");
         }
         if (personalNumber.matches(".*[a-zA-Z].*")){
