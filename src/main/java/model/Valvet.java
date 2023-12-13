@@ -59,7 +59,7 @@ public class Valvet implements Serializable{
         Customer customer = getCustomer(personalNumber);
         int numberOfAccounts = customer.getNumberOfAccounts();
         if (numberOfAccounts > 10){
-            throw new InvalidInputException("Can not have more than 10 accounts");
+            throw new InvalidInputException("Cannot have more than 10 accounts");
         }
 
 
