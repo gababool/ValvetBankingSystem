@@ -61,9 +61,13 @@ public class Account implements Serializable {
         transactions.put(transaction.getTransactionID(), transaction);
         this.increaseBalance(transaction.getAmount());
     }
+
+    // LinkedHashMap for storing the transactions, stores them in the order that transacrtions were made
     public LinkedHashMap<UUID, Transaction> getTransactions(){
         return  this.transactions;
     }
+
+    // toString method that prints the account and current balance
 
     public String toString () {
         return String.format("Account:  %s  |  Balance:  %.2f kr", this.accountNumber, this.balance);

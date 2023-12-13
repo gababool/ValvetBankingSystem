@@ -16,7 +16,7 @@ public class Customer implements Serializable {
        private String surname;
        private String PERSONAL_NUMBER;
 
-
+       // Creates a new LinkedHashMap with accounts upon the creation of the customer.
        public Customer(String firstName, String surname, String PERSONAL_NUMBER){
            this.PERSONAL_NUMBER = PERSONAL_NUMBER;
            this.firstName = firstName;
@@ -85,13 +85,14 @@ public class Customer implements Serializable {
            this.firstName = firstName;
        }
 
-
+    // Creates an account with a given accountID.
     public Account createAccount(String accountID) {
         Account createdAccount = new Account(accountID);
         this.accounts.put(accountID, createdAccount);
         return createdAccount;
     }
 
+    // Closes/deletes the account linked to the accountNumber given as an argument.
     public void closeAccount(String accountNumber) {this.accounts.remove(accountNumber);}
 
 
@@ -103,6 +104,7 @@ public class Customer implements Serializable {
     } else {return "Account not found";}
    }
 
+    //  Equal
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {
@@ -118,6 +120,7 @@ public class Customer implements Serializable {
         return equalPersonNumber && equalFirstName && equalSurname;
     }
 
+    // HashCode method
     @Override
     public int hashCode() {
         return Objects.hash(PERSONAL_NUMBER, firstName, surname);
