@@ -19,6 +19,7 @@ public class CreateCustomerController {
 
     private static SceneSwitcher switcher = new SceneSwitcher();
 
+    // Registers a new customer based on information entered in the "Create customer"-screen, if data is valid.
     public void registerCustomerAction(ActionEvent event) throws Exception {
         String personalNumber = personalNumberField.getText();
         String firstName = firstNameField.getText();
@@ -32,10 +33,12 @@ public class CreateCustomerController {
         switcher.switchToCustomerPage(event, customer);
     }
 
+    // Returns to the main menu from the "Create Customer"-screen
     public void returnToMainMenu(ActionEvent actionEvent) throws IOException {
         switcher.switchToMain(actionEvent);
     }
 
+    // Clears all text fields.
     public void clearTextFields(ActionEvent actionEvent) {
         personalNumberField.clear();
         firstNameField.clear();

@@ -37,6 +37,8 @@ public class AccountController {
     private Customer customer;
     private static SceneSwitcher switcher = new SceneSwitcher();
 
+    // Loads in all the account data that is displayed on the account page, including all its transactions.
+    // Also displays information about the customer the account belongs to.
     public void loadAccount(Account account, Customer customer){
 
         amountColumn.setCellValueFactory(new PropertyValueFactory<>("transactionAmount"));
@@ -63,13 +65,18 @@ public class AccountController {
         transactionsTable.getSortOrder().add(dateColumn);
 
     }
+
+    // Switches screen to the main menu
     public void goToMainMenu(ActionEvent event) throws IOException {
         switcher.switchToMain(event);
     }
+
+    // Switches screen to the customer page of the account owner.
     public void goToCustomer(ActionEvent event) throws IOException{
         switcher.switchToCustomerPage(event, customer);
     }
 
+    // Opens the window for physically (or PDF) printing out all transactions for the account.
     public void printAction(ActionEvent event){
         Stage stage = (Stage)((Node) event.getSource()).getScene().getWindow();
         PrinterJob printerJob = PrinterJob.createPrinterJob();

@@ -21,6 +21,8 @@ public class SceneSwitcher {
 
     public SceneSwitcher(){}
 
+
+    // Reusable method for preparing and showing a new scene.
     private void prepareScene(ActionEvent event, Parent root) {
         stage = (Stage)((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
@@ -29,9 +31,13 @@ public class SceneSwitcher {
         ValvetFileManager.saveBank(Main.getValvet());
     }
 
+    // Methods for switching to new scenes, based on what fxml file is put. Some methods also run load methods for
+    // controllers to keep track of information to be displayed to the user, like customer data.
+
     public void switchToMain(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/src/main/java/view/MainView.fxml"));
         root = loader.load();
+
         prepareScene(event,root);
     }
 
@@ -48,6 +54,7 @@ public class SceneSwitcher {
     public void switchToTransactionPage(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/src/main/java/view/TransactionView.fxml"));
         root = loader.load();
+
         prepareScene(event, root);
     }
 
@@ -74,20 +81,24 @@ public class SceneSwitcher {
     public void switchToAllCustomersView(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/src/main/java/view/AllCustomersView.fxml"));
         root = loader.load();
+
         prepareScene(event, root);
     }
 
     public void switchToAllCustomersView(ActionEvent event, Customer customer) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/src/main/java/view/AllCustomersView.fxml"));
         root = loader.load();
+
         AllCustomersController allCustomersController = loader.getController();
         allCustomersController.loadWithCustomer(customer);
+
         prepareScene(event, root);
     }
 
     public void switchToCreateCustomerView(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/src/main/java/view/CreateCustomerView.fxml"));
         root = loader.load();
+
         prepareScene(event, root);
     }
 

@@ -6,6 +6,8 @@ import java.util.Optional;
 
 public class MessageDisplayer {
 
+    // Methods to display different types of messages to the user as pop-ups, both with buttons and without.
+
     public static void displayMessage(String message) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Information");

@@ -23,6 +23,7 @@ public class TransactionController {
     public Button switchAccountButton;
     private static SceneSwitcher switcher = new SceneSwitcher();
 
+    // Switches the account number entered in the sender and receiver fields with each other, based on button press.
     public void switchAccount(ActionEvent event){
         String senderAccountNumber = senderTextField.getText();
         String receiverAccountNumber = receiverTextField.getText();
@@ -30,6 +31,8 @@ public class TransactionController {
         senderTextField.setText(receiverAccountNumber);
     }
 
+    // Reads the data entered in the transaction screen and performs the transaction if everything is valid.
+    // Else it displays an error to the user of what went wrong.
     public void makeTransaction(ActionEvent event) {
         String lineSeparator = System.lineSeparator();
         String senderAccountNumber = senderTextField.getText();
@@ -40,26 +43,30 @@ public class TransactionController {
             value = Double.parseDouble(amount);
             Transaction transaction = Main.getValvet().makeTransaction(senderAccountNumber, receiverAccountNumber, value);
             MessageDisplayer.displayMessage("Transaction Successfully made: " + lineSeparator + transaction.toString());
-
-
         } catch (NumberFormatException e) {
             MessageDisplayer.displayErrorAlert("Error", "Amount not valid");
         } catch (Exception e) {
             MessageDisplayer.displayErrorAlert("Error", e.getMessage());
         }
     }
+
+    // Runs when the user enters the transaction screen from the customer page, by selecting a
+    // certain account. Keeps track of which customer the screen was entered from, and pre-fills the account number.
     public void loadTransactionWithCustomer(Customer customer, Account account){
         this.customer = customer;
         this.account = account;
         this.senderTextField.setText(account.getAccountNumber());
     }
 
+    // Clears all text fields for the transactiob
     public void clearAll(ActionEvent event) {
         receiverTextField.clear();
         senderTextField.clear();
         amountTextField.clear();
     }
 
+    // Switches screen to either the customer view or the main menu, depending on from where you entered the
+    // transaction screen
     public void returnToLastView(ActionEvent event) throws IOException {
         if (customer == null){
             switcher.switchToMain(event);

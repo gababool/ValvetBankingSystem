@@ -33,6 +33,7 @@ public class CustomerController{
     private static SceneSwitcher switcher = new SceneSwitcher();
     private Customer customer;
 
+    // Method for transferring customers from a LinkedHashMap into an ObservableList, used in tables in the GUI.
     public ObservableList<Account> hashMapToObservableList(){
         ObservableList<Account> ObservableCustomers = FXCollections.observableArrayList();
         LinkedHashMap<String, Account> accounts = customer.getAccounts();
@@ -40,18 +41,19 @@ public class CustomerController{
         return ObservableCustomers;
     }
 
+    // Loads in customer data and places it the appropriate fields and tables on the customer screen.
     public void loadCustomer(Customer customer){
         this.titleNameLabel.setText("Name: " + customer.getFullName());
         this.personalNumberLabel.setText("Personal Number: " + customer.getPERSONAL_NUMBER());
         this.totalBalanceLabel.setText("Total Balance: " + customer.getTotalBalance());
         this.numberOfAccountsLabel.setText("Number Of Accounts: " + customer.getNumberOfAccounts());
         this.customer = customer;
-
         accountNumberColumn.setCellValueFactory(new PropertyValueFactory<>("accountNumber"));
         balanceColumn.setCellValueFactory(new PropertyValueFactory<>("balance"));
         allAccounts.setItems(hashMapToObservableList());
     }
 
+    // Switches screen from the customer to the selected account screen, from the table.
     public void goToAccount(ActionEvent event) throws IOException {
         Account account = allAccounts.getSelectionModel().getSelectedItem();
         if (account == null){
@@ -61,14 +63,18 @@ public class CustomerController{
         switcher.switchToAccountPage(event, account, customer);
     }
 
+    // Switches screen to the main menu
     public void goToMainMenu(ActionEvent event) throws IOException {
         switcher.switchToMain(event);
     }
 
+    // Switches screen to the all customers overview screen
     public void goToAllCustomers(ActionEvent event) throws IOException {
         switcher.switchToAllCustomersView(event, customer);
     }
 
+    // Switches screen from the customer to the transaction page, based on which account was selected in the table
+    // for the transaction.
     public void goToTransactionView(ActionEvent event) throws IOException {
         Account account = allAccounts.getSelectionModel().getSelectedItem();
         if (account == null){
@@ -77,6 +83,7 @@ public class CustomerController{
         switcher.switchToTransactionPage(event, customer, account);
     }
 
+    // Deletes customer from the system, unless they have remaining balance. Displays a confirmation message before.
     public void deleteCustomer(ActionEvent event) throws IOException {
         boolean result = MessageDisplayer.displayConfirmationBox("Do you want to delete customer: " + customer.getFullName() + "?");
         if (result){
@@ -91,6 +98,7 @@ public class CustomerController{
         }
     }
 
+    // Adds new account to the customer
     public void addAccount(ActionEvent event){
         try {
             Main.getValvet().createAccount(customer.getPERSONAL_NUMBER());
@@ -100,6 +108,8 @@ public class CustomerController{
         this.loadCustomer(customer);
     }
 
+    // Deletes a selected account from the customer, unless it has remaining balance. Displays confirmation message
+    // before.
     public void deleteAccount(ActionEvent event){
         boolean result = MessageDisplayer.displayConfirmationBox("Do you want to delete the selected account?");
         if (result){

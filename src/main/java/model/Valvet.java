@@ -61,11 +61,6 @@ public class Valvet implements Serializable{
             throw new InvalidInputException("Invalid information entered");
         }
 
-
-
-
-
-
     }
 
     public void deleteAccount(String personalNumber, String accountNumber) throws BalanceNotZeroException, CannotBeZeroException {
