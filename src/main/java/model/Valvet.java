@@ -53,6 +53,8 @@ public class Valvet implements Serializable{
             Customer customer = this.customers.get(personalNumber);
             String accountNumber = clearingNumber + "-" + generateRandomUniqueNumber();
             customer.createAccount(accountNumber);
+        } else {
+            throw new InvalidInputException("Invalid information entered");
         }
 
     }
