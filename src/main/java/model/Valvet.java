@@ -17,6 +17,7 @@ public class Valvet implements Serializable{
     }
     public Valvet(){}
 
+    // Create and Delete customers
     public Customer createCustomer(String firstName, String surname, String personalNumber) throws Exception{
         if (!checkValidCustomerInfo(firstName, surname, personalNumber)){
             throw new InvalidInputException("Entered information not valid");
@@ -40,13 +41,31 @@ public class Valvet implements Serializable{
         this.customers.remove(personalNumber);
     }
 
+    // Create and delete Account
     public void createAccount(String personalNumber) throws Exception {
         if (!customers.containsKey(personalNumber)) {
             throw new NotFoundException("Customer not found");
         }
-        Customer customer = this.customers.get(personalNumber);
-        String accountNumber = clearingNumber + "-" + generateRandomUniqueNumber();
-        customer.createAccount(accountNumber);
+        Customer customer = this.getCustomer(personalNumber);
+        int numberOfAccounts = customer.getNumberOfAccounts();
+        if (numberOfAccounts >= 10){
+            throw new InvalidInputException("Cannot have more than 10 accounts");
+        }
+        if (personalNumber.matches(".*[a-zA-Z].*")){
+            throw new InvalidInputException("Personal number cannot contain letters");
+        }
+        if (personalNumber.matches("\\d+")){
+            String accountNumber = clearingNumber + "-" + generateRandomUniqueNumber();
+            customer.createAccount(accountNumber);
+        } else {
+            throw new InvalidInputException("Invalid information entered");
+        }
+
+
+
+
+
+
     }
 
     public void deleteAccount(String personalNumber, String accountNumber) throws BalanceNotZeroException, CannotBeZeroException {
@@ -66,6 +85,7 @@ public class Valvet implements Serializable{
         customers.get(personalNumber).closeAccount(accountNumber);
     }
 
+    // Update Customers names
     public Customer updateCustomerFirstName(String personalNumber, String name){
         Customer customer = customers.get(personalNumber);
         customer.setFirstName(name);
@@ -78,6 +98,7 @@ public class Valvet implements Serializable{
         return customer;
     }
 
+    // Generate a random account number
     public int generateRandomUniqueNumber(){
         Random random = new Random();
         int randomNumber = random.nextInt(100000000, 999999999);
@@ -90,15 +111,17 @@ public class Valvet implements Serializable{
         return randomNumber;
     }
 
+    // Get all customers
     public LinkedHashMap<String, Customer> getAllCustomers(){
         return customers;
     }
 
-
+    // Get specific customer
     public Customer getCustomer(String personalNumber){
         return this.customers.get(personalNumber);
     }
 
+    // Makes a transaction between two accounts
     public Transaction makeTransaction(String senderAccountNumber, String receiverAccountNumber, double amount) throws Exception{
         if (amount <= 0){
             throw new InvalidInputException("Amount must be greater than zero");
@@ -155,6 +178,7 @@ public class Valvet implements Serializable{
         return transaction;
     }
 
+    // Checks if the customers name and personal numbers are valid (blank etc)
     public boolean checkValidCustomerInfo(String firstName, String surname, String personalNumber){
         boolean validPNO = true;
         boolean validName = true;
