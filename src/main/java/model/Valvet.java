@@ -46,21 +46,23 @@ public class Valvet implements Serializable{
         if (!customers.containsKey(personalNumber)) {
             throw new NotFoundException("Customer not found");
         }
+        Customer customer = this.getCustomer(personalNumber);
+        int numberOfAccounts = customer.getNumberOfAccounts();
+        if (numberOfAccounts > 10){
+            throw new InvalidInputException("Cannot have more than 10 accounts");
+        }
         if (personalNumber.matches(".*[a-zA-Z].*")){
             throw new InvalidInputException("Personal number cannot contain letters");
         }
         if (personalNumber.matches("\\d+")){
-            Customer customer = this.customers.get(personalNumber);
             String accountNumber = clearingNumber + "-" + generateRandomUniqueNumber();
             customer.createAccount(accountNumber);
         } else {
             throw new InvalidInputException("Invalid information entered");
         }
-        Customer customer = getCustomer(personalNumber);
-        int numberOfAccounts = customer.getNumberOfAccounts();
-        if (numberOfAccounts > 10){
-            throw new InvalidInputException("Cannot have more than 10 accounts");
-        }
+
+
+
 
 
 
