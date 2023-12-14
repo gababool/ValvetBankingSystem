@@ -43,6 +43,7 @@ public class TransactionController {
             value = Double.parseDouble(amount);
             Transaction transaction = Main.getValvet().makeTransaction(senderAccountNumber, receiverAccountNumber, value);
             MessageDisplayer.displayMessage("Transaction Successfully made: " + lineSeparator + transaction.toString());
+            amountTextField.clear();
         } catch (NumberFormatException e) {
             MessageDisplayer.displayErrorAlert("Error", "Amount not valid");
         } catch (Exception e) {
@@ -58,7 +59,7 @@ public class TransactionController {
         this.senderTextField.setText(account.getAccountNumber());
     }
 
-    // Clears all text fields for the transactiob
+    // Clears all text fields for the transaction
     public void clearAll(ActionEvent event) {
         receiverTextField.clear();
         senderTextField.clear();

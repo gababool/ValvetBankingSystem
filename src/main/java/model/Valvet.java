@@ -48,8 +48,8 @@ public class Valvet implements Serializable{
         }
         Customer customer = this.getCustomer(personalNumber);
         int numberOfAccounts = customer.getNumberOfAccounts();
-        if (numberOfAccounts >= 10){
-            throw new InvalidInputException("Cannot have more than 10 accounts");
+        if (numberOfAccounts >= 9){
+            throw new InvalidInputException("Cannot have more than 9 accounts");
         }
         if (personalNumber.matches(".*[a-zA-Z].*")){
             throw new InvalidInputException("Personal number cannot contain letters");
@@ -93,7 +93,7 @@ public class Valvet implements Serializable{
         return customer;
     }
 
-    // Generate a random account number
+    // Generate a unique random account number
     public int generateRandomUniqueNumber(){
         Random random = new Random();
         int randomNumber = random.nextInt(100000000, 999999999);
@@ -106,20 +106,25 @@ public class Valvet implements Serializable{
         return randomNumber;
     }
 
-    // Get all customers
+    // Gets all customers
     public LinkedHashMap<String, Customer> getAllCustomers(){
         return customers;
     }
 
-    // Get specific customer
+    // Gets specific customer
     public Customer getCustomer(String personalNumber){
         return this.customers.get(personalNumber);
     }
 
-    // Makes a transaction between two accounts
+    // Makes a transaction between two accounts. If both accounts exist within the system, they are updated
+    // accordingly. If only the sender or the receiver are within the system, the transaction is seen as either
+    // a deposition or withdrawal from another bank, essentially adding or subtracting money from the system total.
     public Transaction makeTransaction(String senderAccountNumber, String receiverAccountNumber, double amount) throws Exception{
         if (amount <= 0){
-            throw new InvalidInputException("Amount must be greater than zero");
+            throw new InvalidInputException("Amount must be greater than 0 SEK");
+        }
+        if (amount > 1000000){
+            throw new InvalidInputException("Amount cannot be greater than 1 000 000 SEK");
         }
         if (senderAccountNumber.isBlank()){
             throw new InvalidInputException("Sending account number cannot be blank");
@@ -173,7 +178,7 @@ public class Valvet implements Serializable{
         return transaction;
     }
 
-    // Checks if the customers name and personal numbers are valid (blank etc)
+    // Checks if the customers name and personal numbers are valid (blank etc.)
     public boolean checkValidCustomerInfo(String firstName, String surname, String personalNumber){
         boolean validPNO = true;
         boolean validName = true;
