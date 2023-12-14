@@ -14,12 +14,17 @@ import java.io.IOException;
 
 public class CreateCustomerController {
 
-    @FXML  public TextField personalNumberField;
-    @FXML  public TextField firstNameField;
-    @FXML  public TextField lastNameField;
-    @FXML  public Button registerCustomerButton;
-    @FXML  public Button returnToMainMenuButton;
-    @FXML  public Button clearAllButton;
+    @FXML public TextField personalNumberField;
+    @FXML public TextField firstNameField;
+
+    @FXML public TextField surnameField;
+    @FXML public Button registerCustomerButton;
+    @FXML public Button returnToMainMenuButton;
+    @FXML public Button clearAllButton;
+
+    private String personalNumber;
+    private String firstName;
+    private String surname;
 
     private static SceneSwitcher switcher = new SceneSwitcher();
 
@@ -27,10 +32,9 @@ public class CreateCustomerController {
     public void registerCustomerAction(ActionEvent event)  {
         String personalNumber = personalNumberField.getText().trim();
         String firstName = firstNameField.getText().trim();
-        String lastName = lastNameField.getText().trim();
-        Customer customer = null;
+        String lastName = surnameField.getText().trim();
         try {
-            customer = Main.getValvet().createCustomer(firstName, lastName, personalNumber);
+            Customer customer = Main.getValvet().createCustomer(firstName, lastName, personalNumber);
             switcher.switchToCustomerPage(event, customer);
         } catch (IOException e) {
             e.printStackTrace();
@@ -38,6 +42,7 @@ public class CreateCustomerController {
         } catch (Exception e){
             MessageDisplayer.displayErrorAlert("Error", e.getMessage());
         }
+
     }
 
     // Returns to the main menu from the "Create Customer"-screen
@@ -54,7 +59,7 @@ public class CreateCustomerController {
     public void clearTextFields(ActionEvent actionEvent) {
         personalNumberField.clear();
         firstNameField.clear();
-        lastNameField.clear();
+        surnameField.clear();
     }
 
 }

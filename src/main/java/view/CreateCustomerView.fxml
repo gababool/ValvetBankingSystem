@@ -13,7 +13,7 @@
    <children>
       <TextField fx:id="personalNumberField" layoutX="137.0" layoutY="120.0" prefHeight="26.0" prefWidth="327.0" promptText="Personal Number" stylesheets="@CSS/SmallerItems.css" />
       <TextField fx:id="firstNameField" layoutX="137.0" layoutY="172.0" prefHeight="26.0" prefWidth="327.0" promptText="First Name" stylesheets="@CSS/SmallerItems.css" />
-      <TextField fx:id="lastNameField" layoutX="137.0" layoutY="207.0" prefHeight="26.0" prefWidth="327.0" promptText="Last Name" stylesheets="@CSS/SmallerItems.css" />
+      <TextField fx:id="surnameField" layoutX="137.0" layoutY="207.0" prefHeight="26.0" prefWidth="327.0" promptText="Last Name" stylesheets="@CSS/SmallerItems.css" />
       <Label layoutX="137.0" layoutY="103.0" prefHeight="17.0" prefWidth="191.0" stylesheets="@CSS/SmallerItems.css" text="Customer Personal Number:" />
       <Label layoutX="137.0" layoutY="155.0" prefHeight="17.0" prefWidth="106.0" stylesheets="@CSS/SmallerItems.css" text="Customer Name:" />
       <Text fill="WHITE" layoutX="137.0" layoutY="73.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Register Customer" textAlignment="CENTER" wrappingWidth="327.0">
