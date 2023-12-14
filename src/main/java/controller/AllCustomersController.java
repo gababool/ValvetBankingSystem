@@ -71,17 +71,27 @@ public class AllCustomersController implements Initializable {
     }
 
     // Switches to the main menu screen.
-    public void goToMainMenu(ActionEvent event) throws IOException {
-        switcher.switchToMain(event);
+    public void goToMainMenu(ActionEvent event) {
+        try {
+            switcher.switchToMain(event);
+        } catch (Exception e) {
+            e.printStackTrace();
+            MessageDisplayer.displayIOErrorAlert();
+        }
     }
 
     // Switches screen to the customer page of the selected customer in the table.
-    public void goToCustomer(ActionEvent event) throws IOException {
+    public void goToCustomer(ActionEvent event){
         Customer customer = allCustomers.getSelectionModel().getSelectedItem();
         if (customer == null){
             MessageDisplayer.displayErrorAlert("Error", "No customer selected");
         }
-        switcher.switchToCustomerPage(event, customer);
+        try {
+            switcher.switchToCustomerPage(event, customer);
+        } catch (Exception e) {
+            e.printStackTrace();
+            MessageDisplayer.displayIOErrorAlert();
+        }
     }
 
 

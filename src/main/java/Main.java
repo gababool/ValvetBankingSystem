@@ -13,13 +13,13 @@ public class Main extends Application {
 
     private static Valvet valv;
 
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) {
         valv = ValvetFileManager.loadBank();
         launch(args);
     }
 
     @Override
-    public void start(Stage stage) throws Exception {
+    public void start(Stage stage) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/src/main/java/view/MainView.fxml"));
             Parent root = loader.load();

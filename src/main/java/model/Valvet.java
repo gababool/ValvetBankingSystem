@@ -32,7 +32,7 @@ public class Valvet implements Serializable{
         return newCustomer;
     }
 
-    public void deleteCustomer(String personalNumber) throws Exception {
+    public void deleteCustomer(String personalNumber) throws BalanceNotZeroException {
         Customer customer = this.customers.get(personalNumber);
         if (customer.getTotalBalance() != 0) {
            throw new BalanceNotZeroException("Deletion failed. Customer has remaining balance: " + customer.getTotalBalance());
@@ -49,7 +49,7 @@ public class Valvet implements Serializable{
         Customer customer = this.getCustomer(personalNumber);
         int numberOfAccounts = customer.getNumberOfAccounts();
         if (numberOfAccounts >= 9){
-            throw new InvalidInputException("Cannot have more than 9 accounts");
+            throw new InvalidInputException("Customer cannot have more than 9 accounts");
         }
         if (personalNumber.matches(".*[a-zA-Z].*")){
             throw new InvalidInputException("Personal number cannot contain letters");

@@ -1,8 +1,5 @@
 package src.main.java.controller;
 
-import javafx.beans.property.BooleanProperty;
-import javafx.beans.property.SimpleBooleanProperty;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -12,7 +9,6 @@ import src.main.java.Main;
 import src.main.java.model.Customer;
 import src.main.java.model.*;
 import javafx.event.ActionEvent;
-import java.io.IOException;
 import java.util.LinkedHashMap;
 
 public class CustomerController{
@@ -54,37 +50,57 @@ public class CustomerController{
     }
 
     // Switches screen from the customer to the selected account screen, from the table.
-    public void goToAccount(ActionEvent event) throws IOException {
+    public void goToAccount(ActionEvent event) {
         Account account = allAccounts.getSelectionModel().getSelectedItem();
         if (account == null){
             MessageDisplayer.displayErrorAlert("Error", "No account selected");
         }
         Customer customer = Main.getValvet().getCustomer(personalNumberLabel.getText().replace("Personal Number: ", ""));
-        switcher.switchToAccountPage(event, account, customer);
+        try {
+            switcher.switchToAccountPage(event, account, customer);
+        } catch (Exception e) {
+            e.printStackTrace();
+            MessageDisplayer.displayIOErrorAlert();
+        }
     }
 
     // Switches screen to the main menu
-    public void goToMainMenu(ActionEvent event) throws IOException {
-        switcher.switchToMain(event);
+    public void goToMainMenu(ActionEvent event) {
+        try {
+            switcher.switchToMain(event);
+        } catch (Exception e) {
+            e.printStackTrace();
+            MessageDisplayer.displayIOErrorAlert();
+        }
     }
 
     // Switches screen to the all customers overview screen
-    public void goToAllCustomers(ActionEvent event) throws IOException {
-        switcher.switchToAllCustomersView(event, customer);
+    public void goToAllCustomers(ActionEvent event) {
+        try {
+            switcher.switchToAllCustomersView(event, customer);
+        } catch (Exception e) {
+            e.printStackTrace();
+            MessageDisplayer.displayIOErrorAlert();
+        }
     }
 
     // Switches screen from the customer to the transaction page, based on which account was selected in the table
     // for the transaction.
-    public void goToTransactionView(ActionEvent event) throws IOException {
+    public void goToTransactionView(ActionEvent event) {
         Account account = allAccounts.getSelectionModel().getSelectedItem();
         if (account == null){
             newTransactionErrorLabel.setText("No account selected");
         }
-        switcher.switchToTransactionPage(event, customer, account);
+        try {
+            switcher.switchToTransactionPage(event, customer, account);
+        } catch (Exception e) {
+            e.printStackTrace();
+            MessageDisplayer.displayIOErrorAlert();
+        }
     }
 
     // Deletes customer from the system, unless they have remaining balance. Displays a confirmation message before.
-    public void deleteCustomer(ActionEvent event) throws IOException {
+    public void deleteCustomer(ActionEvent event)   {
         boolean result = MessageDisplayer.displayConfirmationBox("Do you want to delete customer: " + customer.getFullName() + "?");
         if (result){
             try {
@@ -92,8 +108,11 @@ public class CustomerController{
                 if (customer != null) {
                     switcher.switchToAllCustomersView(event);
                 }
-            } catch (Exception e) {
+            } catch (BalanceNotZeroException e) {
                 MessageDisplayer.displayErrorAlert("Error", e.getMessage());
+            } catch (Exception e){
+                e.printStackTrace();
+                MessageDisplayer.displayIOErrorAlert();
             }
         }
     }

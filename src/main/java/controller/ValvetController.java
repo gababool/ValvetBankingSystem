@@ -25,7 +25,7 @@ public class ValvetController {
 
     // Finds customer by entering a valid personal number into the TextField at the main menu
     // and switches scene to the customer's page
-    public void findCustomer(ActionEvent event) throws IOException {
+    public void findCustomer(ActionEvent event)  {
         Customer customer = Main.getValvet().getCustomer(personalNumberField.getText());
         if (personalNumberField.getText().isBlank()){
             MessageDisplayer.displayErrorAlert("Error", "Please enter a personal number");
@@ -33,22 +33,42 @@ public class ValvetController {
         else if (customer == null){
             MessageDisplayer.displayErrorAlert("Error", "Customer not found");
         }
-        switcher.switchToCustomerPage(event, customer);
+        try {
+            switcher.switchToCustomerPage(event, customer);
+        } catch (Exception e) {
+            e.printStackTrace();
+            MessageDisplayer.displayIOErrorAlert();
+        }
     }
 
     // Switches screen from main menu to the screen for making a new transaction
-    public void goToTransactionScreen(ActionEvent actionEvent) throws IOException {
-        switcher.switchToTransactionPage(actionEvent);
+    public void goToTransactionScreen(ActionEvent actionEvent)  {
+        try {
+            switcher.switchToTransactionPage(actionEvent);
+        } catch (Exception e) {
+            e.printStackTrace();
+            MessageDisplayer.displayIOErrorAlert();
+        }
     }
 
     // Switches screen from main menu to the searchable list of all customers
-    public void viewAllCustomers(ActionEvent actionEvent) throws IOException {
-        switcher.switchToAllCustomersView(actionEvent);
+    public void viewAllCustomers(ActionEvent actionEvent) {
+        try {
+            switcher.switchToAllCustomersView(actionEvent);
+        } catch (Exception e) {
+            e.printStackTrace();
+            MessageDisplayer.displayIOErrorAlert();
+        }
     }
 
     // Switches screen to the page for creating and adding a new customer to the system
-    public void addNewCustomer(ActionEvent actionEvent) throws IOException {
-        switcher.switchToCreateCustomerView(actionEvent);
+    public void addNewCustomer(ActionEvent actionEvent)  {
+        try {
+            switcher.switchToCreateCustomerView(actionEvent);
+        } catch (Exception e) {
+            e.printStackTrace();
+            MessageDisplayer.displayIOErrorAlert();
+        }
     }
 
 

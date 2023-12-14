@@ -68,11 +68,21 @@ public class TransactionController {
 
     // Switches screen to either the customer view or the main menu, depending on from where you entered the
     // transaction screen
-    public void returnToLastView(ActionEvent event) throws IOException {
+    public void returnToLastView(ActionEvent event){
         if (customer == null){
-            switcher.switchToMain(event);
+            try {
+                switcher.switchToMain(event);
+            } catch (Exception e) {
+                e.printStackTrace();
+                MessageDisplayer.displayIOErrorAlert();
+            }
         } else {
-            switcher.switchToCustomerPage(event, customer);
+            try {
+                switcher.switchToCustomerPage(event, customer);
+            } catch (Exception e) {
+                e.printStackTrace();
+                MessageDisplayer.displayIOErrorAlert();
+            }
         }
 
     }

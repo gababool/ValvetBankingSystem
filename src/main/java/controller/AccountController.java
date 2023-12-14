@@ -32,7 +32,6 @@ public class AccountController {
     @FXML private TableColumn<Transaction, String> transactionIDColumn;
 
     private Button printButton;
-
     private Account account;
     private Customer customer;
     private static SceneSwitcher switcher = new SceneSwitcher();
@@ -50,7 +49,6 @@ public class AccountController {
         this.account = account;
         this.customer = customer;
 
-
         titleNameLabel.setText("Customer Name: " + customer.getFullName());
         personalNumberLabel.setText("PNO: " + customer.getPERSONAL_NUMBER());
         accountNumberLabel.setText("Account Number: " + account.getAccountNumber());
@@ -67,13 +65,23 @@ public class AccountController {
     }
 
     // Switches screen to the main menu
-    public void goToMainMenu(ActionEvent event) throws IOException {
-        switcher.switchToMain(event);
+    public void goToMainMenu(ActionEvent event){
+        try {
+            switcher.switchToMain(event);
+        } catch (Exception e) {
+            e.printStackTrace();
+            MessageDisplayer.displayIOErrorAlert();
+        }
     }
 
     // Switches screen to the customer page of the account owner.
-    public void goToCustomer(ActionEvent event) throws IOException{
-        switcher.switchToCustomerPage(event, customer);
+    public void goToCustomer(ActionEvent event) {
+        try {
+            switcher.switchToCustomerPage(event, customer);
+        } catch (Exception e) {
+            e.printStackTrace();
+            MessageDisplayer.displayIOErrorAlert();
+        }
     }
 
     // Opens the window for physically (or PDF) printing out all transactions for the account.
