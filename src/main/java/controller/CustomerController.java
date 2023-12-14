@@ -117,10 +117,11 @@ public class CustomerController{
         }
     }
 
-    // Adds new account to the customer
+    // Adds new account to the customer and saves the bank data.
     public void addAccount(ActionEvent event){
         try {
             Main.getValvet().createAccount(customer.getPERSONAL_NUMBER());
+            ValvetFileManager.saveBank(Main.getValvet());
         } catch (Exception e){
             MessageDisplayer.displayErrorAlert("Error", e.getMessage());
         }
@@ -128,13 +129,14 @@ public class CustomerController{
     }
 
     // Deletes a selected account from the customer, unless it has remaining balance. Displays confirmation message
-    // before.
+    // before and saves the bank data.
     public void deleteAccount(ActionEvent event){
         boolean result = MessageDisplayer.displayConfirmationBox("Do you want to delete the selected account?");
         if (result){
             try {
                 Account account = allAccounts.getSelectionModel().getSelectedItem();
                 Main.getValvet().deleteAccount(customer.getPERSONAL_NUMBER(), account.getAccountNumber());
+                ValvetFileManager.saveBank(Main.getValvet());
             } catch (NullPointerException e){
                 MessageDisplayer.displayErrorAlert("Error", "No account selected");
             } catch (BalanceNotZeroException | CannotBeZeroException e) {

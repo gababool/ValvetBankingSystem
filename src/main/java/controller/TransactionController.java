@@ -8,6 +8,8 @@ import src.main.java.Main;
 import src.main.java.model.Customer;
 import src.main.java.model.Account;
 import src.main.java.model.Transaction;
+import src.main.java.model.ValvetFileManager;
+
 import java.io.IOException;
 
 public class TransactionController {
@@ -44,6 +46,7 @@ public class TransactionController {
             Transaction transaction = Main.getValvet().makeTransaction(senderAccountNumber, receiverAccountNumber, value);
             MessageDisplayer.displayMessage("Transaction Successfully made: " + lineSeparator + transaction.toString());
             amountTextField.clear();
+            ValvetFileManager.saveBank(Main.getValvet());
         } catch (NumberFormatException e) {
             MessageDisplayer.displayErrorAlert("Error", "Amount not valid");
         } catch (Exception e) {
