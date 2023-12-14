@@ -83,7 +83,7 @@ public class AllCustomersController implements Initializable {
     public void goToCustomer(ActionEvent event){
         Customer customer = allCustomers.getSelectionModel().getSelectedItem();
         if (customer == null){
-            MessageDisplayer.displayErrorAlert("Error", "No customer selected");
+            MessageDisplayer.displayMessage("Please select a customer");
         } else {
             try {
                 switcher.switchToCustomerPage(event, customer);
