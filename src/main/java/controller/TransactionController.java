@@ -75,14 +75,14 @@ public class TransactionController {
         if (customer == null){
             try {
                 switcher.switchToMain(event);
-            } catch (Exception e) {
+            } catch (IOException e) {
                 e.printStackTrace();
                 MessageDisplayer.displayIOErrorAlert();
             }
         } else {
             try {
                 switcher.switchToCustomerPage(event, customer);
-            } catch (Exception e) {
+            } catch (IOException e) {
                 e.printStackTrace();
                 MessageDisplayer.displayIOErrorAlert();
             }

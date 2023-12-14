@@ -32,12 +32,13 @@ public class ValvetController {
         }
         else if (customer == null){
             MessageDisplayer.displayErrorAlert("Error", "Customer not found");
-        }
-        try {
-            switcher.switchToCustomerPage(event, customer);
-        } catch (Exception e) {
-            e.printStackTrace();
-            MessageDisplayer.displayIOErrorAlert();
+        } else {
+            try {
+                switcher.switchToCustomerPage(event, customer);
+            } catch (IOException e) {
+                e.printStackTrace();
+                MessageDisplayer.displayIOErrorAlert();
+            }
         }
     }
 
@@ -45,7 +46,7 @@ public class ValvetController {
     public void goToTransactionScreen(ActionEvent actionEvent)  {
         try {
             switcher.switchToTransactionPage(actionEvent);
-        } catch (Exception e) {
+        } catch (IOException e) {
             e.printStackTrace();
             MessageDisplayer.displayIOErrorAlert();
         }
@@ -55,7 +56,7 @@ public class ValvetController {
     public void viewAllCustomers(ActionEvent actionEvent) {
         try {
             switcher.switchToAllCustomersView(actionEvent);
-        } catch (Exception e) {
+        } catch (IOException e) {
             e.printStackTrace();
             MessageDisplayer.displayIOErrorAlert();
         }
@@ -65,7 +66,7 @@ public class ValvetController {
     public void addNewCustomer(ActionEvent actionEvent)  {
         try {
             switcher.switchToCreateCustomerView(actionEvent);
-        } catch (Exception e) {
+        } catch (IOException e) {
             e.printStackTrace();
             MessageDisplayer.displayIOErrorAlert();
         }

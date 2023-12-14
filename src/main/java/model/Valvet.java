@@ -18,7 +18,7 @@ public class Valvet implements Serializable{
     public Valvet(){}
 
     // Create and Delete customers
-    public Customer createCustomer(String firstName, String surname, String personalNumber) throws Exception{
+    public Customer createCustomer(String firstName, String surname, String personalNumber) throws InvalidInputException, AlreadyExistsException, NotFoundException{
         if (!checkValidCustomerInfo(firstName, surname, personalNumber)){
             throw new InvalidInputException("Entered information not valid");
         }
@@ -42,7 +42,7 @@ public class Valvet implements Serializable{
     }
 
     // Create and delete Account
-    public void createAccount(String personalNumber) throws Exception {
+    public void createAccount(String personalNumber) throws InvalidInputException, NotFoundException {
         if (!customers.containsKey(personalNumber)) {
             throw new NotFoundException("Customer not found");
         }
@@ -72,7 +72,7 @@ public class Valvet implements Serializable{
             }
         }
         if (!(account.getBalance() == 0)) {
-            throw new BalanceNotZeroException("Account could not be deleted. Balance is not zero. ");
+            throw new BalanceNotZeroException("Account could not be deleted. Balance must be zero.");
         }
         else if (customers.get(personalNumber).getNumberOfAccounts() == 1){
             throw new CannotBeZeroException("Customer cannot have zero accounts");
@@ -81,9 +81,13 @@ public class Valvet implements Serializable{
     }
 
     // Update Customers names
-    public Customer updateCustomerFirstName(String personalNumber, String name){
+    public Customer updateCustomerName(String personalNumber, String firstName, String surname) throws InvalidInputException {
+        if (!checkValidCustomerInfo(firstName, surname, personalNumber)){
+            throw new InvalidInputException("Entered information not valid");
+        }
         Customer customer = customers.get(personalNumber);
-        customer.setFirstName(name);
+        customer.setFirstName(firstName);
+        customer.setSurname(surname);
         return customer;
     }
 
@@ -132,10 +136,7 @@ public class Valvet implements Serializable{
         if (receiverAccountNumber.isBlank()){
             throw new InvalidInputException("Receiving account number cannot be blank");
         }
-        if (senderAccountNumber.matches(".*[a-zA-Z].*")){
-            throw new InvalidInputException("Account number cannot contain letters");
-        }
-        if (receiverAccountNumber.matches(".*[a-zA-Z].*")){
+        if (senderAccountNumber.matches(".*[a-zA-ZåäöÅÄÖ].*") || receiverAccountNumber.matches(".*[a-zA-ZåäöÅÄÖ].*")){
             throw new InvalidInputException("Account number cannot contain letters");
         }
 
@@ -182,7 +183,10 @@ public class Valvet implements Serializable{
     public boolean checkValidCustomerInfo(String firstName, String surname, String personalNumber){
         boolean validPNO = true;
         boolean validName = true;
-        if (firstName.isBlank() || surname.isBlank()){
+        if (firstName.isBlank() || surname.isBlank()) {
+            validName = false;
+        }
+        else if (!firstName.matches("^[a-zA-ZåäöÅÄÖ]*$") || !surname.matches("^[a-zA-ZåäöÅÄÖ]*$")){
             validName = false;
         }
         else if (personalNumber.length() != 12 ){
@@ -191,7 +195,6 @@ public class Valvet implements Serializable{
         else if (personalNumber.isBlank()){
             validPNO = false;
         }
-        // Add more conditionals if necessary
         return validPNO && validName;
     }
 

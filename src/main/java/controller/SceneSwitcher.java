@@ -84,5 +84,12 @@ public class SceneSwitcher {
         prepareScene(event, root, filePath);
     }
 
+    public void switchToUpdateCustomerView(ActionEvent event, Customer customer) throws IOException {
+        String filePath = "/src/main/java/view/UpdateCustomerView.fxml";
+        FXMLLoader loader = prepareScene(event, root, filePath);
+        UpdateCustomerController updateCustomerController = loader.getController();
+        updateCustomerController.loadCustomerInfo(customer);
+    }
+
 
 }

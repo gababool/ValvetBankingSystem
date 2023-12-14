@@ -9,6 +9,8 @@ import src.main.java.Main;
 import src.main.java.model.Customer;
 import src.main.java.model.*;
 import javafx.event.ActionEvent;
+
+import java.io.IOException;
 import java.util.LinkedHashMap;
 
 public class CustomerController{
@@ -17,6 +19,9 @@ public class CustomerController{
     @FXML public Button returnToMenuButton;
     @FXML public Button newTransactionButton;
     @FXML public Button deleteCustomerButton;
+    public Button updateCustomerInfoButton;
+    @FXML public Button addAccountButton;
+    @FXML public Button deleteAccount;
     @FXML private Label titleNameLabel;
     @FXML private Label personalNumberLabel;
     @FXML private Button goToAccountButton;
@@ -54,21 +59,22 @@ public class CustomerController{
         Account account = allAccounts.getSelectionModel().getSelectedItem();
         if (account == null){
             MessageDisplayer.displayErrorAlert("Error", "No account selected");
+        } else {
+            try {
+                switcher.switchToAccountPage(event, account, customer);
+            } catch (IOException e) {
+                e.printStackTrace();
+                MessageDisplayer.displayIOErrorAlert();
+            }
         }
         Customer customer = Main.getValvet().getCustomer(personalNumberLabel.getText().replace("Personal Number: ", ""));
-        try {
-            switcher.switchToAccountPage(event, account, customer);
-        } catch (Exception e) {
-            e.printStackTrace();
-            MessageDisplayer.displayIOErrorAlert();
-        }
     }
 
     // Switches screen to the main menu
     public void goToMainMenu(ActionEvent event) {
         try {
             switcher.switchToMain(event);
-        } catch (Exception e) {
+        } catch (IOException e) {
             e.printStackTrace();
             MessageDisplayer.displayIOErrorAlert();
         }
@@ -78,7 +84,7 @@ public class CustomerController{
     public void goToAllCustomers(ActionEvent event) {
         try {
             switcher.switchToAllCustomersView(event, customer);
-        } catch (Exception e) {
+        } catch (IOException e) {
             e.printStackTrace();
             MessageDisplayer.displayIOErrorAlert();
         }
@@ -90,12 +96,13 @@ public class CustomerController{
         Account account = allAccounts.getSelectionModel().getSelectedItem();
         if (account == null){
             newTransactionErrorLabel.setText("No account selected");
-        }
-        try {
-            switcher.switchToTransactionPage(event, customer, account);
-        } catch (Exception e) {
-            e.printStackTrace();
-            MessageDisplayer.displayIOErrorAlert();
+        } else {
+            try {
+                switcher.switchToTransactionPage(event, customer, account);
+            } catch (IOException e) {
+                e.printStackTrace();
+                MessageDisplayer.displayIOErrorAlert();
+            }
         }
     }
 
@@ -110,7 +117,7 @@ public class CustomerController{
                 }
             } catch (BalanceNotZeroException e) {
                 MessageDisplayer.displayErrorAlert("Error", e.getMessage());
-            } catch (Exception e){
+            } catch (IOException e){
                 e.printStackTrace();
                 MessageDisplayer.displayIOErrorAlert();
             }
@@ -147,4 +154,12 @@ public class CustomerController{
 
     }
 
+    public void goToUpdateCustomerView(ActionEvent event) {
+        try {
+            switcher.switchToUpdateCustomerView(event, customer);
+        } catch (IOException e) {
+            e.printStackTrace();
+            MessageDisplayer.displayIOErrorAlert();
+        }
+    }
 }

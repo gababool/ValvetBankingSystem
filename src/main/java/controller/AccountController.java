@@ -68,7 +68,7 @@ public class AccountController {
     public void goToMainMenu(ActionEvent event){
         try {
             switcher.switchToMain(event);
-        } catch (Exception e) {
+        } catch (IOException e) {
             e.printStackTrace();
             MessageDisplayer.displayIOErrorAlert();
         }
@@ -78,7 +78,7 @@ public class AccountController {
     public void goToCustomer(ActionEvent event) {
         try {
             switcher.switchToCustomerPage(event, customer);
-        } catch (Exception e) {
+        } catch (IOException e) {
             e.printStackTrace();
             MessageDisplayer.displayIOErrorAlert();
         }

@@ -5,7 +5,11 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import src.main.java.Main;
+import src.main.java.model.AlreadyExistsException;
 import src.main.java.model.Customer;
+import src.main.java.model.InvalidInputException;
+import src.main.java.model.NotFoundException;
+
 import java.io.IOException;
 
 public class CreateCustomerController {
@@ -21,28 +25,27 @@ public class CreateCustomerController {
 
     // Registers a new customer based on information entered in the "Create customer"-screen, if data is valid.
     public void registerCustomerAction(ActionEvent event)  {
-        String personalNumber = personalNumberField.getText();
-        String firstName = firstNameField.getText();
-        String lastName = lastNameField.getText();
+        String personalNumber = personalNumberField.getText().trim();
+        String firstName = firstNameField.getText().trim();
+        String lastName = lastNameField.getText().trim();
         Customer customer = null;
         try {
             customer = Main.getValvet().createCustomer(firstName, lastName, personalNumber);
-        } catch (Exception e) {
-            MessageDisplayer.displayErrorAlert("Error", e.getMessage());
-        }
-        try {
+            Main.getValvet().createAccount(customer.getPERSONAL_NUMBER());
             switcher.switchToCustomerPage(event, customer);
-        } catch (Exception e) {
+        } catch (InvalidInputException | AlreadyExistsException | NotFoundException e) {
+            MessageDisplayer.displayErrorAlert("Error", e.getMessage());
+        } catch (IOException e) {
             e.printStackTrace();
             MessageDisplayer.displayIOErrorAlert();
         }
     }
 
-    // Returns to the main menu from the "Create Customer"-screen
+        // Returns to the main menu from the "Create Customer"-screen
     public void returnToMainMenu(ActionEvent actionEvent) {
         try {
             switcher.switchToMain(actionEvent);
-        } catch (Exception e) {
+        } catch (IOException e) {
             e.printStackTrace();
             MessageDisplayer.displayIOErrorAlert();
         }

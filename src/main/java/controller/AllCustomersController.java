@@ -74,7 +74,7 @@ public class AllCustomersController implements Initializable {
     public void goToMainMenu(ActionEvent event) {
         try {
             switcher.switchToMain(event);
-        } catch (Exception e) {
+        } catch (IOException e) {
             e.printStackTrace();
             MessageDisplayer.displayIOErrorAlert();
         }
@@ -85,16 +85,14 @@ public class AllCustomersController implements Initializable {
         Customer customer = allCustomers.getSelectionModel().getSelectedItem();
         if (customer == null){
             MessageDisplayer.displayErrorAlert("Error", "No customer selected");
-        }
-        try {
-            switcher.switchToCustomerPage(event, customer);
-        } catch (Exception e) {
-            e.printStackTrace();
-            MessageDisplayer.displayIOErrorAlert();
+        } else {
+            try {
+                switcher.switchToCustomerPage(event, customer);
+            } catch (IOException e) {
+                e.printStackTrace();
+                MessageDisplayer.displayIOErrorAlert();
+            }
         }
     }
-
-
-
 
 }

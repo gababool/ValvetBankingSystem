@@ -20,17 +20,18 @@
       </Label>
       <Label fx:id="numberOfAccountsLabel" layoutX="21.0" layoutY="122.0" stylesheets="@CSS/SmallerItems.css" text="Number of Accounts" />
       <Button fx:id="returnToMenuButton" layoutX="480.0" layoutY="355.0" mnemonicParsing="false" onAction="#goToMainMenu" prefHeight="25.0" prefWidth="110.0" stylesheets="@CSS/SmallerItems.css" text="Return to Menu" />
-      <Button fx:id="newTransactionButton" layoutX="21.0" layoutY="271.0" mnemonicParsing="false" onAction="#goToTransactionView" prefHeight="40.0" prefWidth="207.0" stylesheets="@CSS/BiggerItems.css" text="New Transaction" />
+      <Button fx:id="newTransactionButton" layoutX="21.0" layoutY="180.0" mnemonicParsing="false" onAction="#goToTransactionView" prefHeight="40.0" prefWidth="207.0" stylesheets="@CSS/BiggerItems.css" text="New Transaction" />
       <Button fx:id="addAccountButton" layoutX="366.0" layoutY="320.0" mnemonicParsing="false" onAction="#addAccount" prefHeight="25.0" prefWidth="110.0" stylesheets="@CSS/SmallerItems.css" text="Add Account" />
       <Button fx:id="deleteAccount" layoutX="480.0" layoutY="320.0" mnemonicParsing="false" onAction="#deleteAccount" prefHeight="25.0" prefWidth="110.0" stylesheets="@CSS/SmallerItems.css" text="Delete Account" textFill="RED" underline="true" />
       <Button fx:id="deleteCustomerButton" layoutX="21.0" layoutY="355.0" mnemonicParsing="false" onAction="#deleteCustomer" prefHeight="25.0" prefWidth="207.0" stylesheets="@CSS/SmallerItems.css" text="Delete Customer" />
       <Button fx:id="goToAllCustomersButton" layoutX="252.0" layoutY="355.0" mnemonicParsing="false" onAction="#goToAllCustomers" prefHeight="25.0" prefWidth="224.0" stylesheets="@CSS/SmallerItems.css" text="Return to All Customers" />
-      <Label fx:id="newTransactionErrorLabel" layoutX="21.0" layoutY="245.0" prefHeight="17.0" prefWidth="207.0" textFill="RED" />
+      <Label fx:id="newTransactionErrorLabel" layoutX="21.0" layoutY="158.0" prefHeight="17.0" prefWidth="207.0" textFill="RED" />
       <TableView fx:id="allAccounts" layoutX="252.0" layoutY="39.0" prefHeight="271.0" prefWidth="338.0" stylesheets="@CSS/SmallerItems.css">
         <columns>
           <TableColumn fx:id="accountNumberColumn" prefWidth="165.0" resizable="false" text="Account Number" />
           <TableColumn fx:id="balanceColumn" maxWidth="172.0" prefWidth="172.0" resizable="false" text="Balance" />
         </columns>
       </TableView>
+      <Button fx:id="updateCustomerInfoButton" layoutX="21.0" layoutY="237.0" mnemonicParsing="false" onAction="#goToUpdateCustomerView" prefHeight="40.0" prefWidth="207.0" stylesheets="@CSS/BiggerItems.css" text="Update Customer Information" />
    </children>
 </AnchorPane>
