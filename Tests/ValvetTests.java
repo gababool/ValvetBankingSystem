@@ -29,11 +29,5 @@ public class ValvetTests {
     }
 
 
-    @Test
-    public void shouldDeleteCustomer() throws Exception {
-
-    }
-
-
 }
 

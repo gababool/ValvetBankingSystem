@@ -70,7 +70,6 @@ public class AccountController {
             switcher.switchToMain(event);
         } catch (IOException e) {
             e.printStackTrace();
-            MessageDisplayer.displayIOErrorAlert();
         }
     }
 
@@ -80,7 +79,6 @@ public class AccountController {
             switcher.switchToCustomerPage(event, customer);
         } catch (IOException e) {
             e.printStackTrace();
-            MessageDisplayer.displayIOErrorAlert();
         }
     }
 

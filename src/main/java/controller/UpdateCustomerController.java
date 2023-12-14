@@ -36,7 +36,6 @@ public class UpdateCustomerController {
             switcher.switchToCustomerPage(event, customer);
         } catch (IOException e) {
             e.printStackTrace();
-            MessageDisplayer.displayIOErrorAlert();
         } catch (Exception e) {
             MessageDisplayer.displayErrorAlert("Error", e.getMessage());
         }
@@ -47,7 +46,6 @@ public class UpdateCustomerController {
             switcher.switchToCustomerPage(event, customer);
         } catch (IOException e) {
             e.printStackTrace();
-            MessageDisplayer.displayIOErrorAlert();
         }
     }
 

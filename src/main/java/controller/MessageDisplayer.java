@@ -37,12 +37,5 @@ public class MessageDisplayer {
         return answer;
     }
 
-    public static void displayIOErrorAlert() {
-        Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.setTitle("Error");
-        alert.setHeaderText(null);
-        alert.setContentText("Something went wrong loading the screen");
-        alert.showAndWait();
-    }
 
 }

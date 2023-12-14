@@ -64,7 +64,6 @@ public class CustomerController{
                 switcher.switchToAccountPage(event, account, customer);
             } catch (IOException e) {
                 e.printStackTrace();
-                MessageDisplayer.displayIOErrorAlert();
             }
         }
         Customer customer = Main.getValvet().getCustomer(personalNumberLabel.getText().replace("Personal Number: ", ""));
@@ -76,7 +75,6 @@ public class CustomerController{
             switcher.switchToMain(event);
         } catch (IOException e) {
             e.printStackTrace();
-            MessageDisplayer.displayIOErrorAlert();
         }
     }
 
@@ -86,7 +84,6 @@ public class CustomerController{
             switcher.switchToAllCustomersView(event, customer);
         } catch (IOException e) {
             e.printStackTrace();
-            MessageDisplayer.displayIOErrorAlert();
         }
     }
 
@@ -101,7 +98,6 @@ public class CustomerController{
                 switcher.switchToTransactionPage(event, customer, account);
             } catch (IOException e) {
                 e.printStackTrace();
-                MessageDisplayer.displayIOErrorAlert();
             }
         }
     }
@@ -117,7 +113,6 @@ public class CustomerController{
                 }
             } catch (IOException e){
                 e.printStackTrace();
-                MessageDisplayer.displayIOErrorAlert();
             } catch (Exception e) {
                 MessageDisplayer.displayErrorAlert("Error", e.getMessage());
             }
@@ -159,7 +154,6 @@ public class CustomerController{
             switcher.switchToUpdateCustomerView(event, customer);
         } catch (IOException e) {
             e.printStackTrace();
-            MessageDisplayer.displayIOErrorAlert();
         }
     }
 }

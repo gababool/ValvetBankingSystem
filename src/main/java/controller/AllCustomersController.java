@@ -76,7 +76,6 @@ public class AllCustomersController implements Initializable {
             switcher.switchToMain(event);
         } catch (IOException e) {
             e.printStackTrace();
-            MessageDisplayer.displayIOErrorAlert();
         }
     }
 
@@ -90,7 +89,6 @@ public class AllCustomersController implements Initializable {
                 switcher.switchToCustomerPage(event, customer);
             } catch (IOException e) {
                 e.printStackTrace();
-                MessageDisplayer.displayIOErrorAlert();
             }
         }
     }

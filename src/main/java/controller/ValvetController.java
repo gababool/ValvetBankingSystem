@@ -37,7 +37,6 @@ public class ValvetController {
                 switcher.switchToCustomerPage(event, customer);
             } catch (IOException e) {
                 e.printStackTrace();
-                MessageDisplayer.displayIOErrorAlert();
             }
         }
     }
@@ -48,7 +47,6 @@ public class ValvetController {
             switcher.switchToTransactionPage(actionEvent);
         } catch (IOException e) {
             e.printStackTrace();
-            MessageDisplayer.displayIOErrorAlert();
         }
     }
 
@@ -58,7 +56,6 @@ public class ValvetController {
             switcher.switchToAllCustomersView(actionEvent);
         } catch (IOException e) {
             e.printStackTrace();
-            MessageDisplayer.displayIOErrorAlert();
         }
     }
 
@@ -68,7 +65,6 @@ public class ValvetController {
             switcher.switchToCreateCustomerView(actionEvent);
         } catch (IOException e) {
             e.printStackTrace();
-            MessageDisplayer.displayIOErrorAlert();
         }
     }
 

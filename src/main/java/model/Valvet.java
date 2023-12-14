@@ -13,23 +13,23 @@ public class Valvet implements Serializable{
 
     public Valvet(String clearingNumber){
         this.clearingNumber = clearingNumber;
-        this.customers = new LinkedHashMap<String, Customer>();
+        this.customers = new LinkedHashMap<>();
     }
     public Valvet(){}
 
     // Create and Delete customers
     public Customer createCustomer(String firstName, String surname, String personalNumber) throws Exception{
-        if (!checkValidCustomerInfo(firstName, surname, personalNumber)){
-            throw new InvalidInputException("Entered information not valid");
-        }
         if (this.customers.containsKey(personalNumber)){
             throw new AlreadyExistsException("Customer already exists.");
         }
-        Customer newCustomer = new Customer(firstName, surname, personalNumber);
-        this.customers.put(personalNumber, newCustomer);
-        createAccount(personalNumber);
-        System.out.println("Customer: " + newCustomer + " successfully created!");
-        return newCustomer;
+        if (checkValidCustomerInfo(firstName, surname, personalNumber)){
+            Customer newCustomer = new Customer(firstName, surname, personalNumber);
+            this.customers.put(personalNumber, newCustomer);
+            createAccount(personalNumber);
+            return newCustomer;
+        } else {
+            throw new InvalidInputException("Entered information not valid");
+        }
     }
 
     public void deleteCustomer(String personalNumber) throws Exception {
@@ -46,21 +46,12 @@ public class Valvet implements Serializable{
         if (!customers.containsKey(personalNumber)) {
             throw new NotFoundException("Customer not found");
         }
-        Customer customer = this.getCustomer(personalNumber);
-        int numberOfAccounts = customer.getNumberOfAccounts();
-        if (numberOfAccounts >= 9){
+        Customer customer = customers.get(personalNumber);
+        if (customer.getNumberOfAccounts() >= 9){
             throw new InvalidInputException("Customer cannot have more than 9 accounts");
         }
-        if (personalNumber.matches(".*[a-zA-Z].*")){
-            throw new InvalidInputException("Personal number cannot contain letters");
-        }
-        if (personalNumber.matches("\\d+")){
-            String accountNumber = clearingNumber + "-" + generateRandomUniqueNumber();
-            customer.createAccount(accountNumber);
-        } else {
-            throw new InvalidInputException("Invalid information entered");
-        }
-
+        String accountNumber = clearingNumber + "-" + generateRandomUniqueNumber();
+        customer.createAccount(accountNumber);
     }
 
     public void deleteAccount(String personalNumber, String accountNumber) throws Exception {
@@ -193,6 +184,9 @@ public class Valvet implements Serializable{
             validPNO = false;
         }
         else if (personalNumber.isBlank()){
+            validPNO = false;
+        }
+        else if (personalNumber.matches(".*[a-zA-Z].*")){
             validPNO = false;
         }
         return validPNO && validName;

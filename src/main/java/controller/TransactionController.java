@@ -77,14 +77,12 @@ public class TransactionController {
                 switcher.switchToMain(event);
             } catch (IOException e) {
                 e.printStackTrace();
-                MessageDisplayer.displayIOErrorAlert();
             }
         } else {
             try {
                 switcher.switchToCustomerPage(event, customer);
             } catch (IOException e) {
                 e.printStackTrace();
-                MessageDisplayer.displayIOErrorAlert();
             }
         }
 

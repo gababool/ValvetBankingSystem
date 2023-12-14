@@ -38,11 +38,9 @@ public class CreateCustomerController {
             switcher.switchToCustomerPage(event, customer);
         } catch (IOException e) {
             e.printStackTrace();
-            MessageDisplayer.displayIOErrorAlert();
         } catch (Exception e){
             MessageDisplayer.displayErrorAlert("Error", e.getMessage());
         }
-
     }
 
     // Returns to the main menu from the "Create Customer"-screen
@@ -51,7 +49,6 @@ public class CreateCustomerController {
             switcher.switchToMain(actionEvent);
         } catch (IOException e) {
             e.printStackTrace();
-            MessageDisplayer.displayIOErrorAlert();
         }
     }
 
