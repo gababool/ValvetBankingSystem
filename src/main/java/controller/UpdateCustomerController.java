@@ -14,7 +14,7 @@ import java.io.IOException;
 public class UpdateCustomerController {
     @FXML public TextField personalNumberField;
     @FXML public TextField firstNameField;
-    @FXML public TextField lastNameField;
+    @FXML public TextField surnameField;
     @FXML public Button updateCustomerButton;
     @FXML public Button cancelButton;
     @FXML public Button clearAllButton;
@@ -24,19 +24,21 @@ public class UpdateCustomerController {
     public void loadCustomerInfo(Customer customer){
         this.customer = customer;
         personalNumberField.setText(customer.getPERSONAL_NUMBER());
+        firstNameField.setText(customer.getFirstName());
+        surnameField.setText(customer.getSurname());
     }
     public void updateCustomerInfo(ActionEvent event) {
-        String newFirstName = firstNameField.getText();
-        String newSurname = lastNameField.getText();
-        String customerPNO = customer.getPERSONAL_NUMBER();
+        String newFirstName = firstNameField.getText().trim();
+        String newSurname = surnameField.getText().trim();
+        String customerPNO = customer.getPERSONAL_NUMBER().trim();
         try {
             Main.getValvet().updateCustomerName(customerPNO, newFirstName, newSurname);
             switcher.switchToCustomerPage(event, customer);
-        } catch (InvalidInputException e) {
-            MessageDisplayer.displayErrorAlert("Error", e.getMessage());
         } catch (IOException e) {
             e.printStackTrace();
             MessageDisplayer.displayIOErrorAlert();
+        } catch (Exception e) {
+            MessageDisplayer.displayErrorAlert("Error", e.getMessage());
         }
     }
 
@@ -51,6 +53,6 @@ public class UpdateCustomerController {
 
     public void clearTextFields(ActionEvent event) {
         firstNameField.clear();
-        lastNameField.clear();
+        surnameField.clear();
     }
 }

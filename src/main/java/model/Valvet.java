@@ -18,11 +18,11 @@ public class Valvet implements Serializable{
     public Valvet(){}
 
     // Create and Delete customers
-    public Customer createCustomer(String firstName, String surname, String personalNumber) throws InvalidInputException, AlreadyExistsException, NotFoundException{
+    public Customer createCustomer(String firstName, String surname, String personalNumber) throws Exception{
         if (!checkValidCustomerInfo(firstName, surname, personalNumber)){
             throw new InvalidInputException("Entered information not valid");
         }
-        else if (this.customers.containsKey(personalNumber)){
+        if (this.customers.containsKey(personalNumber)){
             throw new AlreadyExistsException("Customer already exists.");
         }
         Customer newCustomer = new Customer(firstName, surname, personalNumber);
@@ -32,7 +32,7 @@ public class Valvet implements Serializable{
         return newCustomer;
     }
 
-    public void deleteCustomer(String personalNumber) throws BalanceNotZeroException {
+    public void deleteCustomer(String personalNumber) throws Exception {
         Customer customer = this.customers.get(personalNumber);
         if (customer.getTotalBalance() != 0) {
            throw new BalanceNotZeroException("Deletion failed. Customer has remaining balance: " + customer.getTotalBalance());
@@ -42,7 +42,7 @@ public class Valvet implements Serializable{
     }
 
     // Create and delete Account
-    public void createAccount(String personalNumber) throws InvalidInputException, NotFoundException {
+    public void createAccount(String personalNumber) throws Exception {
         if (!customers.containsKey(personalNumber)) {
             throw new NotFoundException("Customer not found");
         }
@@ -63,7 +63,7 @@ public class Valvet implements Serializable{
 
     }
 
-    public void deleteAccount(String personalNumber, String accountNumber) throws BalanceNotZeroException, CannotBeZeroException {
+    public void deleteAccount(String personalNumber, String accountNumber) throws Exception {
         Account account = null;
         for (Customer customer : customers.values()) {
             HashMap<String, Account> accounts = customer.getAccounts();
@@ -81,7 +81,7 @@ public class Valvet implements Serializable{
     }
 
     // Update Customers names
-    public Customer updateCustomerName(String personalNumber, String firstName, String surname) throws InvalidInputException {
+    public Customer updateCustomerName(String personalNumber, String firstName, String surname) throws Exception {
         if (!checkValidCustomerInfo(firstName, surname, personalNumber)){
             throw new InvalidInputException("Entered information not valid");
         }

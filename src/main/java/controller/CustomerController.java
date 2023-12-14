@@ -44,7 +44,7 @@ public class CustomerController{
 
     // Loads in customer data and places it the appropriate fields and tables on the customer screen.
     public void loadCustomer(Customer customer){
-        this.titleNameLabel.setText("Name: " + customer.getFullName());
+        this.titleNameLabel.setText("Name: " + customer.getSurname() + ", " + customer.getFirstName());
         this.personalNumberLabel.setText("Personal Number: " + customer.getPERSONAL_NUMBER());
         this.totalBalanceLabel.setText("Total Balance: " + customer.getTotalBalance());
         this.numberOfAccountsLabel.setText("Number Of Accounts: " + customer.getNumberOfAccounts());
@@ -115,11 +115,11 @@ public class CustomerController{
                 if (customer != null) {
                     switcher.switchToAllCustomersView(event);
                 }
-            } catch (BalanceNotZeroException e) {
-                MessageDisplayer.displayErrorAlert("Error", e.getMessage());
             } catch (IOException e){
                 e.printStackTrace();
                 MessageDisplayer.displayIOErrorAlert();
+            } catch (Exception e) {
+                MessageDisplayer.displayErrorAlert("Error", e.getMessage());
             }
         }
     }
@@ -146,7 +146,7 @@ public class CustomerController{
                 ValvetFileManager.saveBank(Main.getValvet());
             } catch (NullPointerException e){
                 MessageDisplayer.displayErrorAlert("Error", "No account selected");
-            } catch (BalanceNotZeroException | CannotBeZeroException e) {
+            } catch (Exception e) {
                 MessageDisplayer.displayErrorAlert("Error", e.getMessage());
             }
             this.loadCustomer(customer);

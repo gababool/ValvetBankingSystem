@@ -31,17 +31,16 @@ public class CreateCustomerController {
         Customer customer = null;
         try {
             customer = Main.getValvet().createCustomer(firstName, lastName, personalNumber);
-            Main.getValvet().createAccount(customer.getPERSONAL_NUMBER());
             switcher.switchToCustomerPage(event, customer);
-        } catch (InvalidInputException | AlreadyExistsException | NotFoundException e) {
-            MessageDisplayer.displayErrorAlert("Error", e.getMessage());
         } catch (IOException e) {
             e.printStackTrace();
             MessageDisplayer.displayIOErrorAlert();
+        } catch (Exception e){
+            MessageDisplayer.displayErrorAlert("Error", e.getMessage());
         }
     }
 
-        // Returns to the main menu from the "Create Customer"-screen
+    // Returns to the main menu from the "Create Customer"-screen
     public void returnToMainMenu(ActionEvent actionEvent) {
         try {
             switcher.switchToMain(actionEvent);
