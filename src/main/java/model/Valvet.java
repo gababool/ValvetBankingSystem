@@ -81,12 +81,6 @@ public class Valvet implements Serializable{
         customer.setSurname(surname);
     }
 
-    public Customer updateCustomerSurname(String personalNumber, String name){
-        Customer customer = customers.get(personalNumber);
-        customer.setSurname(name);
-        return customer;
-    }
-
     // Generate a unique random account number
     public int generateRandomUniqueNumber(){
         Random random = new Random();
