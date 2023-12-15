@@ -17,10 +17,10 @@ import java.util.ResourceBundle;
 import java.util.stream.Stream;
 
 public class AllCustomersController implements Initializable {
-    @FXML public Button returnToMainMenuButton;
-    @FXML public Button goToCustomerButton;
-    @FXML public Button searchButton;
-    @FXML public TextField searchField;
+    @FXML private Button returnToMainMenuButton;
+    @FXML private Button goToCustomerButton;
+    @FXML private Button searchButton;
+    @FXML private TextField searchField;
     @FXML private TableView<Customer> allCustomers;
     @FXML private TableColumn<Customer, String> nameColumn;
     @FXML private TableColumn<Customer, String> personalNumberColumn;

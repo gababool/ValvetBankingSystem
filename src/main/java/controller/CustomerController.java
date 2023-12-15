@@ -14,14 +14,14 @@ import java.io.IOException;
 import java.util.LinkedHashMap;
 
 public class CustomerController{
-    @FXML public Label totalBalanceLabel;
-    @FXML public Label numberOfAccountsLabel;
-    @FXML public Button returnToMenuButton;
-    @FXML public Button newTransactionButton;
-    @FXML public Button deleteCustomerButton;
-    public Button updateCustomerInfoButton;
-    @FXML public Button addAccountButton;
-    @FXML public Button deleteAccount;
+    @FXML private Label totalBalanceLabel;
+    @FXML private Label numberOfAccountsLabel;
+    @FXML private Button returnToMenuButton;
+    @FXML private Button newTransactionButton;
+    @FXML private Button deleteCustomerButton;
+    @FXML private Button updateCustomerInfoButton;
+    @FXML private Button addAccountButton;
+    @FXML private Button deleteAccount;
     @FXML private Label titleNameLabel;
     @FXML private Label personalNumberLabel;
     @FXML private Button goToAccountButton;

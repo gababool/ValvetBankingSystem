@@ -14,13 +14,13 @@ import java.io.IOException;
 
 public class CreateCustomerController {
 
-    @FXML public TextField personalNumberField;
-    @FXML public TextField firstNameField;
+    @FXML private TextField personalNumberField;
+    @FXML private TextField firstNameField;
 
-    @FXML public TextField surnameField;
-    @FXML public Button registerCustomerButton;
-    @FXML public Button returnToMainMenuButton;
-    @FXML public Button clearAllButton;
+    @FXML private TextField surnameField;
+    @FXML private Button registerCustomerButton;
+    @FXML private Button returnToMainMenuButton;
+    @FXML private Button clearAllButton;
 
     private String personalNumber;
     private String firstName;

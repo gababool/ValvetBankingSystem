@@ -13,16 +13,15 @@ import src.main.java.model.ValvetFileManager;
 import java.io.IOException;
 
 public class TransactionController {
-    @FXML public TextField receiverTextField;
-    @FXML public TextField senderTextField;
-    @FXML public TextField amountTextField;
-    @FXML public Button makeTransactionButton;
-    @FXML public Button clearAllButton;
-    @FXML public Button returnButton;
-
-    public Customer customer;
-    public Account account;
-    public Button switchAccountButton;
+    @FXML private TextField receiverTextField;
+    @FXML private TextField senderTextField;
+    @FXML private TextField amountTextField;
+    @FXML private Button makeTransactionButton;
+    @FXML private Button clearAllButton;
+    @FXML private Button returnButton;
+    @FXML private Button switchAccountButton;
+    private Customer customer;
+    private Account account;
     private static SceneSwitcher switcher = new SceneSwitcher();
 
     // Switches the account number entered in the sender and receiver fields with each other, based on button press.

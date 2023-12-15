@@ -10,18 +10,13 @@ import java.io.IOException;
 
 public class ValvetController {
 
-    @FXML
-    public Button findCustomerButton;
-    @FXML
-    public Button transactionsButton;
-    @FXML
-    public Button addNewCustomerButton;
-    @FXML
-    public TextField personalNumberField;
-    private static SceneSwitcher switcher = new SceneSwitcher();
-    @FXML
-    public Button viewAllCustomersButton;
 
+    @FXML private Button findCustomerButton;
+    @FXML private Button transactionsButton;
+    @FXML private Button addNewCustomerButton;
+    @FXML private TextField personalNumberField;
+    @FXML private Button viewAllCustomersButton;
+    private static SceneSwitcher switcher = new SceneSwitcher();
 
     // Finds customer by entering a valid personal number into the TextField at the main menu
     // and switches scene to the customer's page

@@ -12,12 +12,12 @@ import src.main.java.model.InvalidInputException;
 import java.io.IOException;
 
 public class UpdateCustomerController {
-    @FXML public TextField personalNumberField;
-    @FXML public TextField firstNameField;
-    @FXML public TextField surnameField;
-    @FXML public Button updateCustomerButton;
-    @FXML public Button cancelButton;
-    @FXML public Button clearAllButton;
+    @FXML private TextField personalNumberField;
+    @FXML private TextField firstNameField;
+    @FXML private TextField surnameField;
+    @FXML private Button updateCustomerButton;
+    @FXML private Button cancelButton;
+    @FXML private Button clearAllButton;
     private Customer customer;
     private static SceneSwitcher switcher = new SceneSwitcher();
 

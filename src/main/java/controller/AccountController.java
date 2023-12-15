@@ -20,7 +20,7 @@ import java.util.UUID;
 
 public class AccountController {
 
-    @FXML public Label totalBalanceLabel;
+    @FXML private Label totalBalanceLabel;
     @FXML private Label titleNameLabel;
     @FXML private Label personalNumberLabel;
     @FXML private Label accountNumberLabel;
