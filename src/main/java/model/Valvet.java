@@ -72,14 +72,13 @@ public class Valvet implements Serializable{
     }
 
     // Update Customers names
-    public Customer updateCustomerName(String personalNumber, String firstName, String surname) throws Exception {
+    public void updateCustomerName(String personalNumber, String firstName, String surname) throws Exception {
         if (!checkValidCustomerInfo(firstName, surname, personalNumber)){
             throw new InvalidInputException("Entered information not valid");
         }
         Customer customer = customers.get(personalNumber);
         customer.setFirstName(firstName);
         customer.setSurname(surname);
-        return customer;
     }
 
     public Customer updateCustomerSurname(String personalNumber, String name){
