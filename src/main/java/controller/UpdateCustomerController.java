@@ -21,12 +21,15 @@ public class UpdateCustomerController {
     private Customer customer;
     private static SceneSwitcher switcher = new SceneSwitcher();
 
+    // Loads in customer data and places it the appropriate fields
     public void loadCustomerInfo(Customer customer){
         this.customer = customer;
         personalNumberField.setText(customer.getPERSONAL_NUMBER());
         firstNameField.setText(customer.getFirstName());
         surnameField.setText(customer.getSurname());
     }
+
+    // Updates the customer information based on user input
     public void updateCustomerInfo(ActionEvent event) {
         String newFirstName = firstNameField.getText().trim();
         String newSurname = surnameField.getText().trim();
@@ -41,6 +44,7 @@ public class UpdateCustomerController {
         }
     }
 
+    // Switches screen back to the customer
     public void returnToCustomerView(ActionEvent event) {
         try {
             switcher.switchToCustomerPage(event, customer);
@@ -49,6 +53,7 @@ public class UpdateCustomerController {
         }
     }
 
+    // Clears all text fields
     public void clearTextFields(ActionEvent event) {
         firstNameField.clear();
         surnameField.clear();
