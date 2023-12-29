@@ -22,8 +22,8 @@ rest of the class.
 ........................................................
 Inception Phase: Weeks 1-2
 Elaboration phase: Weeks 3-4
-Construction phase: Weeks 5-8
-Transition phase: Weeks 9-9
+Construction phase: Weeks 5-9
+Transition phase: Week 10
 ........................................................
 Group Members:
 - Edvin Sanfridsson (Project Manager weeks 1-5)
