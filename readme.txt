@@ -39,9 +39,3 @@ Programming and DIT022 - Mathemathical Foundations for
 Software Engineering.
 - Restriction: JSON files were used for storing data, since the
 data management course is scheduled for next semester.
-- No software development lectures were held during the
-course since they were only covering project management.
-Therefore, JavaFx with SceneBuilder and JSON-storage using
-the Jackson library had to be learned without guidance.
-Because of this, some parts of the codebase may not be
-following best-practice regarding these areas.
